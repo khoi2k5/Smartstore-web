@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from './firebase';
 
 function App() {
   // Role & Config State
@@ -948,12 +950,24 @@ function App() {
                 Hủy
               </button>
               <button 
-                onClick={() => {
-                  alert("Đã hoàn tất thanh toán & In Bill! (Đợi nối API)");
-                  setCart([]);
-                  setShowPaymentModal(false);
-                  setAmountGiven(0);
-                  if (posConfig.layout !== 'retail') setSelectedTable(null);
+                onClick={async () => {
+                  try {
+                    await addDoc(collection(db, "orders"), {
+                      items: cart,
+                      total: cart.reduce((sum, item) => sum + (item.price * item.qty), 0),
+                      amountGiven: amountGiven,
+                      table: posConfig.layout !== 'retail' ? selectedTable : 'N/A',
+                      timestamp: serverTimestamp()
+                    });
+                    alert("Đã hoàn tất thanh toán & Lưu Hóa đơn lên Firebase thành công!");
+                    setCart([]);
+                    setShowPaymentModal(false);
+                    setAmountGiven(0);
+                    if (posConfig.layout !== 'retail') setSelectedTable(null);
+                  } catch (error) {
+                    console.error("Lỗi khi lưu Firebase:", error);
+                    alert("Có lỗi xảy ra khi lưu lên Cloud!");
+                  }
                 }}
                 disabled={amountGiven < cart.reduce((sum, item) => sum + (item.price * item.qty), 0)}
                 className="flex-1 bg-green-500 hover:bg-green-600 disabled:bg-gray-600 disabled:text-gray-400 text-gray-900 py-4 rounded-xl font-bold transition-colors shadow-lg shadow-green-500/20 text-lg">
