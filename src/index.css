@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+/* Body classes will be applied in index.html instead */
+
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes scan {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(250px); }
+  100% { transform: translateY(0); }
+}
