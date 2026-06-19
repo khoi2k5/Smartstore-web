@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from './firebase';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { db, auth } from './firebase';
 
 function App() {
   // Role & Config State
@@ -89,13 +90,18 @@ function App() {
     setActiveTab(tabKey);
   };
 
-  const handleLogoutClick = () => {
+  const handleLogoutClick = async () => {
     if (activeTab === 'settings' && isSettingsDirty) {
       if (window.confirm("Bạn đang có thay đổi chưa lưu. Bấm OK để ở lại trang và lưu, bấm Cancel để bỏ qua và tiếp tục đăng xuất.")) {
         return;
       }
     }
     if (window.confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
+      try {
+        await signOut(auth);
+      } catch (error) {
+        console.error("Lỗi đăng xuất:", error);
+      }
       setRole(null);
       setSelectedTable(null);
       setCart([]);
@@ -149,11 +155,32 @@ function App() {
     else setKeypadBuffer(prev => prev + val);
   };
 
-  const handleLogin = (selectedRole) => {
-    setRole(selectedRole);
-    if (selectedRole === 'owner') setActiveTab('dashboard');
-    if (selectedRole === 'pos') setActiveTab('pos');
-    if (selectedRole === 'staff') setActiveTab('salary');
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoggingIn(true);
+    setLoginError('');
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      const userEmail = userCredential.user.email.toLowerCase();
+      let selectedRole = 'staff';
+      if (userEmail.includes('chuquan')) selectedRole = 'owner';
+      else if (userEmail.includes('pos')) selectedRole = 'pos';
+      
+      setRole(selectedRole);
+      if (selectedRole === 'owner') setActiveTab('dashboard');
+      if (selectedRole === 'pos') setActiveTab('pos');
+      if (selectedRole === 'staff') setActiveTab('salary');
+    } catch (error) {
+      setLoginError('Sai email hoặc mật khẩu!');
+      console.error(error);
+    } finally {
+      setIsLoggingIn(false);
+    }
   };
 
   const saveSettings = () => {
@@ -221,37 +248,54 @@ function App() {
   if (!role) {
     return (
       <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-4">
-        <div className="glassmorphism rounded-3xl p-10 max-w-4xl w-full">
-          <div className="text-center mb-12">
-            <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-purple-500 mb-4">
+        <div className="glassmorphism rounded-3xl p-10 max-w-md w-full">
+          <div className="text-center mb-10">
+            <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-purple-500 mb-2">
               SmartStore
             </h1>
-            <p className="text-gray-400 text-xl">Nền tảng quản lý All-in-one cho mọi loại hình kinh doanh</p>
+            <p className="text-gray-400">Đăng nhập để vào hệ thống</p>
           </div>
 
-          <h2 className="text-2xl font-bold mb-8 text-center">Đăng nhập với tư cách:</h2>
-          
-          <div className="grid grid-cols-3 gap-6">
-            <div onClick={() => handleLogin('owner')} className="bg-gradient-to-br from-indigo-900/50 to-purple-900/50 border border-purple-500/50 hover:bg-purple-900/50 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer transition-all hover:scale-105 group relative overflow-hidden">
-              <div className="absolute -inset-2 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-20 blur-xl transition-opacity"></div>
-              <span className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300 block">👑</span>
-              <h3 className="text-2xl font-bold text-white">Chủ quán</h3>
-              <p className="text-purple-300 mt-2 text-center text-sm">Toàn quyền hệ thống</p>
+          <form onSubmit={handleLoginSubmit} className="space-y-6">
+            <div>
+              <label className="block text-gray-400 text-sm mb-2">Email</label>
+              <input 
+                type="email" 
+                required 
+                value={loginEmail}
+                onChange={e => setLoginEmail(e.target.value)}
+                placeholder="VD: chuquan@gmail.com"
+                className="w-full bg-gray-800 border border-gray-700 rounded-xl p-4 text-white focus:outline-none focus:border-green-500 transition-colors"
+              />
             </div>
-            
-            <div onClick={() => handleLogin('pos')} className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 border border-green-500/50 hover:bg-green-900/50 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer transition-all hover:scale-105 group relative overflow-hidden">
-              <div className="absolute -inset-2 bg-gradient-to-r from-green-500 to-emerald-500 opacity-0 group-hover:opacity-20 blur-xl transition-opacity"></div>
-              <span className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300 block">🛒</span>
-              <h3 className="text-2xl font-bold text-white">Thu ngân</h3>
-              <p className="text-green-300 mt-2 text-center text-sm">Bán hàng, Order</p>
+            <div>
+              <label className="block text-gray-400 text-sm mb-2">Mật khẩu</label>
+              <input 
+                type="password" 
+                required
+                value={loginPassword}
+                onChange={e => setLoginPassword(e.target.value)}
+                placeholder="••••••"
+                className="w-full bg-gray-800 border border-gray-700 rounded-xl p-4 text-white focus:outline-none focus:border-green-500 transition-colors"
+              />
             </div>
 
-            <div onClick={() => handleLogin('staff')} className="bg-gradient-to-br from-orange-900/50 to-amber-900/50 border border-orange-500/50 hover:bg-orange-900/50 rounded-2xl p-8 flex flex-col items-center justify-center cursor-pointer transition-all hover:scale-105 group relative overflow-hidden">
-              <div className="absolute -inset-2 bg-gradient-to-r from-orange-500 to-amber-500 opacity-0 group-hover:opacity-20 blur-xl transition-opacity"></div>
-              <span className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300 block">🧑‍🍳</span>
-              <h3 className="text-2xl font-bold text-white">Nhân viên</h3>
-              <p className="text-orange-300 mt-2 text-center text-sm">Xem lương, Check-in</p>
-            </div>
+            {loginError && (
+              <div className="text-red-400 text-sm text-center bg-red-500/10 py-2 rounded-lg border border-red-500/20">
+                {loginError}
+              </div>
+            )}
+
+            <button 
+              type="submit" 
+              disabled={isLoggingIn}
+              className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 disabled:from-gray-600 disabled:to-gray-700 disabled:text-gray-400 text-gray-900 py-4 rounded-xl font-bold transition-all shadow-lg shadow-green-500/20 text-lg">
+              {isLoggingIn ? 'Đang xác thực...' : 'Đăng nhập'}
+            </button>
+          </form>
+
+          <div className="mt-8 text-center text-sm text-gray-500">
+            Demo Accounts: <br/>chuquan@gmail.com | nhanvienpos@gmail.com | nhanvien@gmail.com<br/>Password: 123456
           </div>
         </div>
       </div>
