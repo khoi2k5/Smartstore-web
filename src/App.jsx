@@ -975,9 +975,16 @@ function App() {
             <div className="space-y-4 mb-6">
               <div>
                 <label className="block text-slate-500 mb-2">Kích cỡ / Phân loại</label>
-                <div className="flex gap-2">
-                  <button onClick={() => setSelectedSize(predefinedSizes[0]?.name || '')} className={`flex-1 py-2 border rounded-lg font-bold transition-all ${selectedSize === 'M' ? 'border-blue-600 bg-blue-600/20 text-blue-600' : 'border-slate-300 text-slate-500'}`}>Cơ bản</button>
-                  <button onClick={() => setSelectedSize('L')} className={`flex-1 py-2 border rounded-lg font-bold transition-all ${selectedSize === 'L' ? 'border-blue-600 bg-blue-600/20 text-blue-600' : 'border-slate-300 text-slate-500'}`}>Lớn / Đặc biệt (+10k)</button>
+                <div className="flex flex-wrap gap-2">
+                  {predefinedSizes.map((sz, idx) => (
+                    <button 
+                      key={idx} 
+                      onClick={() => setSelectedSize(sz.name)} 
+                      className={`px-4 py-2 border rounded-sm font-bold transition-all text-sm ${selectedSize === sz.name ? 'border-blue-600 bg-blue-600 text-white' : 'border-slate-400 bg-white text-slate-700 hover:bg-slate-100'}`}
+                    >
+                      {sz.name} {sz.priceAdd > 0 && `(+${sz.priceAdd.toLocaleString()}đ)`}
+                    </button>
+                  ))}
                 </div>
               </div>
 
