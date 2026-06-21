@@ -394,7 +394,15 @@ function App() {
         {/* TAB: DASHBOARD (OWNER)                                    */}
         {/* ========================================================= */}
         {activeTab === 'dashboard' ? (
-          <div className="animate-in fade-in duration-500">
+          <div className="animate-in fade-in duration-500 relative">
+            {role === 'owner' && (
+              <button 
+                onClick={() => setActiveTab('settings')} 
+                className="absolute top-0 right-0 bg-slate-800 text-white px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1 z-50 shadow-md transition-all hover:scale-105"
+              >
+                ⚙️ Sửa giao diện
+              </button>
+            )}
             <h2 className="text-3xl font-bold mb-6">{tabNames.dashboard}</h2>
             
             {/* KPI Cards */}
@@ -468,7 +476,15 @@ function App() {
         /* TAB: RECIPES / QUẢN LÝ SẢN PHẨM (OWNER ONLY)               */
         /* ========================================================= */
         activeTab === 'recipes' ? (
-          <div className="animate-in fade-in duration-500 h-full flex flex-col">
+          <div className="animate-in fade-in duration-500 h-full flex flex-col relative">
+            {role === 'owner' && (
+              <button 
+                onClick={() => setActiveTab('settings')} 
+                className="absolute top-0 right-0 bg-slate-800 text-white px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1 z-50 shadow-md transition-all hover:scale-105"
+              >
+                ⚙️ Sửa giao diện
+              </button>
+            )}
             <h2 className="text-3xl font-bold mb-6">{tabNames.recipes}</h2>
             
             <div className="grid grid-cols-4 gap-6 flex-1 min-h-0">
@@ -690,7 +706,15 @@ function App() {
         /* ========================================================= */
         activeTab === 'pos' ? (
           (posConfig.layout !== 'retail' && !selectedTable) ? (
-            <div className="animate-in fade-in">
+            <div className="animate-in fade-in relative">
+              {role === 'owner' && (
+                <button 
+                  onClick={() => setActiveTab('settings')} 
+                  className="absolute top-0 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-bold flex items-center gap-2 z-50 shadow-md transition-all hover:scale-105 border border-blue-400"
+                >
+                  ⚙️ Tuỳ chỉnh giao diện POS
+                </button>
+              )}
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-3xl font-bold">{posConfig.title}</h2>
               </div>
@@ -721,7 +745,15 @@ function App() {
               </div>
             </div>
           ) : (
-            <div className="flex gap-2 h-full animate-in slide-in-from-right-8 duration-300 min-h-0 bg-slate-100 p-2 rounded-sm border border-slate-300">
+            <div className="flex gap-2 h-full animate-in slide-in-from-right-8 duration-300 min-h-0 bg-slate-100 p-2 rounded-sm border border-slate-300 relative">
+              {role === 'owner' && (
+                <button 
+                  onClick={() => setActiveTab('settings')} 
+                  className="absolute top-2 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-bold flex items-center gap-2 z-50 shadow-md transition-all hover:scale-105 border border-blue-400"
+                >
+                  ⚙️ Tuỳ chỉnh giao diện POS
+                </button>
+              )}
               {/* Left Side: Cart & Keypad (High Density) */}
               <div className="w-[450px] flex flex-col bg-white border border-slate-400 shrink-0 shadow-sm rounded-sm">
                 {/* Header */}
@@ -880,7 +912,15 @@ function App() {
         /* TAB: SALARY TRACKING (STAFF ONLY)                         */
         /* ========================================================= */
         activeTab === 'salary' ? (
-          <div className="flex justify-center h-full animate-in fade-in">
+          <div className="flex justify-center h-full animate-in fade-in relative w-full">
+            {role === 'owner' && (
+              <button 
+                onClick={() => setActiveTab('settings')} 
+                className="absolute top-0 right-0 bg-slate-800 text-white px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1 z-50 shadow-md transition-all hover:scale-105"
+              >
+                ⚙️ Sửa giao diện
+              </button>
+            )}
             {/* Mobile View Mockup for Staff */}
             <div className="w-[400px] bg-slate-50 border-[8px] border-gray-800 rounded-[3rem] p-6 shadow-md border border-slate-200 relative overflow-y-auto">
               {/* Fake Notch */}
@@ -939,7 +979,15 @@ function App() {
         /* OTHER TABS                                                */
         /* ========================================================= */
         activeTab === 'hr' ? (
-          <div className="flex flex-col items-center justify-center h-full animate-in zoom-in-95 duration-300">
+          <div className="flex flex-col items-center justify-center h-full animate-in zoom-in-95 duration-300 relative w-full">
+            {role === 'owner' && (
+              <button 
+                onClick={() => setActiveTab('settings')} 
+                className="absolute top-0 right-0 bg-slate-800 text-white px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1 z-50 shadow-md transition-all hover:scale-105"
+              >
+                ⚙️ Sửa giao diện
+              </button>
+            )}
             <h2 className="text-3xl font-bold mb-2">Anti-Fraud Check-in</h2>
             <p className="text-slate-500 mb-8">Hiển thị mã QR này cho nhân viên quét bằng App SmartStore để Check-in.</p>
             
