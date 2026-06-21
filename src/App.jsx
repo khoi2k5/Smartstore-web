@@ -583,10 +583,12 @@ function App() {
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">📏 Quản lý Kích cỡ / Phân loại</h3>
                 <p className="text-sm text-slate-500 mb-6">Thiết lập các biến thể kích thước (S, M, L, XL...) và giá cộng thêm.</p>
 
-                <div className="flex gap-2 mb-6">
-                  <input type="text" placeholder="Tên (VD: Size L)" value={newSizeName} onChange={e => setNewSizeName(e.target.value)} className="flex-1 bg-slate-50 border border-slate-300 rounded-lg p-2 text-slate-800 text-sm" />
-                  <input type="number" placeholder="+Giá (VNĐ)" value={newSizePrice} onChange={e => setNewSizePrice(e.target.value)} className="w-24 bg-slate-50 border border-slate-300 rounded-lg p-2 text-slate-800 text-sm" />
-                  <button onClick={handleAddNewSize} className="bg-blue-600 hover:bg-blue-700 text-white px-3 rounded-lg font-bold transition-colors text-sm">Thêm</button>
+                <div className="flex flex-col gap-2 mb-6">
+                  <input type="text" placeholder="Tên (VD: Size L)" value={newSizeName} onChange={e => setNewSizeName(e.target.value)} className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 text-slate-800 text-sm" />
+                  <div className="flex gap-2">
+                    <input type="number" placeholder="+Giá (VNĐ)" value={newSizePrice} onChange={e => setNewSizePrice(e.target.value)} className="flex-1 bg-slate-50 border border-slate-300 rounded-lg p-2 text-slate-800 text-sm" />
+                    <button onClick={handleAddNewSize} className="bg-blue-600 hover:bg-blue-700 text-white px-4 rounded-lg font-bold transition-colors text-sm whitespace-nowrap">Thêm</button>
+                  </div>
                 </div>
 
                 <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-md p-4 border border-slate-200 flex flex-col gap-2">
