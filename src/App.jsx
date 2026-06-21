@@ -512,38 +512,25 @@ function App() {
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">🏷️ Quản lý Danh mục Sản phẩm</h3>
                 <p className="text-sm text-slate-500 mb-6">Thêm, sửa, xóa các mặt hàng sẽ xuất hiện trên màn hình thu ngân.</p>
                 
-                <div className="flex gap-4 mb-6 items-end">
-                  {/* Cột Upload Hình Ảnh */}
-                  <div className="flex flex-col items-center justify-center">
-                    <label className="text-xs text-slate-500 mb-1">Ảnh (Tùy chọn)</label>
-                    <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" id="image-upload" />
-                    <label 
-                      htmlFor="image-upload" 
-                      className="w-16 h-16 bg-slate-50 border border-slate-300 rounded-lg flex items-center justify-center cursor-pointer hover:bg-slate-100 transition-colors overflow-hidden relative group"
-                    >
-                      {newProduct.image ? (
-                        <>
-                          <img src={newProduct.image} className="w-full h-full object-cover" alt="preview" />
-                          <div className="absolute inset-0 bg-black/50 hidden group-hover:flex items-center justify-center text-xs">Sửa</div>
-                        </>
-                      ) : (
-                        <span className="text-2xl text-slate-400">📷</span>
-                      )}
-                    </label>
-                  </div>
-                  
-                  <div className="flex-1">
-                    <label className="text-xs text-slate-500 mb-1 block">Tên sản phẩm</label>
-                    <input type="text" placeholder="VD: Trà đào" value={newProduct.name} onChange={e => setNewProduct({...newProduct, name: e.target.value})} className="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-slate-800" />
-                  </div>
-                  
-                  <div className="w-40">
-                    <label className="text-xs text-slate-500 mb-1 block">Giá tiền (VND)</label>
-                    <input type="number" placeholder="0" value={newProduct.price} onChange={e => setNewProduct({...newProduct, price: e.target.value})} className="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-slate-800" />
-                  </div>
-                  
-                  <button onClick={addProduct} className="bg-blue-600 hover:bg-blue-700 text-white px-6 h-[50px] rounded-lg font-bold transition-colors">Thêm</button>
+                {/* Sub-tab Navigation */}
+                <div className="flex gap-2 mb-6 border-b border-slate-200 pb-4">
+                  <button onClick={() => setRecipeTab('products')} className={`px-4 py-2 rounded-lg font-bold transition-colors ${recipeTab === 'products' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>Sản Phẩm</button>
+                  <button onClick={() => setRecipeTab('categories')} className={`px-4 py-2 rounded-lg font-bold transition-colors ${recipeTab === 'categories' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>Danh Mục</button>
+                  <button onClick={() => setRecipeTab('ingredients')} className={`px-4 py-2 rounded-lg font-bold transition-colors ${recipeTab === 'ingredients' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>Nguyên Liệu</button>
                 </div>
+
+                {recipeTab === 'products' && (
+                  <>
+                    <div className="flex justify-between items-center mb-6">
+                      <p className="text-sm text-slate-500">Quản lý và cập nhật danh sách các mặt hàng xuất hiện trên POS.</p>
+                      <button onClick={() => {
+                        setEditingProduct(null);
+                        setProductForm({ name: '', price: '', image: null, icon: '📦', category: '', status: 'not_ready', recipe: [] });
+                        setShowProductModal(true);
+                      }} className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-bold transition-colors shadow-sm flex items-center gap-2">
+                        + Thêm Sản Phẩm Mới
+                      </button>
+                    </div>
 
                 <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-md p-4 border border-slate-200">
                   {products.length === 0 ? (
@@ -560,17 +547,88 @@ function App() {
                                 <span className="text-2xl">{p.icon || '📦'}</span>
                               )}
                             </div>
-                            <div>
-                              <p className="font-bold text-sm line-clamp-1">{p.name}</p>
-                              <p className="text-sm text-blue-600 font-mono">{p.price.toLocaleString()} đ</p>
+                            <div className="flex-1 w-full min-w-0 pr-2">
+                              <p className="font-bold text-sm line-clamp-1 w-full truncate">{p.name}</p>
+                              <p className="text-sm text-blue-600 font-mono mb-2">{p.price.toLocaleString()} đ</p>
+                              
+                              <div className="flex gap-2 w-full">
+                                <button onClick={() => {
+                                  setEditingProduct(p);
+                                  setProductForm({ ...p, status: p.status || 'ready', recipe: p.recipe || [] });
+                                  setShowProductModal(true);
+                                }} className="text-blue-600 hover:text-blue-800 text-xs font-bold bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-md transition-colors text-center flex-1 whitespace-nowrap">Sửa</button>
+                                <button onClick={() => deleteProduct(p.id)} className="text-red-500 hover:text-red-700 text-xs font-bold bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-md transition-colors text-center flex-1 whitespace-nowrap">Xóa</button>
+                              </div>
                             </div>
                           </div>
-                          <button onClick={() => deleteProduct(p.id)} className="text-red-400 hover:text-slate-800 px-3 py-1 bg-red-500/10 hover:bg-red-500/80 rounded-lg transition-colors font-bold text-sm">Xóa</button>
                         </div>
                       ))}
                     </div>
                   )}
                 </div>
+                </>)}
+
+                {recipeTab === 'categories' && (
+                  <div className="flex-1 flex flex-col min-h-0 animate-in fade-in duration-300">
+                    <div className="flex gap-2 mb-4">
+                      <input type="text" placeholder="Tên danh mục mới..." value={newCategory.name} onChange={e => setNewCategory({...newCategory, name: e.target.value})} className="flex-1 bg-slate-50 border border-slate-300 rounded-lg p-2 text-slate-800" />
+                      <button onClick={() => {
+                        if(newCategory.name) {
+                          setCategories([...categories, { id: 'cat' + Date.now(), name: newCategory.name }]);
+                          setNewCategory({ id: '', name: '' });
+                        }
+                      }} className="bg-blue-600 hover:bg-blue-700 text-white px-4 rounded-lg font-bold">Thêm</button>
+                    </div>
+                    <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-md p-4 border border-slate-200 space-y-2">
+                      {categories.map(cat => (
+                        <div key={cat.id} className="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
+                          <span className="font-bold">{cat.name}</span>
+                          <button onClick={() => setCategories(categories.filter(c => c.id !== cat.id))} className="text-red-400 hover:text-red-600 font-bold">✕</button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {recipeTab === 'ingredients' && (
+                  <div className="flex-1 flex flex-col min-h-0 animate-in fade-in duration-300">
+                    <div className="flex gap-2 mb-4 bg-slate-50 p-3 rounded-lg border border-slate-200 flex-wrap items-end">
+                      <div className="flex-1 min-w-[150px]">
+                        <label className="text-xs font-bold text-slate-500 mb-1 block">Tên NL</label>
+                        <input type="text" value={newIngredient.name} onChange={e => setNewIngredient({...newIngredient, name: e.target.value})} className="w-full border border-slate-300 rounded-lg p-2 text-sm" />
+                      </div>
+                      <div className="w-24">
+                        <label className="text-xs font-bold text-slate-500 mb-1 block">Đơn vị</label>
+                        <select value={newIngredient.unit} onChange={e => setNewIngredient({...newIngredient, unit: e.target.value})} className="w-full border border-slate-300 rounded-lg p-2 text-sm">
+                          <option value="gram">gram</option>
+                          <option value="ml">ml</option>
+                          <option value="cái">cái</option>
+                        </select>
+                      </div>
+                      <div className="w-28">
+                        <label className="text-xs font-bold text-slate-500 mb-1 block">Giá vốn</label>
+                        <input type="number" value={newIngredient.cost} onChange={e => setNewIngredient({...newIngredient, cost: e.target.value})} className="w-full border border-slate-300 rounded-lg p-2 text-sm" />
+                      </div>
+                      <button onClick={() => {
+                        if(newIngredient.name) {
+                          setIngredients([...ingredients, { ...newIngredient, id: 'ing' + Date.now(), cost: parseFloat(newIngredient.cost)||0 }]);
+                          setNewIngredient({ name: '', unit: 'gram', cost: 0, stock: 0 });
+                        }
+                      }} className="bg-blue-600 hover:bg-blue-700 text-white px-4 h-[38px] rounded-lg font-bold">Thêm</button>
+                    </div>
+                    <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-md p-4 border border-slate-200 space-y-2">
+                      {ingredients.map(ing => (
+                        <div key={ing.id} className="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
+                          <div>
+                            <div className="font-bold">{ing.name}</div>
+                            <div className="text-xs text-slate-500">{ing.cost} đ / {ing.unit}</div>
+                          </div>
+                          <button onClick={() => setIngredients(ingredients.filter(i => i.id !== ing.id))} className="text-red-400 hover:text-red-600 font-bold">✕ Xóa</button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Notes Management */}
@@ -900,12 +958,13 @@ function App() {
 
                 <div className="flex-1 overflow-y-auto p-1">
                   <div className="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-1">
-                    {products.filter(item => selectedCategory === 'all' || item.category === selectedCategory).map((item) => (
+                    {products.filter(item => (selectedCategory === 'all' || item.category === selectedCategory) && item.status !== 'not_ready').map((item) => (
                       <div 
                         key={item.id} 
                         onClick={() => { setSelectedItemForTopping(item); setNoteText(''); setSelectedSize(predefinedSizes[0]?.name || ''); setSelectedToppings([]); }} 
-                        className="bg-white border border-slate-400 hover:border-blue-600 cursor-pointer group flex flex-col relative h-24 overflow-hidden rounded-sm"
+                        className={`bg-white border hover:border-blue-600 cursor-pointer group flex flex-col relative h-24 overflow-hidden rounded-sm ${item.status === 'low_stock' ? 'border-yellow-400 border-2 shadow-[0_0_8px_rgba(250,204,21,0.5)]' : 'border-slate-400'}`}
                       >
+                        {item.status === 'low_stock' && <div className="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-1 py-0.5 rounded-bl-md shadow-md z-20 animate-pulse">Sắp Hết</div>}
                         {item.image ? (
                           <div className="absolute inset-0 bg-slate-100">
                             <img src={item.image} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200" alt={item.name} />
