@@ -33,6 +33,12 @@ function App() {
     'Ít ngọt', 'Không đường', 
     'Không hành', 'Thêm cay'
   ]);
+  const [predefinedSizes, setPredefinedSizes] = useState([
+    { name: 'Cơ bản', priceAdd: 0 },
+    { name: 'Lớn', priceAdd: 10000 }
+  ]);
+  const [newSizeName, setNewSizeName] = useState('');
+  const [newSizePrice, setNewSizePrice] = useState('');
 
   const [posConfig, setPosConfig] = useState({
     layout: 'table', // 'table', 'retail', 'room'
@@ -129,12 +135,34 @@ function App() {
   const handleAddItem = (item) => {
     let qtyToAdd = 1;
     if (keypadBuffer) {
-      try {
-        const val = eval(keypadBuffer);
-        if (!isNaN(val) && val > 0) qtyToAdd = val;
-      } catch (e) {}
+      if (keypadBuffer.startsWith('*')) {
+         const num = parseFloat(keypadBuffer.substring(1));
+         if (!isNaN(num) && num > 0) qtyToAdd = num;
+      } else {
+         const num = parseFloat(keypadBuffer);
+         if (!isNaN(num) && num > 0) qtyToAdd = num;
+      }
     }
+    
+    // calculate final price based on selected size
+    let finalPrice = item.price;
+    if (item.size) {
+      const sizeConfig = predefinedSizes.find(s => s.name === item.size);
+      if (sizeConfig) finalPrice += sizeConfig.priceAdd;
+    }
+    const finalItem = { ...item, price: finalPrice };
+
     setCart(prev => {
+      const exist = prev.find(i => 
+        i.id === finalItem.id && 
+        i.size === finalItem.size && 
+        i.note === finalItem.note && 
+        JSON.stringify(i.toppings) === JSON.stringify(finalItem.toppings)
+      );
+      if (exist) {
+        return prev.map(i => i === exist ? {...i, qty: i.qty + qtyToAdd} : i);
+      }
+      return [...prev, {...finalItem, qty: qtyToAdd}];
       const exist = prev.find(i => 
         i.id === item.id && 
         i.size === item.size && 
@@ -152,6 +180,7 @@ function App() {
   const handleKeypad = (val) => {
     if (val === 'C') setKeypadBuffer('');
     else if (val === 'DEL') setKeypadBuffer(prev => prev.slice(0, -1));
+    else if (val === ',') setKeypadBuffer(prev => prev + '.');
     else setKeypadBuffer(prev => prev + val);
   };
 
@@ -233,6 +262,18 @@ function App() {
 
   const deletePredefinedNote = (noteToDelete) => {
     setPredefinedNotes(predefinedNotes.filter(n => n !== noteToDelete));
+  };
+
+  const handleAddNewSize = () => {
+    if (newSizeName.trim()) {
+      setPredefinedSizes([...predefinedSizes, { name: newSizeName.trim(), priceAdd: parseInt(newSizePrice) || 0 }]);
+      setNewSizeName('');
+      setNewSizePrice('');
+    }
+  };
+
+  const deletePredefinedSize = (idx) => {
+    setPredefinedSizes(predefinedSizes.filter((_, i) => i !== idx));
   };
 
   useEffect(() => {
@@ -426,6 +467,35 @@ function App() {
                   </div>
                 </div>
               </div>
+              </div>
+
+              {/* Size Management */}
+              <div className="col-span-1 bg-white rounded-lg p-6 border border-slate-200 flex flex-col h-full min-h-0">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">📏 Quản lý Kích cỡ / Phân loại</h3>
+                <p className="text-sm text-slate-500 mb-6">Thiết lập các biến thể kích thước (S, M, L, XL...) và giá cộng thêm.</p>
+
+                <div className="flex gap-2 mb-6">
+                  <input type="text" placeholder="Tên (VD: Size L)" value={newSizeName} onChange={e => setNewSizeName(e.target.value)} className="flex-1 bg-slate-50 border border-slate-300 rounded-lg p-2 text-slate-800 text-sm" />
+                  <input type="number" placeholder="+Giá (VNĐ)" value={newSizePrice} onChange={e => setNewSizePrice(e.target.value)} className="w-24 bg-slate-50 border border-slate-300 rounded-lg p-2 text-slate-800 text-sm" />
+                  <button onClick={handleAddNewSize} className="bg-blue-600 hover:bg-blue-700 text-white px-3 rounded-lg font-bold transition-colors text-sm">Thêm</button>
+                </div>
+
+                <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-md p-4 border border-slate-200 flex flex-col gap-2">
+                  {predefinedSizes.map((sz, idx) => (
+                    <div key={idx} className="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
+                      <div>
+                        <span className="font-bold text-sm block">{sz.name}</span>
+                        <span className="text-xs text-blue-600">+{sz.priceAdd.toLocaleString()} đ</span>
+                      </div>
+                      <button onClick={() => deletePredefinedSize(idx)} className="text-slate-500 hover:text-red-400 transition-colors">✕</button>
+                    </div>
+                  ))}
+                  {predefinedSizes.length === 0 && (
+                    <p className="text-slate-400 text-center text-sm mt-4">Chưa có kích cỡ nào.</p>
+                  )}
+                </div>
+              </div>
+
             </div>
           </div>
         ) : 
@@ -742,7 +812,7 @@ function App() {
 
                   <div className="grid grid-cols-5 gap-1">
                     <div className="col-span-3 grid grid-cols-4 gap-1">
-                      {['7','8','9','/','4','5','6','*','1','2','3','-','C','0','DEL','+'].map((btn) => (
+                      {['7','8','9','*','4','5','6','000','1','2','3','DEL','C','0',',','+'].map((btn) => (
                         <button key={btn} onClick={() => handleKeypad(btn)} className="bg-white border border-slate-400 hover:bg-slate-200 active:bg-slate-300 py-2 font-mono font-bold text-sm text-slate-800 rounded-sm">
                           {btn}
                         </button>
@@ -788,7 +858,7 @@ function App() {
                     {products.filter(item => selectedCategory === 'all' || item.category === selectedCategory).map((item) => (
                       <div 
                         key={item.id} 
-                        onClick={() => { setSelectedItemForTopping(item); setNoteText(''); setSelectedSize('M'); setSelectedToppings([]); }} 
+                        onClick={() => { setSelectedItemForTopping(item); setNoteText(''); setSelectedSize(predefinedSizes[0]?.name || ''); setSelectedToppings([]); }} 
                         className="bg-white border border-slate-400 hover:border-blue-600 cursor-pointer group flex flex-col relative h-24 overflow-hidden rounded-sm"
                       >
                         {item.image ? (
@@ -915,7 +985,7 @@ function App() {
               <div>
                 <label className="block text-slate-500 mb-2">Kích cỡ / Phân loại</label>
                 <div className="flex gap-2">
-                  <button onClick={() => setSelectedSize('M')} className={`flex-1 py-2 border rounded-lg font-bold transition-all ${selectedSize === 'M' ? 'border-blue-600 bg-blue-600/20 text-blue-600' : 'border-slate-300 text-slate-500'}`}>Cơ bản</button>
+                  <button onClick={() => setSelectedSize(predefinedSizes[0]?.name || '')} className={`flex-1 py-2 border rounded-lg font-bold transition-all ${selectedSize === 'M' ? 'border-blue-600 bg-blue-600/20 text-blue-600' : 'border-slate-300 text-slate-500'}`}>Cơ bản</button>
                   <button onClick={() => setSelectedSize('L')} className={`flex-1 py-2 border rounded-lg font-bold transition-all ${selectedSize === 'L' ? 'border-blue-600 bg-blue-600/20 text-blue-600' : 'border-slate-300 text-slate-500'}`}>Lớn / Đặc biệt (+10k)</button>
                 </div>
               </div>
