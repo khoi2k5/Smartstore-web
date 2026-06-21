@@ -19,6 +19,25 @@ function App() {
     settings: '⚙️ Cài đặt hệ thống'
   });
 
+  const [recipeTab, setRecipeTab] = useState('products'); // products, categories, ingredients
+  const [showProductModal, setShowProductModal] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
+  const [productForm, setProductForm] = useState({ name: '', price: '', image: null, icon: '📦', category: '', status: 'not_ready', recipe: [] });
+  const [newCategory, setNewCategory] = useState({ id: '', name: '' });
+  const [newIngredient, setNewIngredient] = useState({ name: '', unit: 'gram', cost: 0, stock: 0 });
+  const [categories, setCategories] = useState([
+    { id: 'coffee', name: 'Cà phê' },
+    { id: 'tea', name: 'Trà' },
+    { id: 'food', name: 'Đồ ăn' },
+    { id: 'smoothie', name: 'Sinh tố' }
+  ]);
+  const [ingredients, setIngredients] = useState([
+    { id: 'ing1', name: 'Trà đen', unit: 'gram', cost: 200, stock: 5000 },
+    { id: 'ing2', name: 'Sữa tươi', unit: 'ml', cost: 40, stock: 10000 },
+    { id: 'ing3', name: 'Đường', unit: 'ml', cost: 10, stock: 5000 },
+    { id: 'ing4', name: 'Cà phê bột', unit: 'gram', cost: 300, stock: 2000 }
+  ]);
+
   const [products, setProducts] = useState([
     { id: 1, name: 'Cà phê sữa đá', price: 29000, icon: '☕', category: 'coffee', image: 'https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&q=80&w=200&h=200' },
     { id: 2, name: 'Trà đào cam sả', price: 35000, icon: '🍹', category: 'tea', image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&q=80&w=200&h=200' },
@@ -1015,6 +1034,162 @@ function App() {
           </div>
         )}
       </div>
+
+      
+      {/* Product Modal */}
+      {showProductModal && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[100] backdrop-blur-sm">
+          <div className="bg-white rounded-xl shadow-2xl w-[800px] max-h-[90vh] flex flex-col overflow-hidden animate-in zoom-in-95">
+            <div className="p-6 border-b border-slate-200 flex justify-between items-center bg-slate-50">
+              <h2 className="text-2xl font-bold text-slate-800">{editingProduct ? 'Sửa Sản Phẩm' : 'Thêm Sản Phẩm Mới'}</h2>
+              <button onClick={() => setShowProductModal(false)} className="text-slate-500 hover:text-red-500 text-xl font-bold">✕</button>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto p-6 bg-slate-100/50">
+              {/* CATEGORY SELECTION */}
+              <div className="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-6">
+                <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><span className="bg-blue-100 text-blue-600 w-6 h-6 flex items-center justify-center rounded-full text-sm">1</span> Chọn Danh Mục</h3>
+                <div className="flex gap-2 flex-wrap">
+                  {categories.map(cat => (
+                    <button 
+                      key={cat.id} 
+                      onClick={() => setProductForm({...productForm, category: cat.id})}
+                      className={`px-4 py-2 rounded-lg font-bold transition-colors border ${productForm.category === cat.id ? 'bg-blue-600 text-white border-blue-600 shadow-md' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'}`}
+                    >
+                      {cat.name}
+                    </button>
+                  ))}
+                  {categories.length === 0 && <span className="text-red-500 text-sm italic">Vui lòng tạo Danh mục.</span>}
+                </div>
+              </div>
+
+              {/* PRODUCT DETAILS */}
+              <div className={`transition-opacity duration-300 ${!productForm.category ? 'opacity-40 pointer-events-none grayscale' : ''}`}>
+                <div className="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-6">
+                  <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><span className="bg-blue-100 text-blue-600 w-6 h-6 flex items-center justify-center rounded-full text-sm">2</span> Thông tin cơ bản</h3>
+                  
+                  <div className="grid grid-cols-3 gap-6">
+                    <div className="col-span-1 flex flex-col items-center justify-center border-2 border-dashed border-slate-300 rounded-lg p-4 bg-slate-50 relative group cursor-pointer hover:bg-slate-100 transition-colors">
+                      <input type="file" accept="image/*" onChange={(e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onloadend = () => setProductForm({ ...productForm, image: reader.result });
+                          reader.readAsDataURL(file);
+                        }
+                      }} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+                      {productForm.image ? (
+                        <img src={productForm.image} className="w-full h-full object-cover rounded-md" alt="preview" />
+                      ) : (
+                        <div className="text-center">
+                          <div className="text-4xl mb-2">📷</div>
+                          <div className="text-xs text-slate-500 font-bold">Thêm ảnh (Tùy chọn)</div>
+                        </div>
+                      )}
+                    </div>
+                    
+                    <div className="col-span-2 space-y-4">
+                      <div>
+                        <label className="block text-sm font-bold text-slate-700 mb-1">Tên Sản Phẩm <span className="text-red-500">*</span></label>
+                        <input type="text" value={productForm.name} onChange={e => setProductForm({...productForm, name: e.target.value})} placeholder="VD: Trà Đào Cam Sả" className="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-slate-800" />
+                      </div>
+                      
+                      <div className="flex gap-4">
+                        <div className="flex-1">
+                          <label className="block text-sm font-bold text-slate-700 mb-1">Giá bán (VNĐ) <span className="text-red-500">*</span></label>
+                          <input type="number" value={productForm.price} onChange={e => setProductForm({...productForm, price: e.target.value})} placeholder="VD: 35000" className="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-slate-800" />
+                        </div>
+                        <div className="flex-1">
+                          <label className="block text-sm font-bold text-slate-700 mb-1">Trạng thái</label>
+                          <select value={productForm.status} onChange={e => setProductForm({...productForm, status: e.target.value})} className="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-slate-800 font-bold">
+                            <option value="ready">🟢 Đang bán</option>
+                            <option value="not_ready">⚫ Chưa sẵn sàng</option>
+                            <option value="low_stock">🟡 Sắp hết hàng</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* INGREDIENTS */}
+                <div className="bg-white p-6 rounded-lg border border-slate-200 shadow-sm">
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="font-bold text-lg flex items-center gap-2"><span className="bg-blue-100 text-blue-600 w-6 h-6 flex items-center justify-center rounded-full text-sm">3</span> Công thức Nguyên liệu</h3>
+                    <button onClick={() => setProductForm({...productForm, recipe: [...productForm.recipe, {ingredientId: '', qty: 0}]})} className="text-blue-600 hover:text-blue-800 font-bold text-sm bg-blue-50 px-3 py-1 rounded-md transition-colors">+ Thêm NL</button>
+                  </div>
+                  
+                  {productForm.recipe.length === 0 ? (
+                    <div className="text-center py-6 bg-slate-50 border border-dashed border-slate-300 rounded-lg">
+                      <p className="text-slate-500 text-sm">Món này chưa thiết lập công thức.</p>
+                      <button onClick={() => setProductForm({...productForm, recipe: [{ingredientId: '', qty: 0}]})} className="mt-2 text-blue-600 font-bold text-sm">Thiết lập ngay</button>
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      {productForm.recipe.map((req, idx) => (
+                        <div key={idx} className="flex gap-3 items-center bg-slate-50 p-3 rounded-lg border border-slate-200">
+                          <select 
+                            value={req.ingredientId} 
+                            onChange={(e) => {
+                              const newRecipe = [...productForm.recipe];
+                              newRecipe[idx].ingredientId = e.target.value;
+                              setProductForm({...productForm, recipe: newRecipe});
+                            }}
+                            className="flex-1 bg-white border border-slate-300 rounded-md p-2 text-sm"
+                          >
+                            <option value="">-- Chọn Nguyên Liệu --</option>
+                            {ingredients.map(ing => (
+                              <option key={ing.id} value={ing.id}>{ing.name} ({ing.unit})</option>
+                            ))}
+                          </select>
+                          <input 
+                            type="number" 
+                            placeholder="Số lượng" 
+                            value={req.qty}
+                            onChange={(e) => {
+                              const newRecipe = [...productForm.recipe];
+                              newRecipe[idx].qty = parseFloat(e.target.value) || 0;
+                              setProductForm({...productForm, recipe: newRecipe});
+                            }}
+                            className="w-24 bg-white border border-slate-300 rounded-md p-2 text-sm"
+                          />
+                          <button onClick={() => {
+                            const newRecipe = productForm.recipe.filter((_, i) => i !== idx);
+                            setProductForm({...productForm, recipe: newRecipe});
+                          }} className="text-red-400 hover:text-red-600 p-2 font-bold">✕</button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+            
+            <div className="p-6 border-t border-slate-200 bg-white flex justify-end gap-3">
+              <button onClick={() => setShowProductModal(false)} className="px-6 py-2 rounded-lg font-bold text-slate-600 hover:bg-slate-100">Hủy</button>
+              <button 
+                disabled={!productForm.category}
+                onClick={() => {
+                  if(!productForm.name || !productForm.price) {
+                    alert('Vui lòng điền đủ Tên và Giá sản phẩm!');
+                    return;
+                  }
+                  if(editingProduct) {
+                    setProducts(products.map(p => p.id === editingProduct.id ? {...productForm, id: editingProduct.id, price: parseInt(productForm.price)} : p));
+                  } else {
+                    setProducts([...products, {...productForm, id: Date.now(), price: parseInt(productForm.price)}]);
+                  }
+                  setShowProductModal(false);
+                }} 
+                className={`px-6 py-2 rounded-lg font-bold shadow-sm ${!productForm.category ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 text-white'}`}
+              >
+                {editingProduct ? 'Lưu Thay Đổi' : 'Tạo Sản Phẩm'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
 
       {/* Topping / Note Modal (Keep existing logic) */}
       {selectedItemForTopping && (
