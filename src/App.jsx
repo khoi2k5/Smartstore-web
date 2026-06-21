@@ -625,7 +625,7 @@ function App() {
                             </div>
                             <div className="flex-1 w-full min-w-0 pr-2">
                               <p className="font-bold text-sm line-clamp-1 w-full truncate">{p.name}</p>
-                              <p className="text-sm text-blue-600 font-mono mb-2">{p.price.toLocaleString()} đ</p>
+                              <div className="mb-3"><span className="text-xs text-blue-700 font-mono font-bold bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">{p.price.toLocaleString()} đ</span></div>
                               
                               <div className="flex gap-2 w-full">
                                 <button onClick={() => {
@@ -712,9 +712,9 @@ function App() {
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">📝 Quản lý Ghi chú nhanh</h3>
                 <p className="text-sm text-slate-500 mb-6">Thiết lập các ghi chú thường dùng để thu ngân chọn nhanh khi order.</p>
 
-                <div className="flex gap-2 mb-6">
-                  <input type="text" placeholder="Nhập ghi chú mới..." value={newNote} onChange={e => setNewNote(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleAddNewNote()} className="flex-1 bg-slate-50 border border-slate-300 rounded-lg p-3 text-slate-800 text-sm" />
-                  <button onClick={handleAddNewNote} className="bg-blue-600 hover:bg-blue-700 text-white px-3 rounded-lg font-bold transition-colors">Thêm</button>
+                <div className="flex gap-2 mb-6 h-[46px]">
+                  <input type="text" placeholder="Nhập ghi chú mới..." value={newNote} onChange={e => setNewNote(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleAddNewNote()} className="flex-1 bg-slate-50 border border-slate-300 rounded-lg px-3 text-slate-800 text-sm h-full" />
+                  <button onClick={handleAddNewNote} className="bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-lg font-bold transition-colors h-full flex items-center justify-center">Thêm</button>
                 </div>
 
                 <div className="flex-1 overflow-y-auto bg-slate-50 rounded-2xl p-6 border-2 border-slate-200 shadow-inner flex flex-col gap-2">
@@ -737,10 +737,10 @@ function App() {
                 <p className="text-sm text-slate-500 mb-6">Thiết lập các biến thể kích thước (S, M, L, XL...) và giá cộng thêm.</p>
 
                 <div className="flex flex-col gap-2 mb-6">
-                  <input type="text" placeholder="Tên (VD: Size L)" value={newSizeName} onChange={e => setNewSizeName(e.target.value)} className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2 text-slate-800 text-sm" />
-                  <div className="flex gap-2">
-                    <input type="number" placeholder="+Giá (VNĐ)" value={newSizePrice} onChange={e => setNewSizePrice(e.target.value)} className="flex-1 bg-slate-50 border border-slate-300 rounded-lg p-2 text-slate-800 text-sm" />
-                    <button onClick={handleAddNewSize} className="bg-blue-600 hover:bg-blue-700 text-white px-4 rounded-lg font-bold transition-colors text-sm whitespace-nowrap">Thêm</button>
+                  <input type="text" placeholder="Tên (VD: Size L)" value={newSizeName} onChange={e => setNewSizeName(e.target.value)} className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 text-slate-800 text-sm h-[40px]" />
+                  <div className="flex gap-2 h-[40px]">
+                    <input type="number" placeholder="+Giá (VNĐ)" value={newSizePrice} onChange={e => setNewSizePrice(e.target.value)} className="flex-1 bg-slate-50 border border-slate-300 rounded-lg px-3 text-slate-800 text-sm h-full" />
+                    <button onClick={handleAddNewSize} className="bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-lg font-bold transition-colors text-sm whitespace-nowrap h-full flex items-center justify-center">Thêm</button>
                   </div>
                 </div>
 
