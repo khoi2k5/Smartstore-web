@@ -1155,12 +1155,13 @@ function App() {
                       
                       <div className="flex gap-4">
                         <div className="flex-1">
-                          <label className="block text-sm font-bold text-slate-700 mb-1">Giá bán (VNĐ) <span className="text-red-500">*</span></label>
-                          <input type="number" value={productForm.price} onChange={e => setProductForm({...productForm, price: e.target.value})} placeholder="VD: 35000" className="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-slate-800" />
+                          <label className="block text-sm font-bold text-slate-700 mb-1">Giá bán (VNĐ) {editingProduct && <span className="text-red-500">*</span>}</label>
+                          <input type="number" value={productForm.price} onChange={e => setProductForm({...productForm, price: e.target.value})} disabled={!editingProduct} placeholder={!editingProduct ? 'Chỉnh sửa sau khi tạo' : 'VD: 35000'} className={`w-full border rounded-lg p-3 font-bold ${!editingProduct ? 'bg-slate-200 text-slate-500 cursor-not-allowed border-slate-300' : 'bg-slate-50 border-slate-300 text-slate-800'}`} />
+                          {editingProduct && <p className="text-xs text-slate-500 mt-1">Giá vốn: <span className="font-bold text-blue-600">{productForm.recipe.reduce((total, req) => { const ing = ingredients.find(i => i.id === req.ingredientId); return total + (ing ? ing.cost * req.qty : 0); }, 0).toLocaleString()} đ</span></p>}
                         </div>
                         <div className="flex-1">
                           <label className="block text-sm font-bold text-slate-700 mb-1">Trạng thái</label>
-                          <select value={productForm.status} onChange={e => setProductForm({...productForm, status: e.target.value})} className="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-slate-800 font-bold">
+                          <select value={productForm.status} onChange={e => setProductForm({...productForm, status: e.target.value})} disabled={!editingProduct} className={`w-full border rounded-lg p-3 font-bold ${!editingProduct ? 'bg-slate-200 text-slate-500 cursor-not-allowed border-slate-300' : 'bg-slate-50 border-slate-300 text-slate-800'}`}>
                             <option value="ready">🟢 Đang bán</option>
                             <option value="not_ready">⚫ Chưa sẵn sàng</option>
                             <option value="low_stock">🟡 Sắp hết hàng</option>
@@ -1229,14 +1230,37 @@ function App() {
               <button 
                 disabled={!productForm.category}
                 onClick={() => {
-                  if(!productForm.name || !productForm.price) {
-                    alert('Vui lòng điền đủ Tên và Giá sản phẩm!');
+                  if(!productForm.name) {
+                    alert('Vui lòng điền Tên sản phẩm!');
                     return;
                   }
+                  if (editingProduct && !productForm.price) {
+                    alert('Vui lòng điền Giá bán sản phẩm!');
+                    return;
+                  }
+                  
+                  const validRecipe = productForm.recipe.filter(r => r.ingredientId && r.qty > 0);
+                  if (validRecipe.length === 0) {
+                    alert('Sản phẩm phải có ít nhất 1 nguyên liệu hợp lệ trong công thức!');
+                    return;
+                  }
+
+                  if (editingProduct) {
+                    const referencePrice = validRecipe.reduce((total, req) => {
+                      const ing = ingredients.find(i => i.id === req.ingredientId);
+                      return total + (ing ? ing.cost * req.qty : 0);
+                    }, 0);
+                    
+                    if (parseInt(productForm.price) < referencePrice) {
+                      alert('Giá bán (' + parseInt(productForm.price).toLocaleString() + ' đ) không được thấp hơn Giá vốn tham khảo (' + referencePrice.toLocaleString() + ' đ)!');
+                      return;
+                    }
+                  }
+
                   if(editingProduct) {
-                    setProducts(products.map(p => p.id === editingProduct.id ? {...productForm, id: editingProduct.id, price: parseInt(productForm.price)} : p));
+                    setProducts(products.map(p => p.id === editingProduct.id ? {...productForm, id: editingProduct.id, price: parseInt(productForm.price), recipe: validRecipe} : p));
                   } else {
-                    setProducts([...products, {...productForm, id: Date.now(), price: parseInt(productForm.price)}]);
+                    setProducts([...products, {...productForm, id: Date.now(), price: 0, status: 'not_ready', recipe: validRecipe}]);
                   }
                   setShowProductModal(false);
                 }} 
