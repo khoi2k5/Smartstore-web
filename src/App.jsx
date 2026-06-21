@@ -659,145 +659,155 @@ function App() {
               </div>
             </div>
           ) : (
-            <div className="flex gap-6 h-full animate-in slide-in-from-right-8 duration-300 min-h-0">
-              {/* Left Side: Menu Grid */}
-              <div className="flex-1 flex flex-col h-full min-h-0">
-                <div className="flex items-center gap-4 mb-6 shrink-0">
-                  {posConfig.layout !== 'retail' && (
-                    <button onClick={() => setSelectedTable(null)} className="bg-white hover:bg-slate-100 px-4 py-2 rounded-md transition-colors">
-                      ← Quay lại
+            <div className="flex gap-2 h-full animate-in slide-in-from-right-8 duration-300 min-h-0 bg-slate-100 p-2 rounded-sm border border-slate-300">
+              {/* Left Side: Cart & Keypad (High Density) */}
+              <div className="w-[450px] flex flex-col bg-white border border-slate-400 shrink-0 shadow-sm rounded-sm">
+                {/* Header */}
+                <div className="bg-blue-700 text-white p-2 flex justify-between items-center shrink-0">
+                  <h3 className="font-bold text-sm uppercase">Hóa đơn: {selectedTable !== posConfig.takeawayName ? selectedTable : 'Mua mang đi'}</h3>
+                  {cart.length > 0 && (
+                    <button 
+                      onClick={() => {
+                        setHoldOrders(prev => [...prev, { table: selectedTable, cart: [...cart], time: new Date().toLocaleTimeString('vi-VN', {hour:'2-digit', minute:'2-digit'}) }]);
+                        setCart([]);
+                      }}
+                      className="text-xs bg-yellow-500 hover:bg-yellow-400 text-slate-900 px-2 py-1 font-bold transition-colors shadow-sm">
+                      [F3] Lưu tạm
                     </button>
                   )}
-                  <h2 className="text-3xl font-bold">
-                    {posConfig.layout === 'retail' ? posConfig.title : `Order: `}
-                    {posConfig.layout !== 'retail' && <span className="text-blue-600">{selectedTable}</span>}
-                  </h2>
                 </div>
-                
-                {/* Category Pills */}
-                <div className="flex gap-2 mb-4 overflow-x-auto pb-2 shrink-0 hide-scrollbar">
+
+                {/* Cart Table Data */}
+                <div className="flex-1 overflow-y-auto bg-white border-b border-slate-400">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead className="bg-slate-200 sticky top-0 border-b border-slate-400 z-10 shadow-sm">
+                      <tr>
+                        <th className="p-1 border-r border-slate-300 w-8 text-center text-slate-600">Xóa</th>
+                        <th className="p-1 border-r border-slate-300 text-slate-800">Tên hàng</th>
+                        <th className="p-1 border-r border-slate-300 w-10 text-center text-slate-800">SL</th>
+                        <th className="p-1 border-r border-slate-300 w-20 text-right text-slate-800">Đơn giá</th>
+                        <th className="p-1 w-24 text-right text-slate-800">Thành tiền</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {cart.length === 0 ? (
+                        <tr><td colSpan="5" className="p-4 text-center text-slate-400 italic">Chưa có món</td></tr>
+                      ) : (
+                        cart.map((c, i) => (
+                          <tr key={i} onClick={() => setSelectedCartItemDetail(c)} className="border-b border-slate-200 hover:bg-blue-50 cursor-pointer text-slate-800">
+                            <td className="p-1 border-r border-slate-300 text-center">
+                              <button 
+                                onClick={(e) => { e.stopPropagation(); setCart(cart.filter((_, idx) => idx !== i)); }} 
+                                className="text-red-600 hover:text-red-800 font-bold px-1"
+                              >✕</button>
+                            </td>
+                            <td className="p-1 border-r border-slate-300 font-medium truncate max-w-[120px]">
+                              {c.name}
+                              {c.note && <div className="text-[10px] text-slate-500 italic block truncate">{c.note}</div>}
+                            </td>
+                            <td className="p-1 border-r border-slate-300 text-center font-bold text-blue-700">{c.qty}</td>
+                            <td className="p-1 border-r border-slate-300 text-right font-mono">{c.price.toLocaleString()}</td>
+                            <td className="p-1 text-right font-mono font-bold text-slate-900">{(c.price * c.qty).toLocaleString()}</td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Held Orders Quick View */}
+                {holdOrders.length > 0 && (
+                  <div className="bg-yellow-50 border-b border-slate-400 p-1 flex gap-1 overflow-x-auto shrink-0 hide-scrollbar">
+                    {holdOrders.map((held, idx) => (
+                      <div key={idx} className="flex shrink-0 items-center bg-white border border-yellow-400 px-2 py-1 text-xs">
+                        <span className="font-bold text-slate-800 mr-2">{held.table}</span>
+                        <button onClick={() => { setCart(held.cart); setSelectedTable(held.table); setHoldOrders(prev => prev.filter((_, i) => i !== idx)); }} className="text-blue-700 hover:underline mr-2">Mở</button>
+                        <button onClick={() => setHoldOrders(prev => prev.filter((_, i) => i !== idx))} className="text-red-600 hover:underline">Hủy</button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Bottom Tools & Totals */}
+                <div className="bg-slate-100 p-2 shrink-0">
+                  <div className="flex justify-between items-end mb-2">
+                    <div className="flex-1 border border-slate-400 bg-white p-2">
+                      <div className="flex justify-between text-sm mb-1 text-slate-600"><span>Tiền hàng:</span> <span className="font-mono">{cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toLocaleString()}</span></div>
+                      <div className="flex justify-between text-sm mb-1 text-slate-600"><span>Chiết khấu:</span> <span className="font-mono">0</span></div>
+                      <div className="flex justify-between font-bold text-lg text-slate-900 border-t border-slate-300 pt-1 mt-1">
+                        <span>Khách Cần Trả:</span> <span className="font-mono text-red-600">{cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toLocaleString()}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-5 gap-1">
+                    <div className="col-span-3 grid grid-cols-4 gap-1">
+                      {['7','8','9','/','4','5','6','*','1','2','3','-','C','0','DEL','+'].map((btn) => (
+                        <button key={btn} onClick={() => handleKeypad(btn)} className="bg-white border border-slate-400 hover:bg-slate-200 active:bg-slate-300 py-2 font-mono font-bold text-sm text-slate-800 rounded-sm">
+                          {btn}
+                        </button>
+                      ))}
+                    </div>
+                    <div className="col-span-2 flex flex-col gap-1">
+                      <div className="bg-white border border-slate-400 p-1 text-right font-mono font-bold text-emerald-700 h-8 flex items-center justify-end rounded-sm text-sm">
+                        {keypadBuffer || '0'}
+                      </div>
+                      <button onClick={() => posConfig.layout !== 'retail' && setSelectedTable(null)} className="flex-1 bg-white border border-slate-400 hover:bg-slate-200 font-bold text-sm text-slate-800 rounded-sm">
+                        Quay lại
+                      </button>
+                      <button onClick={() => setShowPaymentModal(true)} className="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold text-sm uppercase rounded-sm border border-green-800 shadow-sm">
+                        Thanh toán
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side: Products Grid (High Density) */}
+              <div className="flex-1 flex flex-col h-full min-h-0 border border-slate-400 bg-slate-50 rounded-sm overflow-hidden">
+                {/* Category Pills - Square styling */}
+                <div className="flex bg-slate-200 border-b border-slate-400 overflow-x-auto shrink-0 hide-scrollbar p-1 gap-1">
                   {[
-                    {id: 'all', label: 'Tất cả'},
-                    {id: 'coffee', label: 'Cà phê'},
-                    {id: 'tea', label: 'Trà trái cây'},
-                    {id: 'smoothie', label: 'Sinh tố'},
-                    {id: 'food', label: 'Đồ ăn'},
+                    {id: 'all', label: 'TẤT CẢ'},
+                    {id: 'coffee', label: 'CÀ PHÊ'},
+                    {id: 'tea', label: 'TRÀ TRÁI CÂY'},
+                    {id: 'smoothie', label: 'SINH TỐ'},
+                    {id: 'food', label: 'ĐỒ ĂN'},
                   ].map(cat => (
                     <button 
                       key={cat.id}
                       onClick={() => setSelectedCategory(cat.id)}
-                      className={`px-4 py-2 rounded-full font-bold whitespace-nowrap transition-colors border ${selectedCategory === cat.id ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-100 hover:text-slate-800'}`}>
+                      className={`px-3 py-1.5 text-xs font-bold whitespace-nowrap border rounded-sm ${selectedCategory === cat.id ? 'bg-blue-600 text-white border-blue-800' : 'bg-white text-slate-700 border-slate-400 hover:bg-slate-100'}`}>
                       {cat.label}
                     </button>
                   ))}
                 </div>
 
-                <div className="grid grid-cols-3 gap-4 overflow-y-auto pb-4 pr-2">
-                  {products.filter(item => selectedCategory === 'all' || item.category === selectedCategory).map((item) => (
-                    <div key={item.id} onClick={() => { setSelectedItemForTopping(item); setNoteText(''); setSelectedSize('M'); setSelectedToppings([]); }} className="bg-white rounded-md p-4 border border-slate-200 hover:border-blue-400 transition-all cursor-pointer group flex flex-col">
-                      <div className="h-32 bg-slate-100 rounded-lg mb-3 flex items-center justify-center text-5xl overflow-hidden relative">
+                <div className="flex-1 overflow-y-auto p-1">
+                  <div className="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-1">
+                    {products.filter(item => selectedCategory === 'all' || item.category === selectedCategory).map((item) => (
+                      <div 
+                        key={item.id} 
+                        onClick={() => { setSelectedItemForTopping(item); setNoteText(''); setSelectedSize('M'); setSelectedToppings([]); }} 
+                        className="bg-white border border-slate-400 hover:border-blue-600 cursor-pointer group flex flex-col relative h-24 overflow-hidden rounded-sm"
+                      >
                         {item.image ? (
-                          <img src={item.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt={item.name} />
+                          <div className="absolute inset-0 bg-slate-100">
+                            <img src={item.image} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200" alt={item.name} />
+                            <div className="absolute inset-0 bg-slate-900/40"></div>
+                          </div>
                         ) : (
-                          <span className="group-hover:scale-110 transition-transform duration-300">{item.icon || '📦'}</span>
+                          <div className="absolute inset-0 flex items-center justify-center text-4xl bg-slate-100 opacity-50">{item.icon || '📦'}</div>
                         )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div className="relative z-10 flex flex-col h-full justify-between p-1">
+                          <h3 className={`font-bold text-xs leading-tight line-clamp-2 ${item.image ? 'text-white drop-shadow-md' : 'text-slate-800'}`}>{item.name}</h3>
+                          <div className={`text-right text-xs font-mono font-bold mt-1 ${item.image ? 'text-yellow-400 drop-shadow-md' : 'text-blue-700'}`}>
+                            {item.price.toLocaleString()}
+                          </div>
+                        </div>
                       </div>
-                      <h3 className="font-bold text-sm leading-tight line-clamp-1">{item.name}</h3>
-                      <p className="text-blue-600 font-mono text-sm mt-1">{item.price.toLocaleString()} đ</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Right Side: Cart & Keypad */}
-              <div className="w-80 flex flex-col bg-white rounded-lg border border-slate-200 overflow-hidden shrink-0">
-                <div className="flex-1 p-4 overflow-y-auto">
-                  <div className="flex justify-between items-center mb-4 border-b border-slate-200 pb-2">
-                    <h3 className="font-bold text-lg">Giỏ hàng</h3>
-                    {cart.length > 0 && (
-                      <button 
-                        onClick={() => {
-                          setHoldOrders(prev => [...prev, { table: selectedTable, cart: [...cart], time: new Date().toLocaleTimeString('vi-VN', {hour:'2-digit', minute:'2-digit'}) }]);
-                          setCart([]);
-                        }}
-                        className="text-xs bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 px-3 py-1 rounded-full font-bold hover:bg-yellow-500/30 transition-colors">
-                        ⏸️ Tạm hoãn
-                      </button>
-                    )}
-                  </div>
-
-                  {/* Held Orders Bar */}
-                  {holdOrders.length > 0 && (
-                    <div className="mb-4 space-y-2">
-                      {holdOrders.map((held, idx) => (
-                        <div key={idx} className="flex justify-between items-center bg-yellow-500/10 border border-yellow-500/20 p-2 rounded-lg">
-                          <div className="text-sm">
-                            <span className="text-yellow-400 font-bold">⏸️ {held.table}</span>
-                            <span className="text-slate-400 ml-2">({held.cart.length} món • {held.time})</span>
-                          </div>
-                          <div className="flex gap-2">
-                            <button 
-                              onClick={() => {
-                                setCart(held.cart);
-                                setSelectedTable(held.table);
-                                setHoldOrders(prev => prev.filter((_, i) => i !== idx));
-                              }}
-                              className="text-xs bg-blue-600/20 text-blue-600 px-2 py-1 rounded font-bold hover:bg-blue-600/40 transition-colors">
-                              Mở lại
-                            </button>
-                            <button 
-                              onClick={() => setHoldOrders(prev => prev.filter((_, i) => i !== idx))}
-                              className="text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded font-bold hover:bg-red-500/40 transition-colors">
-                              Hủy
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {cart.length === 0 ? (
-                    <p className="text-slate-400 text-center mt-4">Chưa có món nào</p>
-                  ) : (
-                    <div className="space-y-3">
-                      {cart.map((c, i) => (
-                        <div key={i} onClick={() => setSelectedCartItemDetail(c)} className="flex justify-between items-center bg-slate-100/50 p-2 rounded-lg cursor-pointer hover:bg-slate-200 transition-colors">
-                          <div>
-                            <div className="font-bold text-sm">{c.name}</div>
-                            {c.note && <div className="text-[10px] text-slate-500 italic break-words max-w-[150px]">{c.note}</div>}
-                            <div className="text-xs text-slate-500">{c.price.toLocaleString()} đ</div>
-                          </div>
-                          <div className="bg-blue-600 text-white font-bold px-2 py-1 rounded text-sm">x{c.qty}</div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                <div className="p-4 bg-slate-50/50 border-t border-slate-200">
-                  <div className="mb-4 flex justify-between items-center">
-                    <span className="text-slate-500">Tổng cộng:</span>
-                    <span className="text-xl font-bold text-blue-600">
-                      {cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toLocaleString()} đ
-                    </span>
-                  </div>
-
-                  <div className="bg-white border border-slate-300 rounded-lg p-2 text-right text-lg font-mono h-12 flex items-center justify-end mb-2 text-emerald-600">
-                    {keypadBuffer || '0'}
-                  </div>
-
-                  <div className="grid grid-cols-4 gap-2 mb-4">
-                    {['7','8','9','/','4','5','6','*','1','2','3','-','C','0','DEL','+'].map((btn) => (
-                      <button key={btn} onClick={() => handleKeypad(btn)} className="bg-slate-100 hover:bg-slate-200 active:bg-gray-500 rounded-lg py-2 font-bold transition-colors">
-                        {btn}
-                      </button>
                     ))}
                   </div>
-
-                  <button onClick={() => setShowPaymentModal(true)} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-md text-lg transition-colors shadow-sm shadow-blue-600/20">
-                    Thanh toán
-                  </button>
                 </div>
               </div>
             </div>
