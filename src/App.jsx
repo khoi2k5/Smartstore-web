@@ -333,8 +333,8 @@ function App() {
                 onClick={() => handleTabClick(tabKey)}
                 className={`w-full text-left px-4 py-3 rounded-md transition-all ${
                   activeTab === tabKey 
-                    ? tabKey === 'dashboard' ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-slate-800 font-bold shadow-sm shadow-blue-600/30' 
-                      : 'bg-gradient-to-r from-blue-100 to-blue-50 text-white font-bold' 
+                    ? tabKey === 'dashboard' ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold shadow-sm shadow-blue-600/30' 
+                      : 'bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold' 
                     : 'hover:bg-white text-slate-500'
                 }`}>
                 {tabNames[tabKey]}
@@ -634,20 +634,26 @@ function App() {
               </div>
               <p className="text-slate-500 mb-6">Vui lòng chọn {posConfig.entityName.toLowerCase()} hoặc chọn "{posConfig.takeawayName}".</p>
               
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-4 lg:grid-cols-5 gap-3">
                 <div 
                   onClick={() => setSelectedTable(posConfig.takeawayName)}
-                  className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-blue-600 hover:bg-blue-600/40 rounded-md p-6 flex flex-col items-center justify-center cursor-pointer transition-all">
-                  <span className="text-3xl mb-2">{posConfig.takeawayIcon}</span>
-                  <span className="font-bold text-blue-600 text-center">{posConfig.takeawayName}</span>
+                  className="border border-blue-600 rounded-md cursor-pointer transition-all overflow-hidden relative h-28 group"
+                  style={{ backgroundImage: "url('/takeaway_bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                  <div className="absolute inset-0 bg-blue-900/60 group-hover:bg-blue-900/40 transition-colors"></div>
+                  <div className="relative h-full flex flex-col items-center justify-center p-3">
+                    <span className="font-bold text-white text-center text-sm">{posConfig.takeawayName}</span>
+                  </div>
                 </div>
                 {[1,2,3,4,5,6,7,8].map((idx) => (
                   <div 
                     key={idx}
                     onClick={() => setSelectedTable(`${posConfig.entityName} ${idx}`)}
-                    className="bg-white border border-slate-200 hover:border-blue-400 hover:bg-slate-100 rounded-md p-6 flex flex-col items-center justify-center cursor-pointer transition-all">
-                    <span className="text-3xl mb-2">{posConfig.entityIcon}</span>
-                    <span className="font-bold">{posConfig.entityName} {idx}</span>
+                    className="border border-slate-200 hover:border-blue-400 rounded-md cursor-pointer transition-all overflow-hidden relative h-28 group"
+                    style={{ backgroundImage: "url('/cafe_table_bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                    <div className="absolute inset-0 bg-slate-900/50 group-hover:bg-slate-900/30 transition-colors"></div>
+                    <div className="relative h-full flex flex-col items-center justify-center p-3">
+                      <span className="font-bold text-white text-lg">{posConfig.entityName} {idx}</span>
+                    </div>
                   </div>
                 ))}
               </div>
