@@ -458,34 +458,7 @@ function App() {
                   </div>
                 </div>
               </div>
-              </div>
 
-              {/* Size Management */}
-              <div className="col-span-1 bg-white rounded-lg p-6 border border-slate-200 flex flex-col h-full min-h-0">
-                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">📏 Quản lý Kích cỡ / Phân loại</h3>
-                <p className="text-sm text-slate-500 mb-6">Thiết lập các biến thể kích thước (S, M, L, XL...) và giá cộng thêm.</p>
-
-                <div className="flex gap-2 mb-6">
-                  <input type="text" placeholder="Tên (VD: Size L)" value={newSizeName} onChange={e => setNewSizeName(e.target.value)} className="flex-1 bg-slate-50 border border-slate-300 rounded-lg p-2 text-slate-800 text-sm" />
-                  <input type="number" placeholder="+Giá (VNĐ)" value={newSizePrice} onChange={e => setNewSizePrice(e.target.value)} className="w-24 bg-slate-50 border border-slate-300 rounded-lg p-2 text-slate-800 text-sm" />
-                  <button onClick={handleAddNewSize} className="bg-blue-600 hover:bg-blue-700 text-white px-3 rounded-lg font-bold transition-colors text-sm">Thêm</button>
-                </div>
-
-                <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-md p-4 border border-slate-200 flex flex-col gap-2">
-                  {predefinedSizes.map((sz, idx) => (
-                    <div key={idx} className="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
-                      <div>
-                        <span className="font-bold text-sm block">{sz.name}</span>
-                        <span className="text-xs text-blue-600">+{sz.priceAdd.toLocaleString()} đ</span>
-                      </div>
-                      <button onClick={() => deletePredefinedSize(idx)} className="text-slate-500 hover:text-red-400 transition-colors">✕</button>
-                    </div>
-                  ))}
-                  {predefinedSizes.length === 0 && (
-                    <p className="text-slate-400 text-center text-sm mt-4">Chưa có kích cỡ nào.</p>
-                  )}
-                </div>
-              </div>
 
             </div>
           </div>
@@ -498,7 +471,7 @@ function App() {
           <div className="animate-in fade-in duration-500 h-full flex flex-col">
             <h2 className="text-3xl font-bold mb-6">{tabNames.recipes}</h2>
             
-            <div className="grid grid-cols-3 gap-6 flex-1 min-h-0">
+            <div className="grid grid-cols-4 gap-6 flex-1 min-h-0">
               {/* Product Management */}
               <div className="col-span-2 bg-white rounded-lg p-6 border border-slate-200 flex flex-col h-full min-h-0">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">🏷️ Quản lý Danh mục Sản phẩm</h3>
@@ -584,6 +557,34 @@ function App() {
                   ))}
                   {predefinedNotes.length === 0 && (
                     <p className="text-slate-400 text-center text-sm mt-4">Chưa có ghi chú nhanh nào.</p>
+                  )}
+                </div>
+              </div>
+
+
+              {/* Size Management */}
+              <div className="col-span-1 bg-white rounded-lg p-6 border border-slate-200 flex flex-col h-full min-h-0">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">📏 Quản lý Kích cỡ / Phân loại</h3>
+                <p className="text-sm text-slate-500 mb-6">Thiết lập các biến thể kích thước (S, M, L, XL...) và giá cộng thêm.</p>
+
+                <div className="flex gap-2 mb-6">
+                  <input type="text" placeholder="Tên (VD: Size L)" value={newSizeName} onChange={e => setNewSizeName(e.target.value)} className="flex-1 bg-slate-50 border border-slate-300 rounded-lg p-2 text-slate-800 text-sm" />
+                  <input type="number" placeholder="+Giá (VNĐ)" value={newSizePrice} onChange={e => setNewSizePrice(e.target.value)} className="w-24 bg-slate-50 border border-slate-300 rounded-lg p-2 text-slate-800 text-sm" />
+                  <button onClick={handleAddNewSize} className="bg-blue-600 hover:bg-blue-700 text-white px-3 rounded-lg font-bold transition-colors text-sm">Thêm</button>
+                </div>
+
+                <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-md p-4 border border-slate-200 flex flex-col gap-2">
+                  {predefinedSizes.map((sz, idx) => (
+                    <div key={idx} className="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
+                      <div>
+                        <span className="font-bold text-sm block">{sz.name}</span>
+                        <span className="text-xs text-blue-600">+{sz.priceAdd.toLocaleString()} đ</span>
+                      </div>
+                      <button onClick={() => deletePredefinedSize(idx)} className="text-slate-500 hover:text-red-400 transition-colors">✕</button>
+                    </div>
+                  ))}
+                  {predefinedSizes.length === 0 && (
+                    <p className="text-slate-400 text-center text-sm mt-4">Chưa có kích cỡ nào.</p>
                   )}
                 </div>
               </div>
