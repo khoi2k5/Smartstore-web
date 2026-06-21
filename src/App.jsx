@@ -557,7 +557,7 @@ function App() {
                                   setProductForm({ ...p, status: p.status || 'ready', recipe: p.recipe || [] });
                                   setShowProductModal(true);
                                 }} className="text-blue-600 hover:text-blue-800 text-xs font-bold bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-md transition-colors text-center flex-1 whitespace-nowrap">Sửa</button>
-                                <button onClick={() => deleteProduct(p.id)} className="text-red-500 hover:text-red-700 text-xs font-bold bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-md transition-colors text-center flex-1 whitespace-nowrap">Xóa</button>
+                                <button onClick={() => { if(window.confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) deleteProduct(p.id); }} className="text-red-500 hover:text-red-700 text-xs font-bold bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-md transition-colors text-center flex-1 whitespace-nowrap">Xóa</button>
                               </div>
                             </div>
                           </div>
@@ -583,7 +583,7 @@ function App() {
                       {categories.map(cat => (
                         <div key={cat.id} className="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
                           <span className="font-bold">{cat.name}</span>
-                          <button onClick={() => setCategories(categories.filter(c => c.id !== cat.id))} className="text-red-400 hover:text-red-600 font-bold">✕</button>
+                          <button onClick={() => { if(window.confirm('Bạn có chắc chắn muốn xóa danh mục này?')) setCategories(categories.filter(c => c.id !== cat.id)); }} className="text-red-400 hover:text-red-600 font-bold">✕</button>
                         </div>
                       ))}
                     </div>
@@ -623,7 +623,7 @@ function App() {
                             <div className="font-bold">{ing.name}</div>
                             <div className="text-xs text-slate-500">{ing.cost} đ / {ing.unit}</div>
                           </div>
-                          <button onClick={() => setIngredients(ingredients.filter(i => i.id !== ing.id))} className="text-red-400 hover:text-red-600 font-bold">✕ Xóa</button>
+                          <button onClick={() => { if(window.confirm('Bạn có chắc chắn muốn xóa nguyên liệu này?')) setIngredients(ingredients.filter(i => i.id !== ing.id)); }} className="text-red-400 hover:text-red-600 font-bold">✕ Xóa</button>
                         </div>
                       ))}
                     </div>
@@ -645,7 +645,7 @@ function App() {
                   {predefinedNotes.map((note, idx) => (
                     <div key={idx} className="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
                       <span className="font-bold text-sm">{note}</span>
-                      <button onClick={() => deletePredefinedNote(note)} className="text-slate-500 hover:text-red-400 transition-colors">✕</button>
+                      <button onClick={() => { if(window.confirm('Bạn có chắc chắn muốn xóa ghi chú này?')) deletePredefinedNote(note); }} className="text-slate-500 hover:text-red-400 transition-colors">✕</button>
                     </div>
                   ))}
                   {predefinedNotes.length === 0 && (
@@ -675,7 +675,7 @@ function App() {
                         <span className="font-bold text-sm block">{sz.name}</span>
                         <span className="text-xs text-blue-600">+{sz.priceAdd.toLocaleString()} đ</span>
                       </div>
-                      <button onClick={() => deletePredefinedSize(idx)} className="text-slate-500 hover:text-red-400 transition-colors">✕</button>
+                      <button onClick={() => { if(window.confirm('Bạn có chắc chắn muốn xóa kích cỡ này?')) deletePredefinedSize(idx); }} className="text-slate-500 hover:text-red-400 transition-colors">✕</button>
                     </div>
                   ))}
                   {predefinedSizes.length === 0 && (
