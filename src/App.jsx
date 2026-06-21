@@ -91,6 +91,7 @@ function App() {
   const [amountGiven, setAmountGiven] = useState(0);
   const [holdOrders, setHoldOrders] = useState([]);
   const [qrCodeData, setQrCodeData] = useState('INIT_CODE');
+  const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, message: '', onConfirm: null, onCancel: null });
   const [isScanning, setIsScanning] = useState(false);
   const [scanResult, setScanResult] = useState('');
 
@@ -141,7 +142,13 @@ function App() {
 
   const handleTabClick = (tabKey) => {
     if (activeTab === 'settings' && tabKey !== 'settings' && isSettingsDirty) {
-      if (window.confirm("Bạn đang có thay đổi chưa lưu. Bấm OK để ở lại trang và lưu, bấm Cancel để bỏ qua thay đổi và chuyển trang.")) {
+      setConfirmDialog({
+        isOpen: true,
+        message: "Bạn đang có thay đổi chưa lưu. Bấm Đồng ý để ở lại trang và lưu, bấm Hủy để bỏ qua thay đổi và chuyển trang.",
+        onConfirm: () => { /* Stay */ },
+        onCancel: () => { setIsSettingsDirty(false); setActiveTab(tabKey); }
+      });
+      if (false) {
         return; // User wants to stay
       } else {
         // Discard changes
@@ -155,11 +162,22 @@ function App() {
 
   const handleLogoutClick = async () => {
     if (activeTab === 'settings' && isSettingsDirty) {
-      if (window.confirm("Bạn đang có thay đổi chưa lưu. Bấm OK để ở lại trang và lưu, bấm Cancel để bỏ qua và tiếp tục đăng xuất.")) {
+      setConfirmDialog({
+        isOpen: true,
+        message: "Bạn đang có thay đổi chưa lưu. Bấm Đồng ý để ở lại trang và lưu, bấm Hủy để tiếp tục đăng xuất.",
+        onConfirm: () => { /* Stay */ },
+        onCancel: () => { signOut(auth); }
+      });
+      if (false) {
         return;
       }
     }
-    if (window.confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
+    setConfirmDialog({
+        isOpen: true,
+        message: "Bạn có chắc chắn muốn đăng xuất không?",
+        onConfirm: () => { signOut(auth); }
+      });
+      if (false) {
       try {
         await signOut(auth);
       } catch (error) {
@@ -261,7 +279,22 @@ function App() {
   };
 
   const saveSettings = () => {
-    if (window.confirm("Bạn có chắc chắn muốn lưu toàn bộ cài đặt không?")) {
+    setConfirmDialog({
+      isOpen: true,
+      message: "Bạn có chắc chắn muốn lưu toàn bộ cài đặt không?",
+      onConfirm: () => {
+        setTabNames(editTabNames);
+        setPosConfig(editPosConfig);
+        setIsSettingsDirty(false);
+        if (editPosConfig.layout === 'retail') {
+          setSelectedTable('Bán Lẻ');
+        } else {
+          setSelectedTable(null);
+        }
+        alert('Đã lưu cấu hình hệ thống!');
+      }
+    });
+    if (false) {
       setTabNames(editTabNames);
       setPosConfig(editPosConfig);
       setIsSettingsDirty(false);
@@ -296,7 +329,12 @@ function App() {
   };
 
   const deleteProduct = (id) => {
-    if (window.confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
+    setConfirmDialog({
+      isOpen: true,
+      message: "Bạn có chắc chắn muốn xóa sản phẩm này?",
+      onConfirm: () => { setProducts(products.filter(p => p.id !== id)); }
+    });
+    if (false) {
       setProducts(products.filter(p => p.id !== id));
     }
   };
@@ -500,7 +538,7 @@ function App() {
                     { time: '20:00', rev: 120, cost: 55 },
                   ].map((bar, idx) => (
                     <div key={idx} className="flex-1 flex flex-col items-center gap-2 group">
-                      <div className="w-full relative flex justify-center items-end h-48 bg-slate-50/50 rounded-lg p-2 gap-1">
+                      <div className="w-full relative flex justify-center items-end h-48 bg-slate-100 rounded-lg p-2 gap-1">
                         <div className="w-1/2 bg-blue-600 rounded-t-md relative group-hover:opacity-80 transition-opacity" style={{ height: `${bar.rev}%` }}></div>
                         <div className="w-1/2 bg-orange-500 rounded-t-md relative group-hover:opacity-80 transition-opacity" style={{ height: `${bar.cost}%` }}></div>
                       </div>
@@ -546,7 +584,7 @@ function App() {
             
             <div className="grid grid-cols-4 gap-6 flex-1 min-h-0">
               {/* Product Management */}
-              <div className="col-span-2 bg-white rounded-lg p-6 border border-slate-200 flex flex-col h-full min-h-0">
+              <div className="col-span-2 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col h-full min-h-0">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">🏷️ Quản lý Danh mục Sản phẩm</h3>
                 <p className="text-sm text-slate-500 mb-6">Thêm, sửa, xóa các mặt hàng sẽ xuất hiện trên màn hình thu ngân.</p>
                 
@@ -570,13 +608,13 @@ function App() {
                       </button>
                     </div>
 
-                <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-md p-4 border border-slate-200">
+                <div className="flex-1 overflow-y-auto bg-slate-100 rounded-md p-4 border border-slate-200">
                   {products.length === 0 ? (
                     <p className="text-slate-400 text-center mt-10">Chưa có sản phẩm nào. Hãy thêm ở trên.</p>
                   ) : (
                     <div className="grid grid-cols-2 gap-4">
                       {products.map(p => (
-                        <div key={p.id} className="flex justify-between items-center p-3 bg-white border border-slate-200 rounded-md hover:border-slate-300 transition-colors">
+                        <div key={p.id} className="flex justify-between items-center p-3 bg-white border border-slate-200 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:border-blue-300 hover:-translate-y-0.5 transition-all duration-300">
                           <div className="flex items-center gap-4">
                             <div className="w-14 h-14 rounded-lg bg-slate-100 flex items-center justify-center overflow-hidden shrink-0">
                               {p.image ? (
@@ -595,7 +633,7 @@ function App() {
                                   setProductForm({ ...p, status: p.status || 'ready', recipe: p.recipe || [] });
                                   setShowProductModal(true);
                                 }} className="text-blue-600 hover:text-blue-800 text-xs font-bold bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-md transition-colors text-center flex-1 whitespace-nowrap">Sửa</button>
-                                <button onClick={() => { if(window.confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) deleteProduct(p.id); }} className="text-red-500 hover:text-red-700 text-xs font-bold bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-md transition-colors text-center flex-1 whitespace-nowrap">Xóa</button>
+                                <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa sản phẩm này?', onConfirm: () => deleteProduct(p.id) }); }} className="text-red-500 hover:text-red-700 text-xs font-bold bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-md transition-colors text-center flex-1 whitespace-nowrap">Xóa</button>
                               </div>
                             </div>
                           </div>
@@ -617,11 +655,11 @@ function App() {
                         }
                       }} className="bg-blue-600 hover:bg-blue-700 text-white px-4 rounded-lg font-bold">Thêm</button>
                     </div>
-                    <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-md p-4 border border-slate-200 space-y-2">
+                    <div className="flex-1 overflow-y-auto bg-slate-100 rounded-md p-4 border border-slate-200 space-y-2">
                       {categories.map(cat => (
-                        <div key={cat.id} className="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
+                        <div key={cat.id} className="flex justify-between items-center bg-white p-4 rounded-xl border border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                           <span className="font-bold">{cat.name}</span>
-                          <button onClick={() => { if(window.confirm('Bạn có chắc chắn muốn xóa danh mục này?')) setCategories(categories.filter(c => c.id !== cat.id)); }} className="text-red-400 hover:text-red-600 font-bold">✕</button>
+                          <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa danh mục này?', onConfirm: () => setCategories(categories.filter(c => c.id !== cat.id)) }); }} className="text-red-400 hover:text-red-600 font-bold">✕</button>
                         </div>
                       ))}
                     </div>
@@ -654,14 +692,14 @@ function App() {
                         }
                       }} className="bg-blue-600 hover:bg-blue-700 text-white px-4 h-[38px] rounded-lg font-bold">Thêm</button>
                     </div>
-                    <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-md p-4 border border-slate-200 space-y-2">
+                    <div className="flex-1 overflow-y-auto bg-slate-100 rounded-md p-4 border border-slate-200 space-y-2">
                       {ingredients.map(ing => (
-                        <div key={ing.id} className="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
+                        <div key={ing.id} className="flex justify-between items-center bg-white p-4 rounded-xl border border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                           <div>
                             <div className="font-bold">{ing.name}</div>
                             <div className="text-xs text-slate-500">{ing.cost} đ / {ing.unit}</div>
                           </div>
-                          <button onClick={() => { if(window.confirm('Bạn có chắc chắn muốn xóa nguyên liệu này?')) setIngredients(ingredients.filter(i => i.id !== ing.id)); }} className="text-red-400 hover:text-red-600 font-bold">✕ Xóa</button>
+                          <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa nguyên liệu này?', onConfirm: () => setIngredients(ingredients.filter(i => i.id !== ing.id)) }); }} className="text-red-400 hover:text-red-600 font-bold">✕ Xóa</button>
                         </div>
                       ))}
                     </div>
@@ -670,7 +708,7 @@ function App() {
               </div>
 
               {/* Notes Management */}
-              <div className="col-span-1 bg-white rounded-lg p-6 border border-slate-200 flex flex-col h-full min-h-0">
+              <div className="col-span-1 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col h-full min-h-0">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">📝 Quản lý Ghi chú nhanh</h3>
                 <p className="text-sm text-slate-500 mb-6">Thiết lập các ghi chú thường dùng để thu ngân chọn nhanh khi order.</p>
 
@@ -679,11 +717,11 @@ function App() {
                   <button onClick={handleAddNewNote} className="bg-blue-600 hover:bg-blue-700 text-white px-3 rounded-lg font-bold transition-colors">Thêm</button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-md p-4 border border-slate-200 flex flex-col gap-2">
+                <div className="flex-1 overflow-y-auto bg-slate-100 rounded-md p-4 border border-slate-200 flex flex-col gap-2">
                   {predefinedNotes.map((note, idx) => (
-                    <div key={idx} className="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
+                    <div key={idx} className="flex justify-between items-center bg-white p-4 rounded-xl border border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                       <span className="font-bold text-sm">{note}</span>
-                      <button onClick={() => { if(window.confirm('Bạn có chắc chắn muốn xóa ghi chú này?')) deletePredefinedNote(note); }} className="text-slate-500 hover:text-red-400 transition-colors">✕</button>
+                      <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa ghi chú này?', onConfirm: () => deletePredefinedNote(note) }); }} className="text-slate-500 hover:text-red-400 transition-colors">✕</button>
                     </div>
                   ))}
                   {predefinedNotes.length === 0 && (
@@ -694,7 +732,7 @@ function App() {
 
 
               {/* Size Management */}
-              <div className="col-span-1 bg-white rounded-lg p-6 border border-slate-200 flex flex-col h-full min-h-0">
+              <div className="col-span-1 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col h-full min-h-0">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">📏 Quản lý Kích cỡ / Phân loại</h3>
                 <p className="text-sm text-slate-500 mb-6">Thiết lập các biến thể kích thước (S, M, L, XL...) và giá cộng thêm.</p>
 
@@ -706,14 +744,14 @@ function App() {
                   </div>
                 </div>
 
-                <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-md p-4 border border-slate-200 flex flex-col gap-2">
+                <div className="flex-1 overflow-y-auto bg-slate-100 rounded-md p-4 border border-slate-200 flex flex-col gap-2">
                   {predefinedSizes.map((sz, idx) => (
-                    <div key={idx} className="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
+                    <div key={idx} className="flex justify-between items-center bg-white p-4 rounded-xl border border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                       <div>
                         <span className="font-bold text-sm block">{sz.name}</span>
                         <span className="text-xs text-blue-600">+{sz.priceAdd.toLocaleString()} đ</span>
                       </div>
-                      <button onClick={() => { if(window.confirm('Bạn có chắc chắn muốn xóa kích cỡ này?')) deletePredefinedSize(idx); }} className="text-slate-500 hover:text-red-400 transition-colors">✕</button>
+                      <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa kích cỡ này?', onConfirm: () => deletePredefinedSize(idx) }); }} className="text-slate-500 hover:text-red-400 transition-colors">✕</button>
                     </div>
                   ))}
                   {predefinedSizes.length === 0 && (
@@ -1146,6 +1184,44 @@ function App() {
       </div>
 
       
+      
+      {/* Custom Confirm Modal */}
+      {confirmDialog.isOpen && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[200] backdrop-blur-sm animate-in fade-in">
+          <div className="bg-white rounded-xl shadow-2xl w-[400px] overflow-hidden animate-in zoom-in-95">
+            <div className="p-6">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-500 text-2xl shrink-0">
+                  ⚠️
+                </div>
+                <h3 className="text-xl font-bold text-slate-800">Xác nhận</h3>
+              </div>
+              <p className="text-slate-600 mb-6">{confirmDialog.message}</p>
+              <div className="flex justify-end gap-3">
+                <button 
+                  onClick={() => {
+                    if (confirmDialog.onCancel) confirmDialog.onCancel();
+                    setConfirmDialog({ isOpen: false, message: '', onConfirm: null, onCancel: null });
+                  }}
+                  className="px-4 py-2 rounded-lg font-bold text-slate-600 hover:bg-slate-100 transition-colors"
+                >
+                  Hủy
+                </button>
+                <button 
+                  onClick={() => {
+                    if (confirmDialog.onConfirm) confirmDialog.onConfirm();
+                    setConfirmDialog({ isOpen: false, message: '', onConfirm: null, onCancel: null });
+                  }}
+                  className="px-4 py-2 rounded-lg font-bold bg-red-500 hover:bg-red-600 text-white transition-colors shadow-sm"
+                >
+                  Đồng ý
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Product Modal */}
       {showProductModal && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[100] backdrop-blur-sm">
