@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { db, auth } from './firebase';
+import QRCode from 'react-qr-code';
+import { Html5QrcodeScanner } from 'html5-qrcode';
 
 function App() {
   // Role & Config State
@@ -89,6 +91,42 @@ function App() {
   const [amountGiven, setAmountGiven] = useState(0);
   const [holdOrders, setHoldOrders] = useState([]);
   const [qrCodeData, setQrCodeData] = useState('INIT_CODE');
+  const [isScanning, setIsScanning] = useState(false);
+  const [scanResult, setScanResult] = useState('');
+
+  useEffect(() => {
+    let interval;
+    if (activeTab === 'hr') {
+      const updateCode = () => setQrCodeData(`SMARTSTORE_CHECKIN_${Date.now()}`);
+      updateCode();
+      interval = setInterval(updateCode, 10000); // 10 seconds for demo
+    }
+    return () => clearInterval(interval);
+  }, [activeTab]);
+
+  useEffect(() => {
+    let scanner;
+    if (isScanning) {
+      // Delay initialization slightly to allow DOM to render the "reader" div
+      const timer = setTimeout(() => {
+        scanner = new Html5QrcodeScanner("reader", { qrbox: { width: 250, height: 250 }, fps: 5 }, false);
+        scanner.render((result) => {
+          scanner.clear();
+          setIsScanning(false);
+          setScanResult(result);
+          if (result.startsWith('SMARTSTORE_CHECKIN_')) {
+            alert(`Quét thành công! Đã ghi nhận giờ làm.`);
+          } else {
+            alert(`Mã QR không hợp lệ!`);
+          }
+        }, (err) => {});
+      }, 100);
+      return () => {
+        clearTimeout(timer);
+        if (scanner) scanner.clear().catch(e => console.error(e));
+      };
+    }
+  }, [isScanning]);
   
   // Handlers
   const handleTabNameEdit = (key, value) => {
@@ -1032,7 +1070,21 @@ function App() {
                 </div>
               </div>
 
-              <h4 className="font-bold mb-4">Lịch sử Check-in gần nhất</h4>
+              <div className="flex justify-between items-center mb-4">
+                <h4 className="font-bold">Lịch sử Check-in gần nhất</h4>
+                <button 
+                  onClick={() => setIsScanning(!isScanning)} 
+                  className={`px-4 py-2 rounded-lg font-bold text-sm transition-colors shadow-sm ${isScanning ? 'bg-red-100 text-red-600 hover:bg-red-200' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
+                >
+                  {isScanning ? 'Hủy quét' : '📷 Quét QR'}
+                </button>
+              </div>
+
+              {isScanning && (
+                <div className="mb-6 bg-slate-100 p-2 rounded-lg border border-slate-300 shadow-inner overflow-hidden animate-in fade-in slide-in-from-top-4">
+                  <div id="reader" className="w-full rounded-md overflow-hidden bg-black min-h-[250px]"></div>
+                </div>
+              )}
               <div className="space-y-3">
                 {[
                   { date: 'Hôm nay, 19/06', in: '05:58', out: 'Đang làm', hours: 'N/A', status: 'active' },
@@ -1073,9 +1125,8 @@ function App() {
             
             <div className="relative p-1 bg-gradient-to-r from-purple-500 to-green-400 rounded-md shadow-[0_0_50px_rgba(74,222,128,0.2)]">
               <div className="bg-white p-6 rounded-[22px]">
-                <div className="w-64 h-64 border-4 border-dashed border-gray-300 flex items-center justify-center bg-gray-100 rounded-md relative overflow-hidden">
-                  <span className="text-slate-500 font-mono font-bold text-2xl">{qrCodeData}</span>
-                  <div className="absolute top-0 left-0 w-full h-1 bg-green-400 shadow-[0_0_20px_#4ade80] animate-[scan_2s_ease-in-out_infinite]" />
+                <div className="w-64 h-64 border border-slate-200 flex items-center justify-center bg-white rounded-md p-2">
+                  <QRCode value={qrCodeData} size={240} />
                 </div>
               </div>
             </div>
