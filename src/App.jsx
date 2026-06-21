@@ -608,7 +608,7 @@ function App() {
                       </button>
                     </div>
 
-                <div className="flex-1 overflow-y-auto bg-slate-100 rounded-md p-4 border border-slate-200">
+                <div className="flex-1 overflow-y-auto bg-slate-50 rounded-2xl p-6 border-2 border-slate-200 shadow-inner">
                   {products.length === 0 ? (
                     <p className="text-slate-400 text-center mt-10">Chưa có sản phẩm nào. Hãy thêm ở trên.</p>
                   ) : (
@@ -655,7 +655,7 @@ function App() {
                         }
                       }} className="bg-blue-600 hover:bg-blue-700 text-white px-4 rounded-lg font-bold">Thêm</button>
                     </div>
-                    <div className="flex-1 overflow-y-auto bg-slate-100 rounded-md p-4 border border-slate-200 space-y-2">
+                    <div className="flex-1 overflow-y-auto bg-slate-50 rounded-2xl p-6 border-2 border-slate-200 shadow-inner space-y-2">
                       {categories.map(cat => (
                         <div key={cat.id} className="flex justify-between items-center bg-white p-4 rounded-xl border border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                           <span className="font-bold">{cat.name}</span>
@@ -692,7 +692,7 @@ function App() {
                         }
                       }} className="bg-blue-600 hover:bg-blue-700 text-white px-4 h-[38px] rounded-lg font-bold">Thêm</button>
                     </div>
-                    <div className="flex-1 overflow-y-auto bg-slate-100 rounded-md p-4 border border-slate-200 space-y-2">
+                    <div className="flex-1 overflow-y-auto bg-slate-50 rounded-2xl p-6 border-2 border-slate-200 shadow-inner space-y-2">
                       {ingredients.map(ing => (
                         <div key={ing.id} className="flex justify-between items-center bg-white p-4 rounded-xl border border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                           <div>
@@ -717,7 +717,7 @@ function App() {
                   <button onClick={handleAddNewNote} className="bg-blue-600 hover:bg-blue-700 text-white px-3 rounded-lg font-bold transition-colors">Thêm</button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto bg-slate-100 rounded-md p-4 border border-slate-200 flex flex-col gap-2">
+                <div className="flex-1 overflow-y-auto bg-slate-50 rounded-2xl p-6 border-2 border-slate-200 shadow-inner flex flex-col gap-2">
                   {predefinedNotes.map((note, idx) => (
                     <div key={idx} className="flex justify-between items-center bg-white p-4 rounded-xl border border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                       <span className="font-bold text-sm">{note}</span>
@@ -744,7 +744,7 @@ function App() {
                   </div>
                 </div>
 
-                <div className="flex-1 overflow-y-auto bg-slate-100 rounded-md p-4 border border-slate-200 flex flex-col gap-2">
+                <div className="flex-1 overflow-y-auto bg-slate-50 rounded-2xl p-6 border-2 border-slate-200 shadow-inner flex flex-col gap-2">
                   {predefinedSizes.map((sz, idx) => (
                     <div key={idx} className="flex justify-between items-center bg-white p-4 rounded-xl border border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                       <div>
