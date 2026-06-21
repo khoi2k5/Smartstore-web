@@ -163,16 +163,7 @@ function App() {
         return prev.map(i => i === exist ? {...i, qty: i.qty + qtyToAdd} : i);
       }
       return [...prev, {...finalItem, qty: qtyToAdd}];
-      const exist = prev.find(i => 
-        i.id === item.id && 
-        i.size === item.size && 
-        i.note === item.note && 
-        JSON.stringify(i.toppings) === JSON.stringify(item.toppings)
-      );
-      if (exist) {
-        return prev.map(i => i === exist ? {...i, qty: i.qty + qtyToAdd} : i);
-      }
-      return [...prev, {...item, qty: qtyToAdd}];
+
     });
     setKeypadBuffer('');
   };
