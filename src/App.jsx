@@ -248,7 +248,7 @@ function App() {
   if (!role) {
     return (
       <div className="min-h-screen bg-slate-50 text-slate-800 flex items-center justify-center p-4">
-        <div className="bg-white/80 backdrop-blur-xl border border-white shadow-xl rounded-3xl p-10 max-w-md w-full">
+        <div className="bg-white/80 backdrop-blur-xl border border-white shadow-sm rounded-md p-10 max-w-md w-full">
           <div className="text-center mb-10">
             <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 mb-2">
               SmartStore
@@ -265,7 +265,7 @@ function App() {
                 value={loginEmail}
                 onChange={e => setLoginEmail(e.target.value)}
                 placeholder="VD: chuquan@gmail.com"
-                className="w-full bg-white border border-slate-200 rounded-xl p-4 text-slate-800 focus:outline-none focus:border-blue-600 transition-colors"
+                className="w-full bg-white border border-slate-200 rounded-md p-4 text-slate-800 focus:outline-none focus:border-blue-600 transition-colors"
               />
             </div>
             <div>
@@ -276,7 +276,7 @@ function App() {
                 value={loginPassword}
                 onChange={e => setLoginPassword(e.target.value)}
                 placeholder="••••••"
-                className="w-full bg-white border border-slate-200 rounded-xl p-4 text-slate-800 focus:outline-none focus:border-blue-600 transition-colors"
+                className="w-full bg-white border border-slate-200 rounded-md p-4 text-slate-800 focus:outline-none focus:border-blue-600 transition-colors"
               />
             </div>
 
@@ -289,7 +289,7 @@ function App() {
             <button 
               type="submit" 
               disabled={isLoggingIn}
-              className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 disabled:from-gray-600 disabled:to-gray-700 disabled:text-slate-500 text-white py-4 rounded-xl font-bold transition-all shadow-lg shadow-blue-600/20 text-lg">
+              className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 disabled:from-gray-600 disabled:to-gray-700 disabled:text-slate-500 text-white py-4 rounded-md font-bold transition-all shadow-sm shadow-blue-600/20 text-lg">
               {isLoggingIn ? 'Đang xác thực...' : 'Đăng nhập'}
             </button>
           </form>
@@ -318,7 +318,7 @@ function App() {
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex p-4 gap-4">
       
       {/* Sidebar */}
-      <div className="w-64 bg-white/80 backdrop-blur-xl border border-white shadow-xl rounded-2xl p-6 flex flex-col justify-between">
+      <div className="w-64 bg-white/80 backdrop-blur-xl border border-white shadow-sm rounded-lg p-6 flex flex-col justify-between">
         <div>
           <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 mb-8">
             SmartStore
@@ -331,9 +331,9 @@ function App() {
               <button 
                 key={tabKey}
                 onClick={() => handleTabClick(tabKey)}
-                className={`w-full text-left px-4 py-3 rounded-xl transition-all ${
+                className={`w-full text-left px-4 py-3 rounded-md transition-all ${
                   activeTab === tabKey 
-                    ? tabKey === 'dashboard' ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-slate-800 font-bold shadow-lg shadow-blue-600/30' 
+                    ? tabKey === 'dashboard' ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-slate-800 font-bold shadow-sm shadow-blue-600/30' 
                       : 'bg-gradient-to-r from-blue-100 to-blue-50 text-white font-bold' 
                     : 'hover:bg-white text-slate-500'
                 }`}>
@@ -346,7 +346,7 @@ function App() {
         <div>
           <button 
             onClick={handleLogoutClick}
-            className="w-full mt-8 bg-white hover:bg-red-500/20 hover:text-red-400 text-slate-500 py-3 rounded-xl font-bold transition-colors border border-slate-200 hover:border-red-500/50">
+            className="w-full mt-8 bg-white hover:bg-red-500/20 hover:text-red-400 text-slate-500 py-3 rounded-md font-bold transition-colors border border-slate-200 hover:border-red-500/50">
             🚪 Đăng xuất
           </button>
           <div className="text-sm text-slate-400 mt-4 text-center">
@@ -356,7 +356,7 @@ function App() {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 bg-white/80 backdrop-blur-xl border border-white shadow-xl rounded-2xl p-8 overflow-y-auto relative">
+      <div className="flex-1 bg-white/80 backdrop-blur-xl border border-white shadow-sm rounded-lg p-8 overflow-y-auto relative">
         
         {/* ========================================================= */}
         {/* TAB: DASHBOARD (OWNER)                                    */}
@@ -367,21 +367,21 @@ function App() {
             
             {/* KPI Cards */}
             <div className="grid grid-cols-3 gap-6 mb-8">
-              <div className="bg-white rounded-2xl p-6 border border-blue-600/30 relative overflow-hidden group">
+              <div className="bg-white rounded-lg p-6 border border-blue-600/30 relative overflow-hidden group">
                 <div className="absolute -right-6 -top-6 w-24 h-24 bg-blue-600/20 rounded-full blur-xl group-hover:bg-blue-600/30 transition-all"></div>
                 <h3 className="text-slate-500 font-bold mb-2 flex items-center gap-2"><span>📈</span> Tổng Doanh Thu</h3>
                 <div className="text-3xl font-bold text-blue-600">5,450,000 đ</div>
                 <p className="text-sm text-blue-600 mt-2">↑ 12% so với hôm qua</p>
               </div>
               
-              <div className="bg-white rounded-2xl p-6 border border-orange-500/30 relative overflow-hidden group">
+              <div className="bg-white rounded-lg p-6 border border-orange-500/30 relative overflow-hidden group">
                 <div className="absolute -right-6 -top-6 w-24 h-24 bg-orange-500/20 rounded-full blur-xl group-hover:bg-orange-500/30 transition-all"></div>
                 <h3 className="text-slate-500 font-bold mb-2 flex items-center gap-2"><span>👥</span> Chi phí Nhân sự</h3>
                 <div className="text-3xl font-bold text-orange-400">1,200,000 đ</div>
                 <p className="text-sm text-slate-500 mt-2">Dựa trên 34 giờ làm việc</p>
               </div>
               
-              <div className="bg-gradient-to-br from-indigo-900 to-purple-900 rounded-2xl p-6 border border-blue-200 shadow-[0_0_30px_rgba(168,85,247,0.2)] relative overflow-hidden">
+              <div className="bg-gradient-to-br from-indigo-900 to-purple-900 rounded-lg p-6 border border-blue-200 shadow-[0_0_30px_rgba(168,85,247,0.2)] relative overflow-hidden">
                 <div className="absolute -right-4 -bottom-4 w-32 h-32 bg-purple-500/30 rounded-full blur-2xl"></div>
                 <h3 className="text-purple-200 font-bold mb-2 flex items-center gap-2"><span>💎</span> Lợi Nhuận Ròng</h3>
                 <div className="text-4xl font-extrabold text-slate-800">4,250,000 đ</div>
@@ -393,7 +393,7 @@ function App() {
 
             {/* Charts & Breakdown */}
             <div className="grid grid-cols-3 gap-6">
-              <div className="col-span-2 bg-white rounded-2xl p-6 border border-slate-200">
+              <div className="col-span-2 bg-white rounded-lg p-6 border border-slate-200">
                 <h3 className="text-xl font-bold mb-6">Tăng trưởng Lợi nhuận trong ngày</h3>
                 <div className="h-64 flex items-end gap-4 mt-8">
                   {[
@@ -413,14 +413,14 @@ function App() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 border border-slate-200">
+              <div className="bg-white rounded-lg p-6 border border-slate-200">
                 <h3 className="text-xl font-bold mb-6">Chi tiết Nhân sự hôm nay</h3>
                 <div className="space-y-4">
-                  <div className="bg-slate-50/80 rounded-xl p-4 border border-slate-200">
+                  <div className="bg-slate-50/80 rounded-md p-4 border border-slate-200">
                     <div className="flex justify-between items-center mb-2"><span className="font-bold">Nguyễn Văn A</span><span className="text-blue-600 font-mono">8 giờ</span></div>
                     <div className="flex justify-between text-sm"><span className="text-slate-500">25,000đ/h</span><span className="text-orange-600 font-bold">200,000 đ</span></div>
                   </div>
-                  <div className="bg-slate-50/80 rounded-xl p-4 border border-slate-200">
+                  <div className="bg-slate-50/80 rounded-md p-4 border border-slate-200">
                     <div className="flex justify-between items-center mb-2"><span className="font-bold">Trần Thị B</span><span className="text-blue-600 font-mono">6 giờ</span></div>
                     <div className="flex justify-between text-sm"><span className="text-slate-500">22,000đ/h</span><span className="text-orange-600 font-bold">132,000 đ</span></div>
                   </div>
@@ -439,7 +439,7 @@ function App() {
             
             <div className="grid grid-cols-3 gap-6 flex-1 min-h-0">
               {/* Product Management */}
-              <div className="col-span-2 bg-white rounded-2xl p-6 border border-slate-200 flex flex-col h-full min-h-0">
+              <div className="col-span-2 bg-white rounded-lg p-6 border border-slate-200 flex flex-col h-full min-h-0">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">🏷️ Quản lý Danh mục Sản phẩm</h3>
                 <p className="text-sm text-slate-500 mb-6">Thêm, sửa, xóa các mặt hàng sẽ xuất hiện trên màn hình thu ngân.</p>
                 
@@ -476,13 +476,13 @@ function App() {
                   <button onClick={addProduct} className="bg-blue-600 hover:bg-blue-700 text-white px-6 h-[50px] rounded-lg font-bold transition-colors">Thêm</button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-xl p-4 border border-slate-200">
+                <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-md p-4 border border-slate-200">
                   {products.length === 0 ? (
                     <p className="text-slate-400 text-center mt-10">Chưa có sản phẩm nào. Hãy thêm ở trên.</p>
                   ) : (
                     <div className="grid grid-cols-2 gap-4">
                       {products.map(p => (
-                        <div key={p.id} className="flex justify-between items-center p-3 bg-white border border-slate-200 rounded-xl hover:border-slate-300 transition-colors">
+                        <div key={p.id} className="flex justify-between items-center p-3 bg-white border border-slate-200 rounded-md hover:border-slate-300 transition-colors">
                           <div className="flex items-center gap-4">
                             <div className="w-14 h-14 rounded-lg bg-slate-100 flex items-center justify-center overflow-hidden shrink-0">
                               {p.image ? (
@@ -505,7 +505,7 @@ function App() {
               </div>
 
               {/* Notes Management */}
-              <div className="col-span-1 bg-white rounded-2xl p-6 border border-slate-200 flex flex-col h-full min-h-0">
+              <div className="col-span-1 bg-white rounded-lg p-6 border border-slate-200 flex flex-col h-full min-h-0">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">📝 Quản lý Ghi chú nhanh</h3>
                 <p className="text-sm text-slate-500 mb-6">Thiết lập các ghi chú thường dùng để thu ngân chọn nhanh khi order.</p>
 
@@ -514,7 +514,7 @@ function App() {
                   <button onClick={handleAddNewNote} className="bg-blue-600 hover:bg-blue-700 text-white px-3 rounded-lg font-bold transition-colors">Thêm</button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-xl p-4 border border-slate-200 flex flex-col gap-2">
+                <div className="flex-1 overflow-y-auto bg-slate-50/50 rounded-md p-4 border border-slate-200 flex flex-col gap-2">
                   {predefinedNotes.map((note, idx) => (
                     <div key={idx} className="flex justify-between items-center bg-white p-3 rounded-lg border border-slate-200">
                       <span className="font-bold text-sm">{note}</span>
@@ -547,7 +547,7 @@ function App() {
             
             <div className="grid grid-cols-1 gap-6">
               {/* Renaming Tabs */}
-              <div className="bg-white rounded-2xl p-6 border border-slate-200 flex flex-col">
+              <div className="bg-white rounded-lg p-6 border border-slate-200 flex flex-col">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">📝 Đổi tên Menu Sidebar</h3>
                 <p className="text-sm text-slate-500 mb-6">Đổi tên các chức năng theo đúng ngôn ngữ của quán (ví dụ: Quản lý Sản phẩm -&gt; Quần áo).</p>
                 <div className="grid grid-cols-3 gap-4 flex-1">
@@ -566,7 +566,7 @@ function App() {
               </div>
 
               {/* POS Layout Config */}
-              <div className="bg-white rounded-2xl p-6 border border-slate-200">
+              <div className="bg-white rounded-lg p-6 border border-slate-200">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">🎨 Tùy chỉnh Giao diện POS</h3>
                 <p className="text-sm text-slate-500 mb-6">Chọn mô hình bán hàng và tùy biến tên gọi các khu vực (Ví dụ: Đổi "Bàn" thành "Phòng thử đồ" hoặc "Ghế").</p>
                 
@@ -574,7 +574,7 @@ function App() {
                   {/* Layout 1 */}
                   <div 
                     onClick={() => handlePosConfigEdit({ layout: 'table', title: 'Sơ đồ Bàn / Bán hàng', entityName: 'Bàn', entityIcon: '🪑'})}
-                    className={`p-4 rounded-xl border cursor-pointer transition-all ${editPosConfig.layout === 'table' ? 'bg-blue-600/20 border-blue-600 shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
+                    className={`p-4 rounded-md border cursor-pointer transition-all ${editPosConfig.layout === 'table' ? 'bg-blue-600/20 border-blue-600 shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
                     <div className="text-3xl mb-2">🪑</div>
                     <h4 className="font-bold text-slate-800">Quản lý Bàn</h4>
                     <p className="text-xs text-slate-500 mt-1">Dành cho Cafe, Quán ăn (Có sơ đồ Bàn)</p>
@@ -582,7 +582,7 @@ function App() {
                   {/* Layout 2 */}
                   <div 
                     onClick={() => handlePosConfigEdit({ layout: 'retail', title: 'Bán hàng nhanh', entityName: '', entityIcon: ''})}
-                    className={`p-4 rounded-xl border cursor-pointer transition-all ${editPosConfig.layout === 'retail' ? 'bg-blue-600/20 border-blue-600 shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
+                    className={`p-4 rounded-md border cursor-pointer transition-all ${editPosConfig.layout === 'retail' ? 'bg-blue-600/20 border-blue-600 shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
                     <div className="text-3xl mb-2">🛒</div>
                     <h4 className="font-bold text-slate-800">Bán lẻ (Nhanh)</h4>
                     <p className="text-xs text-slate-500 mt-1">Dành cho Shop quần áo, Take-away (Vào thẳng chọn món)</p>
@@ -590,7 +590,7 @@ function App() {
                   {/* Layout 3 */}
                   <div 
                     onClick={() => handlePosConfigEdit({ layout: 'room', title: 'Sơ đồ Phòng / Dịch vụ', entityName: 'Phòng', entityIcon: '🚪'})}
-                    className={`p-4 rounded-xl border cursor-pointer transition-all ${editPosConfig.layout === 'room' ? 'bg-blue-600/20 border-blue-600 shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
+                    className={`p-4 rounded-md border cursor-pointer transition-all ${editPosConfig.layout === 'room' ? 'bg-blue-600/20 border-blue-600 shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`}>
                     <div className="text-3xl mb-2">🚪</div>
                     <h4 className="font-bold text-slate-800">Phòng / Dịch vụ</h4>
                     <p className="text-xs text-slate-500 mt-1">Dành cho Spa, Bida, Phòng thử đồ</p>
@@ -617,7 +617,7 @@ function App() {
               </div>
             </div>
 
-            <button onClick={saveSettings} className={`w-full font-bold py-4 rounded-xl transition-colors shadow-lg text-lg ${isSettingsDirty ? 'bg-orange-500 hover:bg-orange-600 text-slate-800 shadow-orange-500/30' : 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-600/20'}`}>
+            <button onClick={saveSettings} className={`w-full font-bold py-4 rounded-md transition-colors shadow-sm text-lg ${isSettingsDirty ? 'bg-orange-500 hover:bg-orange-600 text-slate-800 shadow-orange-500/30' : 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-600/20'}`}>
               💾 Lưu toàn bộ Cài đặt {isSettingsDirty && "(Có thay đổi mới)"}
             </button>
           </div>
@@ -637,7 +637,7 @@ function App() {
               <div className="grid grid-cols-4 gap-4">
                 <div 
                   onClick={() => setSelectedTable(posConfig.takeawayName)}
-                  className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-blue-600 hover:bg-blue-600/40 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer transition-all">
+                  className="bg-gradient-to-br from-green-500/20 to-green-600/20 border border-blue-600 hover:bg-blue-600/40 rounded-md p-6 flex flex-col items-center justify-center cursor-pointer transition-all">
                   <span className="text-3xl mb-2">{posConfig.takeawayIcon}</span>
                   <span className="font-bold text-blue-600 text-center">{posConfig.takeawayName}</span>
                 </div>
@@ -645,7 +645,7 @@ function App() {
                   <div 
                     key={idx}
                     onClick={() => setSelectedTable(`${posConfig.entityName} ${idx}`)}
-                    className="bg-white border border-slate-200 hover:border-blue-400 hover:bg-slate-100 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer transition-all">
+                    className="bg-white border border-slate-200 hover:border-blue-400 hover:bg-slate-100 rounded-md p-6 flex flex-col items-center justify-center cursor-pointer transition-all">
                     <span className="text-3xl mb-2">{posConfig.entityIcon}</span>
                     <span className="font-bold">{posConfig.entityName} {idx}</span>
                   </div>
@@ -658,7 +658,7 @@ function App() {
               <div className="flex-1 flex flex-col h-full min-h-0">
                 <div className="flex items-center gap-4 mb-6 shrink-0">
                   {posConfig.layout !== 'retail' && (
-                    <button onClick={() => setSelectedTable(null)} className="bg-white hover:bg-slate-100 px-4 py-2 rounded-xl transition-colors">
+                    <button onClick={() => setSelectedTable(null)} className="bg-white hover:bg-slate-100 px-4 py-2 rounded-md transition-colors">
                       ← Quay lại
                     </button>
                   )}
@@ -688,7 +688,7 @@ function App() {
 
                 <div className="grid grid-cols-3 gap-4 overflow-y-auto pb-4 pr-2">
                   {products.filter(item => selectedCategory === 'all' || item.category === selectedCategory).map((item) => (
-                    <div key={item.id} onClick={() => { setSelectedItemForTopping(item); setNoteText(''); setSelectedSize('M'); setSelectedToppings([]); }} className="bg-white rounded-xl p-4 border border-slate-200 hover:border-blue-400 transition-all cursor-pointer group flex flex-col">
+                    <div key={item.id} onClick={() => { setSelectedItemForTopping(item); setNoteText(''); setSelectedSize('M'); setSelectedToppings([]); }} className="bg-white rounded-md p-4 border border-slate-200 hover:border-blue-400 transition-all cursor-pointer group flex flex-col">
                       <div className="h-32 bg-slate-100 rounded-lg mb-3 flex items-center justify-center text-5xl overflow-hidden relative">
                         {item.image ? (
                           <img src={item.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt={item.name} />
@@ -705,7 +705,7 @@ function App() {
               </div>
 
               {/* Right Side: Cart & Keypad */}
-              <div className="w-80 flex flex-col bg-white rounded-2xl border border-slate-200 overflow-hidden shrink-0">
+              <div className="w-80 flex flex-col bg-white rounded-lg border border-slate-200 overflow-hidden shrink-0">
                 <div className="flex-1 p-4 overflow-y-auto">
                   <div className="flex justify-between items-center mb-4 border-b border-slate-200 pb-2">
                     <h3 className="font-bold text-lg">Giỏ hàng</h3>
@@ -789,7 +789,7 @@ function App() {
                     ))}
                   </div>
 
-                  <button onClick={() => setShowPaymentModal(true)} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl text-lg transition-colors shadow-lg shadow-blue-600/20">
+                  <button onClick={() => setShowPaymentModal(true)} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-md text-lg transition-colors shadow-sm shadow-blue-600/20">
                     Thanh toán
                   </button>
                 </div>
@@ -804,19 +804,19 @@ function App() {
         activeTab === 'salary' ? (
           <div className="flex justify-center h-full animate-in fade-in">
             {/* Mobile View Mockup for Staff */}
-            <div className="w-[400px] bg-slate-50 border-[8px] border-gray-800 rounded-[3rem] p-6 shadow-2xl relative overflow-y-auto">
+            <div className="w-[400px] bg-slate-50 border-[8px] border-gray-800 rounded-[3rem] p-6 shadow-md border border-slate-200 relative overflow-y-auto">
               {/* Fake Notch */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-white rounded-b-3xl"></div>
               
               <div className="mt-6 mb-8 text-center">
-                <div className="w-20 h-20 bg-gradient-to-tr from-orange-400 to-amber-300 rounded-full mx-auto mb-3 flex items-center justify-center text-3xl shadow-lg shadow-orange-500/30">
+                <div className="w-20 h-20 bg-gradient-to-tr from-orange-400 to-amber-300 rounded-full mx-auto mb-3 flex items-center justify-center text-3xl shadow-sm shadow-orange-500/30">
                   🧑‍🍳
                 </div>
                 <h2 className="text-xl font-bold">Xin chào, Nguyễn Văn A</h2>
                 <p className="text-slate-500 text-sm">Nhân viên phục vụ (Part-time)</p>
               </div>
 
-              <div className="bg-gradient-to-br from-gray-800 to-gray-800/50 rounded-2xl p-5 border border-slate-200 shadow-xl mb-6">
+              <div className="bg-gradient-to-br from-gray-800 to-gray-800/50 rounded-lg p-5 border border-slate-200 shadow-sm mb-6">
                 <p className="text-slate-500 text-sm mb-1">Lương tích lũy tháng này</p>
                 <h3 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-300">
                   3,450,000 đ
@@ -841,7 +841,7 @@ function App() {
                   { date: 'Hôm qua, 18/06', in: '14:00', out: '22:05', hours: '8h 5m', status: 'done' },
                   { date: 'Thứ 2, 17/06', in: '06:02', out: '14:00', hours: '7h 58m', status: 'done' },
                 ].map((log, i) => (
-                  <div key={i} className={`p-4 rounded-xl border ${log.status === 'active' ? 'bg-orange-500/10 border-orange-500/30' : 'bg-white border-slate-200'}`}>
+                  <div key={i} className={`p-4 rounded-md border ${log.status === 'active' ? 'bg-orange-500/10 border-orange-500/30' : 'bg-white border-slate-200'}`}>
                     <div className="flex justify-between items-center mb-2">
                       <span className="font-bold text-sm">{log.date}</span>
                       {log.status === 'active' && <span className="text-xs bg-orange-500 text-white font-bold px-2 py-0.5 rounded-full animate-pulse">ĐANG CA</span>}
@@ -865,9 +865,9 @@ function App() {
             <h2 className="text-3xl font-bold mb-2">Anti-Fraud Check-in</h2>
             <p className="text-slate-500 mb-8">Hiển thị mã QR này cho nhân viên quét bằng App SmartStore để Check-in.</p>
             
-            <div className="relative p-1 bg-gradient-to-r from-purple-500 to-green-400 rounded-3xl shadow-[0_0_50px_rgba(74,222,128,0.2)]">
+            <div className="relative p-1 bg-gradient-to-r from-purple-500 to-green-400 rounded-md shadow-[0_0_50px_rgba(74,222,128,0.2)]">
               <div className="bg-white p-6 rounded-[22px]">
-                <div className="w-64 h-64 border-4 border-dashed border-gray-300 flex items-center justify-center bg-gray-100 rounded-xl relative overflow-hidden">
+                <div className="w-64 h-64 border-4 border-dashed border-gray-300 flex items-center justify-center bg-gray-100 rounded-md relative overflow-hidden">
                   <span className="text-slate-500 font-mono font-bold text-2xl">{qrCodeData}</span>
                   <div className="absolute top-0 left-0 w-full h-1 bg-green-400 shadow-[0_0_20px_#4ade80] animate-[scan_2s_ease-in-out_infinite]" />
                 </div>
@@ -891,7 +891,7 @@ function App() {
       {/* Topping / Note Modal (Keep existing logic) */}
       {selectedItemForTopping && (
         <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-50 backdrop-blur-sm">
-          <div className="bg-white border border-slate-300 rounded-2xl p-6 w-[500px] shadow-2xl animate-in zoom-in-95">
+          <div className="bg-white border border-slate-300 rounded-lg p-6 w-[500px] shadow-md border border-slate-200 animate-in zoom-in-95">
             <h2 className="text-2xl font-bold mb-2">Tùy chọn: {selectedItemForTopping.name}</h2>
             <p className="text-blue-600 font-bold mb-6">{selectedItemForTopping.price.toLocaleString()} đ</p>
             
@@ -931,8 +931,8 @@ function App() {
             </div>
 
             <div className="flex gap-4">
-              <button onClick={() => setSelectedItemForTopping(null)} className="flex-1 bg-slate-100 hover:bg-slate-200 py-3 rounded-xl font-bold transition-colors">Hủy</button>
-              <button onClick={() => { handleAddItem({...selectedItemForTopping, size: selectedSize, note: noteText.trim(), toppings: selectedToppings}); setSelectedItemForTopping(null); }} className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold transition-colors shadow-lg shadow-blue-600/20">Thêm vào giỏ</button>
+              <button onClick={() => setSelectedItemForTopping(null)} className="flex-1 bg-slate-100 hover:bg-slate-200 py-3 rounded-md font-bold transition-colors">Hủy</button>
+              <button onClick={() => { handleAddItem({...selectedItemForTopping, size: selectedSize, note: noteText.trim(), toppings: selectedToppings}); setSelectedItemForTopping(null); }} className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-bold transition-colors shadow-sm shadow-blue-600/20">Thêm vào giỏ</button>
             </div>
           </div>
         </div>
@@ -941,10 +941,10 @@ function App() {
       {/* Quick Payment Modal */}
       {showPaymentModal && (
         <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-50 backdrop-blur-sm">
-          <div className="bg-white border border-slate-300 rounded-2xl p-6 w-[500px] shadow-2xl">
+          <div className="bg-white border border-slate-300 rounded-lg p-6 w-[500px] shadow-md border border-slate-200">
             <h2 className="text-2xl font-bold mb-6 text-center border-b border-slate-200 pb-4">Thanh toán Bill</h2>
             
-            <div className="flex justify-between items-center mb-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <div className="flex justify-between items-center mb-6 bg-slate-50 p-4 rounded-md border border-slate-200">
               <span className="text-slate-500 text-lg">Tổng tiền thanh toán:</span>
               <span className="text-3xl font-bold text-blue-600">
                 {cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toLocaleString()} đ
@@ -957,23 +957,23 @@ function App() {
                 <button 
                   key={amt}
                   onClick={() => setAmountGiven(amt)}
-                  className={`py-3 rounded-xl font-bold transition-colors ${amountGiven === amt ? 'bg-blue-500 text-slate-800' : 'bg-slate-100 hover:bg-slate-200 text-slate-600'}`}>
+                  className={`py-3 rounded-md font-bold transition-colors ${amountGiven === amt ? 'bg-blue-500 text-slate-800' : 'bg-slate-100 hover:bg-slate-200 text-slate-600'}`}>
                   {amt.toLocaleString()} đ
                 </button>
               ))}
               <button 
                 onClick={() => setAmountGiven(cart.reduce((sum, item) => sum + (item.price * item.qty), 0))}
-                className={`py-3 rounded-xl font-bold transition-colors ${amountGiven === cart.reduce((sum, item) => sum + (item.price * item.qty), 0) ? 'bg-blue-500 text-slate-800' : 'bg-slate-100 hover:bg-slate-200 text-slate-600'}`}>
+                className={`py-3 rounded-md font-bold transition-colors ${amountGiven === cart.reduce((sum, item) => sum + (item.price * item.qty), 0) ? 'bg-blue-500 text-slate-800' : 'bg-slate-100 hover:bg-slate-200 text-slate-600'}`}>
                 Khách đưa đủ
               </button>
               <button 
-                className="py-3 rounded-xl font-bold transition-colors bg-purple-600 hover:bg-purple-500 text-slate-800 shadow-lg shadow-purple-600/20">
+                className="py-3 rounded-md font-bold transition-colors bg-purple-600 hover:bg-purple-500 text-slate-800 shadow-sm shadow-purple-600/20">
                 Momo / Thẻ
               </button>
             </div>
 
             {amountGiven > 0 && amountGiven >= cart.reduce((sum, item) => sum + (item.price * item.qty), 0) && (
-              <div className="flex justify-between items-center mb-6 bg-blue-600/10 border border-blue-600/30 p-4 rounded-xl">
+              <div className="flex justify-between items-center mb-6 bg-blue-600/10 border border-blue-600/30 p-4 rounded-md">
                 <span className="text-blue-600 text-lg">Tiền thối lại:</span>
                 <span className="text-3xl font-bold text-blue-600">
                   {(amountGiven - cart.reduce((sum, item) => sum + (item.price * item.qty), 0)).toLocaleString()} đ
@@ -982,7 +982,7 @@ function App() {
             )}
             
             {amountGiven > 0 && amountGiven < cart.reduce((sum, item) => sum + (item.price * item.qty), 0) && (
-              <div className="mb-6 bg-red-500/10 border border-red-500/30 p-4 rounded-xl text-red-400 text-center font-bold">
+              <div className="mb-6 bg-red-500/10 border border-red-500/30 p-4 rounded-md text-red-400 text-center font-bold">
                 Khách đưa thiếu tiền!
               </div>
             )}
@@ -990,7 +990,7 @@ function App() {
             <div className="flex gap-4">
               <button 
                 onClick={() => { setShowPaymentModal(false); setAmountGiven(0); }}
-                className="flex-1 bg-slate-100 hover:bg-slate-200 py-4 rounded-xl font-bold transition-colors text-lg">
+                className="flex-1 bg-slate-100 hover:bg-slate-200 py-4 rounded-md font-bold transition-colors text-lg">
                 Hủy
               </button>
               <button 
@@ -1014,7 +1014,7 @@ function App() {
                   }
                 }}
                 disabled={amountGiven < cart.reduce((sum, item) => sum + (item.price * item.qty), 0)}
-                className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-200 disabled:text-slate-500 text-white py-4 rounded-xl font-bold transition-colors shadow-lg shadow-blue-600/20 text-lg">
+                className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-200 disabled:text-slate-500 text-white py-4 rounded-md font-bold transition-colors shadow-sm shadow-blue-600/20 text-lg">
                 Hoàn tất & In Bill
               </button>
             </div>
