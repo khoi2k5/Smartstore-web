@@ -632,6 +632,8 @@ function App() {
                           <option value="name_desc" className="text-black">Tên Z-A</option>
                           <option value="price_asc" className="text-black">Giá tăng dần</option>
                           <option value="price_desc" className="text-black">Giá giảm dần</option>
+                          <option value="category_asc" className="text-black">Danh mục (A-Z)</option>
+                          <option value="category_desc" className="text-black">Danh mục (Z-A)</option>
                         </select>
                         <button onClick={() => {
                           setEditingProduct(null);
@@ -653,6 +655,16 @@ function App() {
                           if (productSort === 'name_desc') return b.name.localeCompare(a.name);
                           if (productSort === 'price_asc') return a.price - b.price;
                           if (productSort === 'price_desc') return b.price - a.price;
+                          if (productSort === 'category_asc') {
+                            const catA = categories.find(c => c.id === a.category)?.name || '';
+                            const catB = categories.find(c => c.id === b.category)?.name || '';
+                            return catA.localeCompare(catB);
+                          }
+                          if (productSort === 'category_desc') {
+                            const catA = categories.find(c => c.id === a.category)?.name || '';
+                            const catB = categories.find(c => c.id === b.category)?.name || '';
+                            return catB.localeCompare(catA);
+                          }
                           return 0;
                         }).map(p => (
                         <div key={p.id} className="flex justify-between items-center p-3 bg-black/40 backdrop-blur-xl border border-white/20 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:border-blue-300 hover:-translate-y-0.5 transition-all duration-300">
