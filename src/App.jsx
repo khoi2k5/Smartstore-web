@@ -121,9 +121,7 @@ function App() {
   const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, message: '', onConfirm: null, onCancel: null });
   const [isScanning, setIsScanning] = useState(false);
   const [scanResult, setScanResult] = useState('');
-  const [productSort, setProductSort] = useState('name_asc');
-
-  useEffect(() => {
+    useEffect(() => {
     let interval;
     if (activeTab === 'hr') {
       const updateCode = () => setQrCodeData(`SMARTSTORE_CHECKIN_${Date.now()}`);
@@ -626,23 +624,13 @@ function App() {
                   <>
                     <div className="flex justify-between items-center mb-6">
                       <p className="text-sm text-white font-medium drop-shadow-md">Quản lý và cập nhật danh sách các mặt hàng xuất hiện trên POS.</p>
-                      <div className="flex gap-3">
-                        <select value={productSort} onChange={e => setProductSort(e.target.value)} className="bg-black/40 backdrop-blur-xl border border-white/20 text-white font-medium px-3 py-2 rounded-lg outline-none font-bold">
-                          <option value="name_asc" className="text-black">Tên A-Z</option>
-                          <option value="name_desc" className="text-black">Tên Z-A</option>
-                          <option value="price_asc" className="text-black">Giá tăng dần</option>
-                          <option value="price_desc" className="text-black">Giá giảm dần</option>
-                          <option value="category_asc" className="text-black">Danh mục (A-Z)</option>
-                          <option value="category_desc" className="text-black">Danh mục (Z-A)</option>
-                        </select>
-                        <button onClick={() => {
+                      <button onClick={() => {
                           setEditingProduct(null);
                           setProductForm({ name: '', price: '', image: null, icon: '📦', category: '', status: 'not_ready', recipe: [] });
                           setShowProductModal(true);
-                        }} className="bg-blue-600/70 backdrop-blur-md border border-blue-400/30 shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] hover:bg-blue-700/70 backdrop-blur-md text-white font-medium px-5 py-2.5 rounded-lg font-bold transition-colors shadow-sm flex items-center gap-2">
+                        }} className="bg-blue-600/70 backdrop-blur-md border border-blue-400/30 shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] hover:bg-blue-700/70 backdrop-blur-md text-white font-medium px-5 py-2.5 rounded-lg font-bold transition-colors shadow-sm flex items-center gap-2 whitespace-nowrap">
                           + Thêm Sản Phẩm Mới
                         </button>
-                      </div>
                     </div>
 
                 <div className="flex-1 overflow-y-auto bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl p-6 border-2 border-white/10 shadow-inner">
@@ -651,21 +639,10 @@ function App() {
                   ) : (
                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                       {products.slice().sort((a,b) => {
-                          if (productSort === 'name_asc') return a.name.localeCompare(b.name);
-                          if (productSort === 'name_desc') return b.name.localeCompare(a.name);
-                          if (productSort === 'price_asc') return a.price - b.price;
-                          if (productSort === 'price_desc') return b.price - a.price;
-                          if (productSort === 'category_asc') {
-                            const catA = categories.find(c => c.id === a.category)?.name || '';
-                            const catB = categories.find(c => c.id === b.category)?.name || '';
-                            return catA.localeCompare(catB);
-                          }
-                          if (productSort === 'category_desc') {
-                            const catA = categories.find(c => c.id === a.category)?.name || '';
-                            const catB = categories.find(c => c.id === b.category)?.name || '';
-                            return catB.localeCompare(catA);
-                          }
-                          return 0;
+                          const catA = categories.find(c => c.id === a.category)?.name || '';
+                          const catB = categories.find(c => c.id === b.category)?.name || '';
+                          if (catA !== catB) return catA.localeCompare(catB);
+                          return a.name.localeCompare(b.name);
                         }).map(p => (
                         <div key={p.id} className="flex justify-between items-center p-3 bg-black/40 backdrop-blur-xl border border-white/20 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:border-blue-300 hover:-translate-y-0.5 transition-all duration-300">
                           <div className="flex items-center gap-4">
