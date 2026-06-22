@@ -897,28 +897,26 @@ function App() {
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-3xl font-bold">{posConfig.title}</h2>
               </div>
-              <p className="text-slate-400 mb-6">Vui lòng chọn {posConfig.entityName.toLowerCase()} hoặc chọn "{posConfig.takeawayName}".</p>
+              {['cafe', 'restaurant'].includes(posConfig.layout) ? (
+                <p className="text-slate-400 mb-6">Vui lòng chọn {posConfig.entityName.toLowerCase()} hoặc chọn "{posConfig.takeawayName}".</p>
+              ) : (
+                <p className="text-slate-400 mb-6">Vui lòng chọn {posConfig.entityName.toLowerCase()} để tiến hành dịch vụ.</p>
+              )}
               
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                {['cafe', 'restaurant'].includes(posConfig.layout) && (
                 <div 
                   onClick={() => switchTable(posConfig.takeawayName)}
-                  className="border border-blue-500 rounded-md cursor-pointer transition-all overflow-hidden relative h-28 group"
-                  style={{ backgroundImage: "url('/takeaway_bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                  <div className="absolute inset-0 bg-blue-900/60 group-hover:bg-blue-900/40 transition-colors"></div>
-                  <div className="relative h-full flex flex-col items-center justify-center p-3">
-                    <span className="font-bold text-white text-center text-sm">{posConfig.takeawayName}</span>
-                  </div>
+                  className="bg-blue-600/30 backdrop-blur-md border border-blue-400/50 hover:bg-blue-500/50 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] rounded-xl cursor-pointer transition-all relative h-28 group flex flex-col items-center justify-center p-3">
+                  <span className="font-bold text-white text-center text-sm">{posConfig.takeawayName}</span>
                 </div>
+              )}
                 {[1,2,3,4,5,6,7,8].map((idx) => (
                   <div 
                     key={idx}
                     onClick={() => switchTable(`${posConfig.entityName} ${idx}`)}
-                    className="border border-white/10 hover:border-blue-400 rounded-md cursor-pointer transition-all overflow-hidden relative h-28 group"
-                    style={{ backgroundImage: "url('/cafe_table_bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                    <div className="absolute inset-0 bg-slate-900/50 group-hover:bg-slate-900/30 transition-colors"></div>
-                    <div className="relative h-full flex flex-col items-center justify-center p-3">
-                      <span className="font-bold text-white text-lg">{posConfig.entityName} {idx}</span>
-                    </div>
+                    className="bg-black/40 backdrop-blur-md border border-white/10 hover:border-blue-400 hover:bg-blue-900/40 hover:shadow-[0_0_20px_rgba(37,99,235,0.3)] rounded-xl cursor-pointer transition-all relative h-28 flex flex-col items-center justify-center p-3">
+                    <span className="font-bold text-white text-lg">{posConfig.entityName} {idx}</span>
                   </div>
                 ))}
               </div>
