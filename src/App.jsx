@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, doc, setDoc, onSnapshot } from 'firebase/firestore';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { db, auth } from './firebase';
 import QRCode from 'react-qr-code';
@@ -308,8 +308,8 @@ function App() {
       isOpen: true,
       message: "Bạn có chắc chắn muốn lưu toàn bộ cài đặt không?",
       onConfirm: () => {
-        setTabNames(editTabNames);
-        setPosConfig(editPosConfig);
+        updateTabNames(editTabNames);
+        updatePosConfig(editPosConfig);
         setIsSettingsDirty(false);
         if (editPosConfig.layout === 'retail') {
           setSelectedTable('Bán Lẻ');
@@ -320,8 +320,8 @@ function App() {
       }
     });
     if (false) {
-      setTabNames(editTabNames);
-      setPosConfig(editPosConfig);
+      updateTabNames(editTabNames);
+      updatePosConfig(editPosConfig);
       setIsSettingsDirty(false);
       // Nếu đổi sang retail thì xoá selectedTable để vào thẳng giỏ hàng
       if (editPosConfig.layout === 'retail') {
@@ -346,7 +346,7 @@ function App() {
 
   const addProduct = () => {
     if (newProduct.name && newProduct.price) {
-      setProducts([...products, { ...newProduct, id: Date.now(), price: parseInt(newProduct.price) }]);
+      updateProducts([...products, { ...newProduct, id: Date.now(), price: parseInt(newProduct.price) }]);
       setNewProduct({ name: '', price: '', image: null, icon: '📦' });
     } else {
       alert('Vui lòng nhập Tên và Giá sản phẩm!');
@@ -357,34 +357,34 @@ function App() {
     setConfirmDialog({
       isOpen: true,
       message: "Bạn có chắc chắn muốn xóa sản phẩm này?",
-      onConfirm: () => { setProducts(products.filter(p => p.id !== id)); }
+      onConfirm: () => { updateProducts(products.filter(p => p.id !== id)); }
     });
     if (false) {
-      setProducts(products.filter(p => p.id !== id));
+      updateProducts(products.filter(p => p.id !== id));
     }
   };
 
   const handleAddNewNote = () => {
     if (newNote.trim() && !predefinedNotes.includes(newNote.trim())) {
-      setPredefinedNotes([...predefinedNotes, newNote.trim()]);
+      updatePredefinedNotes([...predefinedNotes, newNote.trim()]);
       setNewNote('');
     }
   };
 
   const deletePredefinedNote = (noteToDelete) => {
-    setPredefinedNotes(predefinedNotes.filter(n => n !== noteToDelete));
+    updatePredefinedNotes(predefinedNotes.filter(n => n !== noteToDelete));
   };
 
   const handleAddNewSize = () => {
     if (newSizeName.trim()) {
-      setPredefinedSizes([...predefinedSizes, { name: newSizeName.trim(), priceAdd: parseInt(newSizePrice) || 0 }]);
+      updatePredefinedSizes([...predefinedSizes, { name: newSizeName.trim(), priceAdd: parseInt(newSizePrice) || 0 }]);
       setNewSizeName('');
       setNewSizePrice('');
     }
   };
 
   const deletePredefinedSize = (idx) => {
-    setPredefinedSizes(predefinedSizes.filter((_, i) => i !== idx));
+    updatePredefinedSizes(predefinedSizes.filter((_, i) => i !== idx));
   };
 
   useEffect(() => {
@@ -680,7 +680,7 @@ function App() {
                       <input type="text" placeholder="Tên danh mục mới..." value={newCategory.name} onChange={e => setNewCategory({...newCategory, name: e.target.value})} className="flex-1 bg-white/5 border border-white/10 rounded-lg p-2 text-white font-medium" />
                       <button onClick={() => {
                         if(newCategory.name) {
-                          setCategories([...categories, { id: 'cat' + Date.now(), name: newCategory.name }]);
+                          updateCategories([...categories, { id: 'cat' + Date.now(), name: newCategory.name }]);
                           setNewCategory({ id: '', name: '' });
                         }
                       }} className="bg-blue-600/70 backdrop-blur-md border border-blue-400/30 shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] hover:bg-blue-700/70 backdrop-blur-md text-white font-medium px-4 rounded-lg font-bold">Thêm</button>
@@ -689,7 +689,7 @@ function App() {
                       {categories.map(cat => (
                         <div key={cat.id} className="flex justify-between items-center bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl p-4 rounded-xl border border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                           <span className="font-bold">{cat.name}</span>
-                          <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa danh mục này?', onConfirm: () => setCategories(categories.filter(c => c.id !== cat.id)) }); }} className="text-red-400 hover:text-red-600 font-bold">✕</button>
+                          <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa danh mục này?', onConfirm: () => updateCategories(categories.filter(c => c.id !== cat.id)) }); }} className="text-red-400 hover:text-red-600 font-bold">✕</button>
                         </div>
                       ))}
                     </div>
@@ -717,7 +717,7 @@ function App() {
                       </div>
                       <button onClick={() => {
                         if(newIngredient.name) {
-                          setIngredients([...ingredients, { ...newIngredient, id: 'ing' + Date.now(), cost: parseFloat(newIngredient.cost)||0 }]);
+                          updateIngredients([...ingredients, { ...newIngredient, id: 'ing' + Date.now(), cost: parseFloat(newIngredient.cost)||0 }]);
                           setNewIngredient({ name: '', unit: 'gram', cost: 0, stock: 0 });
                         }
                       }} className="bg-blue-600/70 backdrop-blur-md border border-blue-400/30 shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] hover:bg-blue-700/70 backdrop-blur-md text-white font-medium px-4 h-[38px] rounded-lg font-bold">Thêm</button>
@@ -729,7 +729,7 @@ function App() {
                             <div className="font-bold">{ing.name}</div>
                             <div className="text-xs text-white font-medium drop-shadow-md">{ing.cost} đ / {ing.unit}</div>
                           </div>
-                          <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa nguyên liệu này?', onConfirm: () => setIngredients(ingredients.filter(i => i.id !== ing.id)) }); }} className="text-red-400 hover:text-red-600 font-bold">✕ Xóa</button>
+                          <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa nguyên liệu này?', onConfirm: () => updateIngredients(ingredients.filter(i => i.id !== ing.id)) }); }} className="text-red-400 hover:text-red-600 font-bold">✕ Xóa</button>
                         </div>
                       ))}
                     </div>
@@ -1047,18 +1047,12 @@ function App() {
               <div className="flex-1 flex flex-col h-full min-h-0 bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl overflow-hidden">
                 {/* Category Pills - Square styling */}
                 <div className="flex bg-black/40 backdrop-blur-md border-b border-white/10 overflow-x-auto shrink-0 hide-scrollbar p-4 gap-4">
-                  {[
-                    {id: 'all', label: 'TẤT CẢ'},
-                    {id: 'coffee', label: 'CÀ PHÊ'},
-                    {id: 'tea', label: 'TRÀ TRÁI CÂY'},
-                    {id: 'smoothie', label: 'SINH TỐ'},
-                    {id: 'food', label: 'ĐỒ ĂN'},
-                  ].map(cat => (
+                  {[{id: 'all', name: 'TẤT CẢ'}, ...categories].map(cat => (
                     <button 
                       key={cat.id}
                       onClick={() => setSelectedCategory(cat.id)}
                       className={`px-6 py-3 text-sm font-bold whitespace-nowrap border rounded-xl ${selectedCategory === cat.id ? 'bg-blue-600/70 backdrop-blur-md border border-blue-400/30 shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] text-white border-blue-700' : 'bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl text-white font-medium border-white/10 hover:bg-white/10 hover:bg-white/20'}`}>
-                      {cat.label}
+                      {cat.name.toUpperCase()}
                     </button>
                   ))}
                 </div>
@@ -1414,9 +1408,9 @@ function App() {
                   }
 
                   if(editingProduct) {
-                    setProducts(products.map(p => p.id === editingProduct.id ? {...productForm, id: editingProduct.id, price: parseInt(productForm.price), recipe: validRecipe} : p));
+                    updateProducts(products.map(p => p.id === editingProduct.id ? {...productForm, id: editingProduct.id, price: parseInt(productForm.price), recipe: validRecipe} : p));
                   } else {
-                    setProducts([...products, {...productForm, id: Date.now(), price: 0, status: 'not_ready', recipe: validRecipe}]);
+                    updateProducts([...products, {...productForm, id: Date.now(), price: 0, status: 'not_ready', recipe: validRecipe}]);
                   }
                   setShowProductModal(false);
                 }} 
