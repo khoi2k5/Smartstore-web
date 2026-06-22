@@ -1,14 +1,47 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { collection, addDoc, serverTimestamp, doc, setDoc, onSnapshot } from 'firebase/firestore';
-import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
 import { db, auth } from './firebase';
 import QRCode from 'react-qr-code';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 
 function App() {
   // Role & Config State
-  const [role, setRole] = useState(null); // 'owner', 'pos', 'staff'
+  const [role, setRole] = useState(null);
   const [activeTab, setActiveTab] = useState('pos');
+
+  // AUTHENTICATION PERSISTENCE
+  useEffect(() => {
+    const unsubAuth = onAuthStateChanged(auth, (user) => {
+      if (user && user.email) {
+        let selectedRole = 'staff';
+        if (user.email.includes('chuquan')) selectedRole = 'owner';
+        else if (user.email.includes('pos')) selectedRole = 'pos';
+        setRole(selectedRole);
+        
+        // Restore active tab if saved, otherwise default
+        const savedTab = localStorage.getItem('activeTab');
+        if (savedTab) {
+          setActiveTab(savedTab);
+        } else {
+          if (selectedRole === 'owner') setActiveTab('dashboard');
+          if (selectedRole === 'pos') setActiveTab('pos');
+          if (selectedRole === 'staff') setActiveTab('salary');
+        }
+      } else {
+        setRole(null);
+      }
+    });
+    return () => unsubAuth();
+  }, []);
+
+  // Save activeTab to localStorage when it changes
+  useEffect(() => {
+    if (activeTab) {
+      localStorage.setItem('activeTab', activeTab);
+    }
+  }, [activeTab]);
+
   
   const [tabNames, setTabNames] = useState({
     dashboard: '📊 Báo cáo Lợi nhuận',
