@@ -400,36 +400,36 @@ function App() {
   // -------------------------------------------------------------
   if (!role) {
     return (
-      <div className="min-h-screen text-slate-800 flex items-center justify-center p-4 bg-[#e0f2fe]" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1440 320\' opacity=\'0.5\'%3E%3Cpath fill=\'%2338bdf8\' fill-opacity=\'1\' d=\'M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z\'%3E%3C/path%3E%3C/svg%3E')", backgroundSize: 'cover', backgroundAttachment: 'fixed', backgroundPosition: 'center bottom' }}>
+      <div className="min-h-screen text-[#4a3f35] font-sans flex flex-col md:flex-row p-0 md:p-4 md:gap-4 bg-[#f4ebe1]">
         <div className="bg-white/40 backdrop-blur-xl border border-white shadow-sm rounded-md p-10 max-w-md w-full">
           <div className="text-center mb-10">
-            <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 mb-2">
+            <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#8b5e34] to-[#a67c52] mb-2">
               SmartStore
             </h1>
-            <p className="text-slate-500">Đăng nhập để vào hệ thống</p>
+            <p className="text-[#8c7b6c]">Đăng nhập để vào hệ thống</p>
           </div>
 
           <form onSubmit={handleLoginSubmit} className="space-y-6">
             <div>
-              <label className="block text-slate-500 text-sm mb-2">Email</label>
+              <label className="block text-[#8c7b6c] text-sm mb-2">Email</label>
               <input 
                 type="email" 
                 required 
                 value={loginEmail}
                 onChange={e => setLoginEmail(e.target.value)}
                 placeholder="VD: chuquan@gmail.com"
-                className="w-full bg-white border border-white/50 rounded-md p-4 text-slate-800 focus:outline-none focus:border-blue-600 transition-colors"
+                className="w-full bg-[#fdfbf7] border border-[#e8dcc7] rounded-md p-4 text-[#4a3f35] focus:outline-none focus:border-[#8b5e34] transition-colors"
               />
             </div>
             <div>
-              <label className="block text-slate-500 text-sm mb-2">Mật khẩu</label>
+              <label className="block text-[#8c7b6c] text-sm mb-2">Mật khẩu</label>
               <input 
                 type="password" 
                 required
                 value={loginPassword}
                 onChange={e => setLoginPassword(e.target.value)}
                 placeholder="••••••"
-                className="w-full bg-white border border-white/50 rounded-md p-4 text-slate-800 focus:outline-none focus:border-blue-600 transition-colors"
+                className="w-full bg-[#fdfbf7] border border-[#e8dcc7] rounded-md p-4 text-[#4a3f35] focus:outline-none focus:border-[#8b5e34] transition-colors"
               />
             </div>
 
@@ -442,7 +442,7 @@ function App() {
             <button 
               type="submit" 
               disabled={isLoggingIn}
-              className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 disabled:from-gray-600 disabled:to-gray-700 disabled:text-slate-500 text-white py-4 rounded-md font-bold transition-all shadow-sm shadow-blue-600/20 text-lg">
+              className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 disabled:from-gray-600 disabled:to-gray-700 disabled:text-[#8c7b6c] text-white py-4 rounded-md font-bold transition-all shadow-sm shadow-[#8b5e34]/20 text-lg">
               {isLoggingIn ? 'Đang xác thực...' : 'Đăng nhập'}
             </button>
           </form>
@@ -468,14 +468,14 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen text-slate-800 font-sans flex flex-col md:flex-row p-0 md:p-4 md:gap-4 bg-[#e0f2fe]" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1440 320\' opacity=\'0.4\'%3E%3Cpath fill=\'%237dd3fc\' fill-opacity=\'1\' d=\'M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z\'%3E%3C/path%3E%3C/svg%3E')", backgroundSize: 'cover', backgroundAttachment: 'fixed', backgroundPosition: 'center bottom' }}>
+    <div className="min-h-screen text-[#4a3f35] font-sans flex flex-col md:flex-row p-0 md:p-4 md:gap-4 bg-[#e0f2fe]" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1440 320\' opacity=\'0.4\'%3E%3Cpath fill=\'%237dd3fc\' fill-opacity=\'1\' d=\'M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z\'%3E%3C/path%3E%3C/svg%3E')", backgroundSize: 'cover', backgroundAttachment: 'fixed', backgroundPosition: 'center bottom' }}>
       
       {/* Sidebar */}
       <div className="w-64 bg-white/40 backdrop-blur-xl border border-white shadow-sm rounded-lg p-6 flex flex-col justify-between">
         <div>
-          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 mb-8">
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#8b5e34] to-[#a67c52] mb-8">
             SmartStore
-            <span className="block text-xs text-slate-500 font-normal mt-1">
+            <span className="block text-xs text-[#8c7b6c] font-normal mt-1">
               Role: {role === 'owner' ? '👑 Chủ quán' : role === 'pos' ? '🛒 Thu ngân' : '🧑‍🍳 Nhân viên'}
             </span>
           </h1>
@@ -486,9 +486,9 @@ function App() {
                 onClick={() => handleTabClick(tabKey)}
                 className={`w-full text-left px-4 py-3 rounded-md transition-all ${
                   activeTab === tabKey 
-                    ? tabKey === 'dashboard' ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold shadow-sm shadow-blue-600/30' 
-                      : 'bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 font-bold' 
-                    : 'hover:bg-white text-slate-500'
+                    ? tabKey === 'dashboard' ? 'bg-gradient-to-r from-[#8b5e34] to-[#a67c52] text-white font-bold shadow-sm shadow-[#8b5e34]/30' 
+                      : 'bg-gradient-to-r from-blue-100 to-blue-50 text-[#8b5e34] font-bold' 
+                    : 'hover:bg-[#fdfbf7] text-[#8c7b6c]'
                 }`}>
                 {tabNames[tabKey]}
               </button>
@@ -499,7 +499,7 @@ function App() {
         <div>
           <button 
             onClick={handleLogoutClick}
-            className="w-full mt-8 bg-white hover:bg-red-500/20 hover:text-red-400 text-slate-500 py-3 rounded-md font-bold transition-colors border border-white/50 hover:border-red-500/50">
+            className="w-full mt-8 bg-[#fdfbf7] hover:bg-red-500/20 hover:text-red-400 text-[#8c7b6c] py-3 rounded-md font-bold transition-colors border border-[#e8dcc7] hover:border-red-500/50">
             🚪 Đăng xuất
           </button>
           <div className="text-sm text-slate-400 mt-4 text-center">
@@ -528,24 +528,24 @@ function App() {
             
             {/* KPI Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-white/40 backdrop-blur-md rounded-lg p-6 border border-blue-600/30 relative overflow-hidden group">
-                <div className="absolute -right-6 -top-6 w-24 h-24 bg-blue-600/20 rounded-full blur-xl group-hover:bg-blue-600/30 transition-all"></div>
-                <h3 className="text-slate-500 font-bold mb-2 flex items-center gap-2"><span>📈</span> Tổng Doanh Thu</h3>
-                <div className="text-3xl font-bold text-blue-600">5,450,000 đ</div>
-                <p className="text-sm text-blue-600 mt-2">↑ 12% so với hôm qua</p>
+              <div className="bg-[#fdfbf7] rounded-lg p-6 border border-[#8b5e34]/30 relative overflow-hidden group">
+                <div className="absolute -right-6 -top-6 w-24 h-24 bg-[#8b5e34]/20 rounded-full blur-xl group-hover:bg-[#8b5e34]/30 transition-all"></div>
+                <h3 className="text-[#8c7b6c] font-bold mb-2 flex items-center gap-2"><span>📈</span> Tổng Doanh Thu</h3>
+                <div className="text-3xl font-bold text-[#8b5e34]">5,450,000 đ</div>
+                <p className="text-sm text-[#8b5e34] mt-2">↑ 12% so với hôm qua</p>
               </div>
               
-              <div className="bg-white/40 backdrop-blur-md rounded-lg p-6 border border-orange-500/30 relative overflow-hidden group">
+              <div className="bg-[#fdfbf7] rounded-lg p-6 border border-orange-500/30 relative overflow-hidden group">
                 <div className="absolute -right-6 -top-6 w-24 h-24 bg-orange-500/20 rounded-full blur-xl group-hover:bg-orange-500/30 transition-all"></div>
-                <h3 className="text-slate-500 font-bold mb-2 flex items-center gap-2"><span>👥</span> Chi phí Nhân sự</h3>
+                <h3 className="text-[#8c7b6c] font-bold mb-2 flex items-center gap-2"><span>👥</span> Chi phí Nhân sự</h3>
                 <div className="text-3xl font-bold text-orange-400">1,200,000 đ</div>
-                <p className="text-sm text-slate-500 mt-2">Dựa trên 34 giờ làm việc</p>
+                <p className="text-sm text-[#8c7b6c] mt-2">Dựa trên 34 giờ làm việc</p>
               </div>
               
               <div className="bg-gradient-to-br from-indigo-900 to-purple-900 rounded-lg p-6 border border-blue-200 shadow-[0_0_30px_rgba(168,85,247,0.2)] relative overflow-hidden">
                 <div className="absolute -right-4 -bottom-4 w-32 h-32 bg-purple-500/30 rounded-full blur-2xl"></div>
                 <h3 className="text-purple-200 font-bold mb-2 flex items-center gap-2"><span>💎</span> Lợi Nhuận Ròng</h3>
-                <div className="text-4xl font-extrabold text-slate-800">4,250,000 đ</div>
+                <div className="text-4xl font-extrabold text-[#4a3f35]">4,250,000 đ</div>
                 <div className="mt-3 bg-white/10 rounded-full px-3 py-1 inline-block text-sm text-purple-200 border border-white/20">
                   Biên lợi nhuận: 78%
                 </div>
@@ -554,7 +554,7 @@ function App() {
 
             {/* Charts & Breakdown */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="col-span-2 bg-white/40 backdrop-blur-md rounded-lg p-6 border border-white/50">
+              <div className="col-span-2 bg-[#fdfbf7] rounded-lg p-6 border border-[#e8dcc7]">
                 <h3 className="text-xl font-bold mb-6">Tăng trưởng Lợi nhuận trong ngày</h3>
                 <div className="h-64 flex items-end gap-4 mt-8">
                   {[
@@ -564,26 +564,26 @@ function App() {
                     { time: '20:00', rev: 120, cost: 55 },
                   ].map((bar, idx) => (
                     <div key={idx} className="flex-1 flex flex-col items-center gap-2 group">
-                      <div className="w-full relative flex justify-center items-end h-48 bg-slate-100 rounded-lg p-2 gap-1">
-                        <div className="w-1/2 bg-blue-600 rounded-t-md relative group-hover:opacity-80 transition-opacity" style={{ height: `${bar.rev}%` }}></div>
+                      <div className="w-full relative flex justify-center items-end h-48 bg-[#f0e8df] rounded-lg p-2 gap-1">
+                        <div className="w-1/2 bg-[#8b5e34] rounded-t-md relative group-hover:opacity-80 transition-opacity" style={{ height: `${bar.rev}%` }}></div>
                         <div className="w-1/2 bg-orange-500 rounded-t-md relative group-hover:opacity-80 transition-opacity" style={{ height: `${bar.cost}%` }}></div>
                       </div>
-                      <span className="text-slate-500 text-sm font-mono">{bar.time}</span>
+                      <span className="text-[#8c7b6c] text-sm font-mono">{bar.time}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="bg-white/40 backdrop-blur-md rounded-lg p-6 border border-white/50">
+              <div className="bg-[#fdfbf7] rounded-lg p-6 border border-[#e8dcc7]">
                 <h3 className="text-xl font-bold mb-6">Chi tiết Nhân sự hôm nay</h3>
                 <div className="space-y-4">
-                  <div className="bg-slate-50/80 rounded-md p-4 border border-white/50">
-                    <div className="flex justify-between items-center mb-2"><span className="font-bold">Nguyễn Văn A</span><span className="text-blue-600 font-mono">8 giờ</span></div>
-                    <div className="flex justify-between text-sm"><span className="text-slate-500">25,000đ/h</span><span className="text-orange-600 font-bold">200,000 đ</span></div>
+                  <div className="bg-slate-50/80 rounded-md p-4 border border-[#e8dcc7]">
+                    <div className="flex justify-between items-center mb-2"><span className="font-bold">Nguyễn Văn A</span><span className="text-[#8b5e34] font-mono">8 giờ</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-[#8c7b6c]">25,000đ/h</span><span className="text-orange-600 font-bold">200,000 đ</span></div>
                   </div>
-                  <div className="bg-slate-50/80 rounded-md p-4 border border-white/50">
-                    <div className="flex justify-between items-center mb-2"><span className="font-bold">Trần Thị B</span><span className="text-blue-600 font-mono">6 giờ</span></div>
-                    <div className="flex justify-between text-sm"><span className="text-slate-500">22,000đ/h</span><span className="text-orange-600 font-bold">132,000 đ</span></div>
+                  <div className="bg-slate-50/80 rounded-md p-4 border border-[#e8dcc7]">
+                    <div className="flex justify-between items-center mb-2"><span className="font-bold">Trần Thị B</span><span className="text-[#8b5e34] font-mono">6 giờ</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-[#8c7b6c]">22,000đ/h</span><span className="text-orange-600 font-bold">132,000 đ</span></div>
                   </div>
                 </div>
               </div>
@@ -610,39 +610,39 @@ function App() {
             
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 flex-1 min-h-0">
               {/* Product Management */}
-              <div className="col-span-2 bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-white/50 shadow-sm flex flex-col h-full min-h-0">
+              <div className="col-span-2 bg-[#fdfbf7] rounded-2xl p-6 border border-[#e8dcc7] shadow-sm flex flex-col h-full min-h-0">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">🏷️ Quản lý Danh mục Sản phẩm</h3>
-                <p className="text-sm text-slate-500 mb-6">Thêm, sửa, xóa các mặt hàng sẽ xuất hiện trên màn hình thu ngân.</p>
+                <p className="text-sm text-[#8c7b6c] mb-6">Thêm, sửa, xóa các mặt hàng sẽ xuất hiện trên màn hình thu ngân.</p>
                 
                 {/* Sub-tab Navigation */}
-                <div className="flex gap-2 mb-6 border-b border-white/50 pb-4">
-                  <button onClick={() => setRecipeTab('products')} className={`px-4 py-2 rounded-lg font-bold transition-colors ${recipeTab === 'products' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>Sản Phẩm</button>
-                  <button onClick={() => setRecipeTab('categories')} className={`px-4 py-2 rounded-lg font-bold transition-colors ${recipeTab === 'categories' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>Danh Mục</button>
-                  <button onClick={() => setRecipeTab('ingredients')} className={`px-4 py-2 rounded-lg font-bold transition-colors ${recipeTab === 'ingredients' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>Nguyên Liệu</button>
+                <div className="flex gap-2 mb-6 border-b border-[#e8dcc7] pb-4">
+                  <button onClick={() => setRecipeTab('products')} className={`px-4 py-2 rounded-lg font-bold transition-colors ${recipeTab === 'products' ? 'bg-[#8b5e34] text-white' : 'bg-[#f0e8df] text-[#756658] hover:bg-[#e6dacb]'}`}>Sản Phẩm</button>
+                  <button onClick={() => setRecipeTab('categories')} className={`px-4 py-2 rounded-lg font-bold transition-colors ${recipeTab === 'categories' ? 'bg-[#8b5e34] text-white' : 'bg-[#f0e8df] text-[#756658] hover:bg-[#e6dacb]'}`}>Danh Mục</button>
+                  <button onClick={() => setRecipeTab('ingredients')} className={`px-4 py-2 rounded-lg font-bold transition-colors ${recipeTab === 'ingredients' ? 'bg-[#8b5e34] text-white' : 'bg-[#f0e8df] text-[#756658] hover:bg-[#e6dacb]'}`}>Nguyên Liệu</button>
                 </div>
 
                 {recipeTab === 'products' && (
                   <>
                     <div className="flex justify-between items-center mb-6">
-                      <p className="text-sm text-slate-500">Quản lý và cập nhật danh sách các mặt hàng xuất hiện trên POS.</p>
+                      <p className="text-sm text-[#8c7b6c]">Quản lý và cập nhật danh sách các mặt hàng xuất hiện trên POS.</p>
                       <button onClick={() => {
                         setEditingProduct(null);
                         setProductForm({ name: '', price: '', image: null, icon: '📦', category: '', status: 'not_ready', recipe: [] });
                         setShowProductModal(true);
-                      }} className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-bold transition-colors shadow-sm flex items-center gap-2">
+                      }} className="bg-[#8b5e34] hover:bg-[#704b29] text-white px-5 py-2.5 rounded-lg font-bold transition-colors shadow-sm flex items-center gap-2">
                         + Thêm Sản Phẩm Mới
                       </button>
                     </div>
 
-                <div className="flex-1 overflow-y-auto bg-white/30 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/50 shadow-inner">
+                <div className="flex-1 overflow-y-auto bg-[#fdfbf7] rounded-2xl p-6 border-2 border-[#e8dcc7] shadow-inner">
                   {products.length === 0 ? (
                     <p className="text-slate-400 text-center mt-10">Chưa có sản phẩm nào. Hãy thêm ở trên.</p>
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {products.map(p => (
-                        <div key={p.id} className="flex justify-between items-center p-3 bg-white/40 backdrop-blur-md border border-white/50 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:border-blue-300 hover:-translate-y-0.5 transition-all duration-300">
+                        <div key={p.id} className="flex justify-between items-center p-3 bg-[#fdfbf7] border border-[#e8dcc7] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:border-blue-300 hover:-translate-y-0.5 transition-all duration-300">
                           <div className="flex items-center gap-4">
-                            <div className="w-14 h-14 rounded-lg bg-slate-100 flex items-center justify-center overflow-hidden shrink-0">
+                            <div className="w-14 h-14 rounded-lg bg-[#f0e8df] flex items-center justify-center overflow-hidden shrink-0">
                               {p.image ? (
                                 <img src={p.image} className="w-full h-full object-cover" alt={p.name} />
                               ) : (
@@ -651,14 +651,14 @@ function App() {
                             </div>
                             <div className="flex-1 w-full min-w-0 pr-2">
                               <p className="font-bold text-sm line-clamp-1 w-full truncate">{p.name}</p>
-                              <div className="mb-3"><span className="text-xs text-blue-700 font-mono font-bold bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">{p.price.toLocaleString()} đ</span></div>
+                              <div className="mb-3"><span className="text-xs text-[#8b5e34] font-mono font-bold bg-[#fdf8f3] px-2.5 py-1 rounded-md border border-blue-200">{p.price.toLocaleString()} đ</span></div>
                               
                               <div className="flex gap-2 w-full">
                                 <button onClick={() => {
                                   setEditingProduct(p);
                                   setProductForm({ ...p, status: p.status || 'ready', recipe: p.recipe || [] });
                                   setShowProductModal(true);
-                                }} className="text-blue-600 hover:text-blue-800 text-xs font-bold bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-md transition-colors text-center flex-1 whitespace-nowrap">Sửa</button>
+                                }} className="text-[#8b5e34] hover:text-blue-800 text-xs font-bold bg-[#fdf8f3] hover:bg-[#f5eade] px-3 py-1.5 rounded-md transition-colors text-center flex-1 whitespace-nowrap">Sửa</button>
                                 <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa sản phẩm này?', onConfirm: () => deleteProduct(p.id) }); }} className="text-red-500 hover:text-red-700 text-xs font-bold bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-md transition-colors text-center flex-1 whitespace-nowrap">Xóa</button>
                               </div>
                             </div>
@@ -673,17 +673,17 @@ function App() {
                 {recipeTab === 'categories' && (
                   <div className="flex-1 flex flex-col min-h-0 animate-in fade-in duration-300">
                     <div className="flex gap-2 mb-4">
-                      <input type="text" placeholder="Tên danh mục mới..." value={newCategory.name} onChange={e => setNewCategory({...newCategory, name: e.target.value})} className="flex-1 bg-slate-50 border border-white/60 rounded-lg p-2 text-slate-800" />
+                      <input type="text" placeholder="Tên danh mục mới..." value={newCategory.name} onChange={e => setNewCategory({...newCategory, name: e.target.value})} className="flex-1 bg-[#f9f5f0] border border-[#e8dcc7] rounded-lg p-2 text-[#4a3f35]" />
                       <button onClick={() => {
                         if(newCategory.name) {
                           setCategories([...categories, { id: 'cat' + Date.now(), name: newCategory.name }]);
                           setNewCategory({ id: '', name: '' });
                         }
-                      }} className="bg-blue-600 hover:bg-blue-700 text-white px-4 rounded-lg font-bold">Thêm</button>
+                      }} className="bg-[#8b5e34] hover:bg-[#704b29] text-white px-4 rounded-lg font-bold">Thêm</button>
                     </div>
-                    <div className="flex-1 overflow-y-auto bg-white/30 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/50 shadow-inner space-y-2">
+                    <div className="flex-1 overflow-y-auto bg-[#fdfbf7] rounded-2xl p-6 border-2 border-[#e8dcc7] shadow-inner space-y-2">
                       {categories.map(cat => (
-                        <div key={cat.id} className="flex justify-between items-center bg-white/40 backdrop-blur-md p-4 rounded-xl border border-white/50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
+                        <div key={cat.id} className="flex justify-between items-center bg-[#fdfbf7] p-4 rounded-xl border border-[#e8dcc7] shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                           <span className="font-bold">{cat.name}</span>
                           <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa danh mục này?', onConfirm: () => setCategories(categories.filter(c => c.id !== cat.id)) }); }} className="text-red-400 hover:text-red-600 font-bold">✕</button>
                         </div>
@@ -694,36 +694,36 @@ function App() {
 
                 {recipeTab === 'ingredients' && (
                   <div className="flex-1 flex flex-col min-h-0 animate-in fade-in duration-300">
-                    <div className="flex gap-2 mb-4 bg-white/30 backdrop-blur-sm p-3 rounded-lg border border-white/50 flex-wrap items-end">
+                    <div className="flex gap-2 mb-4 bg-[#fdfbf7] p-3 rounded-lg border border-[#e8dcc7] flex-wrap items-end">
                       <div className="flex-1 min-w-[150px]">
-                        <label className="text-xs font-bold text-slate-500 mb-1 block">Tên NL</label>
-                        <input type="text" value={newIngredient.name} onChange={e => setNewIngredient({...newIngredient, name: e.target.value})} className="w-full border border-white/60 rounded-lg p-2 text-sm" />
+                        <label className="text-xs font-bold text-[#8c7b6c] mb-1 block">Tên NL</label>
+                        <input type="text" value={newIngredient.name} onChange={e => setNewIngredient({...newIngredient, name: e.target.value})} className="w-full border border-[#e8dcc7] rounded-lg p-2 text-sm" />
                       </div>
                       <div className="w-24">
-                        <label className="text-xs font-bold text-slate-500 mb-1 block">Đơn vị</label>
-                        <select value={newIngredient.unit} onChange={e => setNewIngredient({...newIngredient, unit: e.target.value})} className="w-full border border-white/60 rounded-lg p-2 text-sm">
+                        <label className="text-xs font-bold text-[#8c7b6c] mb-1 block">Đơn vị</label>
+                        <select value={newIngredient.unit} onChange={e => setNewIngredient({...newIngredient, unit: e.target.value})} className="w-full border border-[#e8dcc7] rounded-lg p-2 text-sm">
                           <option value="gram">gram</option>
                           <option value="ml">ml</option>
                           <option value="cái">cái</option>
                         </select>
                       </div>
                       <div className="w-28">
-                        <label className="text-xs font-bold text-slate-500 mb-1 block">Giá vốn</label>
-                        <input type="number" value={newIngredient.cost} onChange={e => setNewIngredient({...newIngredient, cost: e.target.value})} className="w-full border border-white/60 rounded-lg p-2 text-sm" />
+                        <label className="text-xs font-bold text-[#8c7b6c] mb-1 block">Giá vốn</label>
+                        <input type="number" value={newIngredient.cost} onChange={e => setNewIngredient({...newIngredient, cost: e.target.value})} className="w-full border border-[#e8dcc7] rounded-lg p-2 text-sm" />
                       </div>
                       <button onClick={() => {
                         if(newIngredient.name) {
                           setIngredients([...ingredients, { ...newIngredient, id: 'ing' + Date.now(), cost: parseFloat(newIngredient.cost)||0 }]);
                           setNewIngredient({ name: '', unit: 'gram', cost: 0, stock: 0 });
                         }
-                      }} className="bg-blue-600 hover:bg-blue-700 text-white px-4 h-[38px] rounded-lg font-bold">Thêm</button>
+                      }} className="bg-[#8b5e34] hover:bg-[#704b29] text-white px-4 h-[38px] rounded-lg font-bold">Thêm</button>
                     </div>
-                    <div className="flex-1 overflow-y-auto bg-white/30 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/50 shadow-inner space-y-2">
+                    <div className="flex-1 overflow-y-auto bg-[#fdfbf7] rounded-2xl p-6 border-2 border-[#e8dcc7] shadow-inner space-y-2">
                       {ingredients.map(ing => (
-                        <div key={ing.id} className="flex justify-between items-center bg-white/40 backdrop-blur-md p-4 rounded-xl border border-white/50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
+                        <div key={ing.id} className="flex justify-between items-center bg-[#fdfbf7] p-4 rounded-xl border border-[#e8dcc7] shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                           <div>
                             <div className="font-bold">{ing.name}</div>
-                            <div className="text-xs text-slate-500">{ing.cost} đ / {ing.unit}</div>
+                            <div className="text-xs text-[#8c7b6c]">{ing.cost} đ / {ing.unit}</div>
                           </div>
                           <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa nguyên liệu này?', onConfirm: () => setIngredients(ingredients.filter(i => i.id !== ing.id)) }); }} className="text-red-400 hover:text-red-600 font-bold">✕ Xóa</button>
                         </div>
@@ -734,20 +734,20 @@ function App() {
               </div>
 
               {/* Notes Management */}
-              <div className="col-span-1 bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-white/50 shadow-sm flex flex-col h-full min-h-0">
+              <div className="col-span-1 bg-[#fdfbf7] rounded-2xl p-6 border border-[#e8dcc7] shadow-sm flex flex-col h-full min-h-0">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">📝 Quản lý Ghi chú nhanh</h3>
-                <p className="text-sm text-slate-500 mb-6">Thiết lập các ghi chú thường dùng để thu ngân chọn nhanh khi order.</p>
+                <p className="text-sm text-[#8c7b6c] mb-6">Thiết lập các ghi chú thường dùng để thu ngân chọn nhanh khi order.</p>
 
                 <div className="flex flex-col gap-2 mb-6">
-                  <input type="text" placeholder="Nhập ghi chú mới..." value={newNote} onChange={e => setNewNote(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleAddNewNote()} className="w-full bg-slate-50 border border-white/60 rounded-lg p-3 text-slate-800 text-sm" />
-                  <button onClick={handleAddNewNote} className="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg font-bold transition-colors">Thêm</button>
+                  <input type="text" placeholder="Nhập ghi chú mới..." value={newNote} onChange={e => setNewNote(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleAddNewNote()} className="w-full bg-[#f9f5f0] border border-[#e8dcc7] rounded-lg p-3 text-[#4a3f35] text-sm" />
+                  <button onClick={handleAddNewNote} className="w-full bg-[#8b5e34] hover:bg-[#704b29] text-white p-3 rounded-lg font-bold transition-colors">Thêm</button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto bg-white/30 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/50 shadow-inner flex flex-col gap-2">
+                <div className="flex-1 overflow-y-auto bg-[#fdfbf7] rounded-2xl p-6 border-2 border-[#e8dcc7] shadow-inner flex flex-col gap-2">
                   {predefinedNotes.map((note, idx) => (
-                    <div key={idx} className="flex justify-between items-center bg-white/40 backdrop-blur-md p-4 rounded-xl border border-white/50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
+                    <div key={idx} className="flex justify-between items-center bg-[#fdfbf7] p-4 rounded-xl border border-[#e8dcc7] shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                       <span className="font-bold text-sm">{note}</span>
-                      <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa ghi chú này?', onConfirm: () => deletePredefinedNote(note) }); }} className="text-slate-500 hover:text-red-400 transition-colors">✕</button>
+                      <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa ghi chú này?', onConfirm: () => deletePredefinedNote(note) }); }} className="text-[#8c7b6c] hover:text-red-400 transition-colors">✕</button>
                     </div>
                   ))}
                   {predefinedNotes.length === 0 && (
@@ -758,24 +758,24 @@ function App() {
 
 
               {/* Size Management */}
-              <div className="col-span-1 bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-white/50 shadow-sm flex flex-col h-full min-h-0">
+              <div className="col-span-1 bg-[#fdfbf7] rounded-2xl p-6 border border-[#e8dcc7] shadow-sm flex flex-col h-full min-h-0">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">📏 Quản lý Kích cỡ / Phân loại</h3>
-                <p className="text-sm text-slate-500 mb-6">Thiết lập các biến thể kích thước (S, M, L, XL...) và giá cộng thêm.</p>
+                <p className="text-sm text-[#8c7b6c] mb-6">Thiết lập các biến thể kích thước (S, M, L, XL...) và giá cộng thêm.</p>
 
                 <div className="flex flex-col gap-2 mb-6">
-                  <input type="text" placeholder="Tên (VD: Size L)" value={newSizeName} onChange={e => setNewSizeName(e.target.value)} className="w-full bg-slate-50 border border-white/60 rounded-lg p-3 text-slate-800 text-sm" />
-                  <input type="number" placeholder="+Giá (VNĐ)" value={newSizePrice} onChange={e => setNewSizePrice(e.target.value)} className="w-full bg-slate-50 border border-white/60 rounded-lg p-3 text-slate-800 text-sm" />
-                  <button onClick={handleAddNewSize} className="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg font-bold transition-colors">Thêm</button>
+                  <input type="text" placeholder="Tên (VD: Size L)" value={newSizeName} onChange={e => setNewSizeName(e.target.value)} className="w-full bg-[#f9f5f0] border border-[#e8dcc7] rounded-lg p-3 text-[#4a3f35] text-sm" />
+                  <input type="number" placeholder="+Giá (VNĐ)" value={newSizePrice} onChange={e => setNewSizePrice(e.target.value)} className="w-full bg-[#f9f5f0] border border-[#e8dcc7] rounded-lg p-3 text-[#4a3f35] text-sm" />
+                  <button onClick={handleAddNewSize} className="w-full bg-[#8b5e34] hover:bg-[#704b29] text-white p-3 rounded-lg font-bold transition-colors">Thêm</button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto bg-white/30 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/50 shadow-inner flex flex-col gap-2">
+                <div className="flex-1 overflow-y-auto bg-[#fdfbf7] rounded-2xl p-6 border-2 border-[#e8dcc7] shadow-inner flex flex-col gap-2">
                   {predefinedSizes.map((sz, idx) => (
-                    <div key={idx} className="flex justify-between items-center bg-white/40 backdrop-blur-md p-4 rounded-xl border border-white/50 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
+                    <div key={idx} className="flex justify-between items-center bg-[#fdfbf7] p-4 rounded-xl border border-[#e8dcc7] shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                       <div>
                         <span className="font-bold text-sm block">{sz.name}</span>
-                        <span className="text-xs text-blue-600">+{sz.priceAdd.toLocaleString()} đ</span>
+                        <span className="text-xs text-[#8b5e34]">+{sz.priceAdd.toLocaleString()} đ</span>
                       </div>
-                      <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa kích cỡ này?', onConfirm: () => deletePredefinedSize(idx) }); }} className="text-slate-500 hover:text-red-400 transition-colors">✕</button>
+                      <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa kích cỡ này?', onConfirm: () => deletePredefinedSize(idx) }); }} className="text-[#8c7b6c] hover:text-red-400 transition-colors">✕</button>
                     </div>
                   ))}
                   {predefinedSizes.length === 0 && (
@@ -794,7 +794,7 @@ function App() {
           <div className="animate-in fade-in duration-500 space-y-6">
             <div>
               <h2 className="text-3xl font-bold mb-2">{tabNames.settings}</h2>
-              <p className="text-slate-500">Tùy biến SmartStore cho phù hợp với mô hình kinh doanh của bạn.</p>
+              <p className="text-[#8c7b6c]">Tùy biến SmartStore cho phù hợp với mô hình kinh doanh của bạn.</p>
               {isSettingsDirty && (
                 <div className="text-orange-400 text-sm mt-2 font-bold animate-pulse">
                   ⚠️ Có thay đổi chưa được lưu!
@@ -804,9 +804,9 @@ function App() {
             
             <div className="grid grid-cols-1 gap-6">
               {/* Renaming Tabs */}
-              <div className="bg-white/40 backdrop-blur-md rounded-lg p-6 border border-white/50 flex flex-col">
+              <div className="bg-[#fdfbf7] rounded-lg p-6 border border-[#e8dcc7] flex flex-col">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">📝 Đổi tên Menu Sidebar</h3>
-                <p className="text-sm text-slate-500 mb-6">Đổi tên các chức năng theo đúng ngôn ngữ của quán (ví dụ: Quản lý Sản phẩm -&gt; Quần áo).</p>
+                <p className="text-sm text-[#8c7b6c] mb-6">Đổi tên các chức năng theo đúng ngôn ngữ của quán (ví dụ: Quản lý Sản phẩm -&gt; Quần áo).</p>
                 <div className="grid grid-cols-3 gap-4 flex-1">
                   {Object.keys(editTabNames).filter(k => k !== 'settings').map(key => (
                     <div key={key}>
@@ -815,7 +815,7 @@ function App() {
                         type="text" 
                         value={editTabNames[key]}
                         onChange={(e) => handleTabNameEdit(key, e.target.value)}
-                        className="w-full bg-slate-50 border border-white/60 rounded-lg p-2 text-slate-800 focus:outline-none focus:border-blue-600"
+                        className="w-full bg-[#f9f5f0] border border-[#e8dcc7] rounded-lg p-2 text-[#4a3f35] focus:outline-none focus:border-[#8b5e34]"
                       />
                     </div>
                   ))}
@@ -823,58 +823,58 @@ function App() {
               </div>
 
               {/* POS Layout Config */}
-              <div className="bg-white/40 backdrop-blur-md rounded-lg p-6 border border-white/50">
+              <div className="bg-[#fdfbf7] rounded-lg p-6 border border-[#e8dcc7]">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">🎨 Tùy chỉnh Giao diện POS</h3>
-                <p className="text-sm text-slate-500 mb-6">Chọn mô hình bán hàng và tùy biến tên gọi các khu vực (Ví dụ: Đổi "Bàn" thành "Phòng thử đồ" hoặc "Ghế").</p>
+                <p className="text-sm text-[#8c7b6c] mb-6">Chọn mô hình bán hàng và tùy biến tên gọi các khu vực (Ví dụ: Đổi "Bàn" thành "Phòng thử đồ" hoặc "Ghế").</p>
                 
                 <div className="grid grid-cols-3 gap-4 mb-6">
                   {/* Layout 1 */}
                   <div 
                     onClick={() => handlePosConfigEdit({ layout: 'table', title: 'Sơ đồ Bàn / Bán hàng', entityName: 'Bàn', entityIcon: '🪑'})}
-                    className={`p-4 rounded-md border cursor-pointer transition-all ${editPosConfig.layout === 'table' ? 'bg-blue-600/20 border-blue-600 shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'bg-slate-50 border-white/50 hover:border-white/60'}`}>
+                    className={`p-4 rounded-md border cursor-pointer transition-all ${editPosConfig.layout === 'table' ? 'bg-[#8b5e34]/20 border-[#8b5e34] shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'bg-[#f9f5f0] border-[#e8dcc7] hover:border-[#e8dcc7]'}`}>
                     <div className="text-3xl mb-2">🪑</div>
-                    <h4 className="font-bold text-slate-800">Quản lý Bàn</h4>
-                    <p className="text-xs text-slate-500 mt-1">Dành cho Cafe, Quán ăn (Có sơ đồ Bàn)</p>
+                    <h4 className="font-bold text-[#4a3f35]">Quản lý Bàn</h4>
+                    <p className="text-xs text-[#8c7b6c] mt-1">Dành cho Cafe, Quán ăn (Có sơ đồ Bàn)</p>
                   </div>
                   {/* Layout 2 */}
                   <div 
                     onClick={() => handlePosConfigEdit({ layout: 'retail', title: 'Bán hàng nhanh', entityName: '', entityIcon: ''})}
-                    className={`p-4 rounded-md border cursor-pointer transition-all ${editPosConfig.layout === 'retail' ? 'bg-blue-600/20 border-blue-600 shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'bg-slate-50 border-white/50 hover:border-white/60'}`}>
+                    className={`p-4 rounded-md border cursor-pointer transition-all ${editPosConfig.layout === 'retail' ? 'bg-[#8b5e34]/20 border-[#8b5e34] shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'bg-[#f9f5f0] border-[#e8dcc7] hover:border-[#e8dcc7]'}`}>
                     <div className="text-3xl mb-2">🛒</div>
-                    <h4 className="font-bold text-slate-800">Bán lẻ (Nhanh)</h4>
-                    <p className="text-xs text-slate-500 mt-1">Dành cho Shop quần áo, Take-away (Vào thẳng chọn món)</p>
+                    <h4 className="font-bold text-[#4a3f35]">Bán lẻ (Nhanh)</h4>
+                    <p className="text-xs text-[#8c7b6c] mt-1">Dành cho Shop quần áo, Take-away (Vào thẳng chọn món)</p>
                   </div>
                   {/* Layout 3 */}
                   <div 
                     onClick={() => handlePosConfigEdit({ layout: 'room', title: 'Sơ đồ Phòng / Dịch vụ', entityName: 'Phòng', entityIcon: '🚪'})}
-                    className={`p-4 rounded-md border cursor-pointer transition-all ${editPosConfig.layout === 'room' ? 'bg-blue-600/20 border-blue-600 shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'bg-slate-50 border-white/50 hover:border-white/60'}`}>
+                    className={`p-4 rounded-md border cursor-pointer transition-all ${editPosConfig.layout === 'room' ? 'bg-[#8b5e34]/20 border-[#8b5e34] shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'bg-[#f9f5f0] border-[#e8dcc7] hover:border-[#e8dcc7]'}`}>
                     <div className="text-3xl mb-2">🚪</div>
-                    <h4 className="font-bold text-slate-800">Phòng / Dịch vụ</h4>
-                    <p className="text-xs text-slate-500 mt-1">Dành cho Spa, Bida, Phòng thử đồ</p>
+                    <h4 className="font-bold text-[#4a3f35]">Phòng / Dịch vụ</h4>
+                    <p className="text-xs text-[#8c7b6c] mt-1">Dành cho Spa, Bida, Phòng thử đồ</p>
                   </div>
                 </div>
 
                 {/* Text Overrides */}
                 {editPosConfig.layout !== 'retail' && (
-                  <div className="grid grid-cols-3 gap-4 border-t border-white/50 pt-6">
+                  <div className="grid grid-cols-3 gap-4 border-t border-[#e8dcc7] pt-6">
                     <div>
                       <label className="block text-slate-400 text-sm mb-1 uppercase">Tiêu đề màn hình POS</label>
-                      <input type="text" value={editPosConfig.title} onChange={e => handlePosConfigEdit({title: e.target.value})} className="w-full bg-slate-50 border border-white/60 rounded-lg p-3 text-slate-800 focus:outline-none focus:border-blue-600" />
+                      <input type="text" value={editPosConfig.title} onChange={e => handlePosConfigEdit({title: e.target.value})} className="w-full bg-[#f9f5f0] border border-[#e8dcc7] rounded-lg p-3 text-[#4a3f35] focus:outline-none focus:border-[#8b5e34]" />
                     </div>
                     <div>
                       <label className="block text-slate-400 text-sm mb-1 uppercase">Tên gọi từng ô (VD: Bàn, Ghế)</label>
-                      <input type="text" value={editPosConfig.entityName} onChange={e => handlePosConfigEdit({entityName: e.target.value})} className="w-full bg-slate-50 border border-white/60 rounded-lg p-3 text-slate-800 focus:outline-none focus:border-blue-600" />
+                      <input type="text" value={editPosConfig.entityName} onChange={e => handlePosConfigEdit({entityName: e.target.value})} className="w-full bg-[#f9f5f0] border border-[#e8dcc7] rounded-lg p-3 text-[#4a3f35] focus:outline-none focus:border-[#8b5e34]" />
                     </div>
                     <div>
                       <label className="block text-slate-400 text-sm mb-1 uppercase">Icon Emoji cho từng ô</label>
-                      <input type="text" value={editPosConfig.entityIcon} onChange={e => handlePosConfigEdit({entityIcon: e.target.value})} className="w-full bg-slate-50 border border-white/60 rounded-lg p-3 text-slate-800 focus:outline-none focus:border-blue-600" />
+                      <input type="text" value={editPosConfig.entityIcon} onChange={e => handlePosConfigEdit({entityIcon: e.target.value})} className="w-full bg-[#f9f5f0] border border-[#e8dcc7] rounded-lg p-3 text-[#4a3f35] focus:outline-none focus:border-[#8b5e34]" />
                     </div>
                   </div>
                 )}
               </div>
             </div>
 
-            <button onClick={saveSettings} className={`w-full font-bold py-4 rounded-md transition-colors shadow-sm text-lg ${isSettingsDirty ? 'bg-orange-500 hover:bg-orange-600 text-slate-800 shadow-orange-500/30' : 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-600/20'}`}>
+            <button onClick={saveSettings} className={`w-full font-bold py-4 rounded-md transition-colors shadow-sm text-lg ${isSettingsDirty ? 'bg-orange-500 hover:bg-orange-600 text-[#4a3f35] shadow-orange-500/30' : 'bg-[#8b5e34] hover:bg-[#704b29] text-white shadow-[#8b5e34]/20'}`}>
               💾 Lưu toàn bộ Cài đặt {isSettingsDirty && "(Có thay đổi mới)"}
             </button>
           </div>
@@ -889,7 +889,7 @@ function App() {
               {role === 'owner' && (
                 <button 
                   onClick={() => setActiveTab('settings')} 
-                  className="absolute top-0 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-bold flex items-center gap-2 z-50 shadow-md transition-all hover:scale-105 border border-blue-400"
+                  className="absolute top-0 left-1/2 -translate-x-1/2 bg-[#8b5e34] text-white px-4 py-2 rounded-md text-sm font-bold flex items-center gap-2 z-50 shadow-md transition-all hover:scale-105 border border-blue-400"
                 >
                   ⚙️ Tuỳ chỉnh giao diện POS
                 </button>
@@ -897,12 +897,12 @@ function App() {
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-3xl font-bold">{posConfig.title}</h2>
               </div>
-              <p className="text-slate-500 mb-6">Vui lòng chọn {posConfig.entityName.toLowerCase()} hoặc chọn "{posConfig.takeawayName}".</p>
+              <p className="text-[#8c7b6c] mb-6">Vui lòng chọn {posConfig.entityName.toLowerCase()} hoặc chọn "{posConfig.takeawayName}".</p>
               
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
                 <div 
                   onClick={() => switchTable(posConfig.takeawayName)}
-                  className="border border-blue-600 rounded-md cursor-pointer transition-all overflow-hidden relative h-28 group"
+                  className="border border-[#8b5e34] rounded-md cursor-pointer transition-all overflow-hidden relative h-28 group"
                   style={{ backgroundImage: "url('/takeaway_bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
                   <div className="absolute inset-0 bg-blue-900/60 group-hover:bg-blue-900/40 transition-colors"></div>
                   <div className="relative h-full flex flex-col items-center justify-center p-3">
@@ -913,7 +913,7 @@ function App() {
                   <div 
                     key={idx}
                     onClick={() => switchTable(`${posConfig.entityName} ${idx}`)}
-                    className="border border-white/50 hover:border-blue-400 rounded-md cursor-pointer transition-all overflow-hidden relative h-28 group"
+                    className="border border-[#e8dcc7] hover:border-blue-400 rounded-md cursor-pointer transition-all overflow-hidden relative h-28 group"
                     style={{ backgroundImage: "url('/cafe_table_bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
                     <div className="absolute inset-0 bg-slate-900/50 group-hover:bg-slate-900/30 transition-colors"></div>
                     <div className="relative h-full flex flex-col items-center justify-center p-3">
@@ -924,21 +924,21 @@ function App() {
               </div>
             </div>
           ) : (
-            <div className="flex flex-col-reverse md:flex-row gap-2 h-full animate-in slide-in-from-right-8 duration-300 min-h-0 bg-slate-100 p-2 rounded-sm border border-white/60 relative overflow-y-auto md:overflow-hidden">
+            <div className="flex flex-col-reverse md:flex-row gap-2 h-full animate-in slide-in-from-right-8 duration-300 min-h-0 bg-[#f0e8df] p-2 rounded-sm border border-[#e8dcc7] relative overflow-y-auto md:overflow-hidden">
               {role === 'owner' && (
                 <button 
                   onClick={() => setActiveTab('settings')} 
-                  className="absolute top-2 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-bold flex items-center gap-2 z-50 shadow-md transition-all hover:scale-105 border border-blue-400"
+                  className="absolute top-2 left-1/2 -translate-x-1/2 bg-[#8b5e34] text-white px-4 py-2 rounded-md text-sm font-bold flex items-center gap-2 z-50 shadow-md transition-all hover:scale-105 border border-blue-400"
                 >
                   ⚙️ Tuỳ chỉnh giao diện POS
                 </button>
               )}
               {/* Left Side: Cart & Keypad (High Density) */}
-              <div className="w-full md:w-[450px] flex flex-col bg-white/40 backdrop-blur-md border border-white/70 shrink-0 shadow-sm rounded-sm h-[60vh] md:h-auto min-h-[400px]">
+              <div className="w-full md:w-[450px] flex flex-col bg-[#fdfbf7] border border-[#e8dcc7] shrink-0 shadow-sm rounded-sm h-[60vh] md:h-auto min-h-[400px]">
                 {/* Header */}
-                <div className="bg-blue-700 text-white p-2 flex justify-between items-center shrink-0 gap-2">
+                <div className="bg-[#704b29] text-white p-2 flex justify-between items-center shrink-0 gap-2">
                   {posConfig.layout !== 'retail' && (
-                    <button onClick={() => switchTable(null)} className="text-white border border-white/30 hover:bg-blue-800 px-3 py-1.5 rounded-md text-sm font-bold whitespace-nowrap transition-colors flex items-center gap-1 shadow-sm">
+                    <button onClick={() => switchTable(null)} className="text-white border border-white/30 hover:bg-[#5c3e23] px-3 py-1.5 rounded-md text-sm font-bold whitespace-nowrap transition-colors flex items-center gap-1 shadow-sm">
                       <span className="text-lg leading-none">&lsaquo;</span> Sơ đồ bàn
                     </button>
                   )}
@@ -949,22 +949,22 @@ function App() {
                         setHoldOrders(prev => [...prev, { table: selectedTable, cart: [...cart], time: new Date().toLocaleTimeString('vi-VN', {hour:'2-digit', minute:'2-digit'}) }]);
                         setCart([]);
                       }}
-                      className="text-xs bg-yellow-500 hover:bg-yellow-400 text-slate-900 px-2 py-1 font-bold transition-colors shadow-sm">
+                      className="text-xs bg-yellow-500 hover:bg-yellow-400 text-[#3e342b] px-2 py-1 font-bold transition-colors shadow-sm">
                       [F3] Lưu tạm
                     </button>
                   )}
                 </div>
 
                 {/* Cart Table Data */}
-                <div className="flex-1 overflow-y-auto bg-white/40 backdrop-blur-md border-b border-white/70">
+                <div className="flex-1 overflow-y-auto bg-[#fdfbf7] border-b border-[#e8dcc7]">
                   <table className="w-full text-left text-xs border-collapse">
-                    <thead className="bg-slate-200 sticky top-0 border-b border-white/70 z-10 shadow-sm">
+                    <thead className="bg-[#e6dacb] sticky top-0 border-b border-[#e8dcc7] z-10 shadow-sm">
                       <tr>
-                        <th className="p-1 border-r border-white/60 w-8 text-center text-slate-600">Xóa</th>
-                        <th className="p-1 border-r border-white/60 text-slate-800">Tên hàng</th>
-                        <th className="p-1 border-r border-white/60 w-10 text-center text-slate-800">SL</th>
-                        <th className="p-1 border-r border-white/60 w-20 text-right text-slate-800">Đơn giá</th>
-                        <th className="p-1 w-24 text-right text-slate-800">Thành tiền</th>
+                        <th className="p-1 border-r border-[#e8dcc7] w-8 text-center text-[#756658]">Xóa</th>
+                        <th className="p-1 border-r border-[#e8dcc7] text-[#4a3f35]">Tên hàng</th>
+                        <th className="p-1 border-r border-[#e8dcc7] w-10 text-center text-[#4a3f35]">SL</th>
+                        <th className="p-1 border-r border-[#e8dcc7] w-20 text-right text-[#4a3f35]">Đơn giá</th>
+                        <th className="p-1 w-24 text-right text-[#4a3f35]">Thành tiền</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -972,20 +972,20 @@ function App() {
                         <tr><td colSpan="5" className="p-4 text-center text-slate-400 italic">Chưa có món</td></tr>
                       ) : (
                         cart.map((c, i) => (
-                          <tr key={i} onClick={() => setSelectedCartItemDetail(c)} className="border-b border-white/50 hover:bg-blue-50 cursor-pointer text-slate-800">
-                            <td className="p-1 border-r border-white/60 text-center">
+                          <tr key={i} onClick={() => setSelectedCartItemDetail(c)} className="border-b border-[#e8dcc7] hover:bg-[#fdf8f3] cursor-pointer text-[#4a3f35]">
+                            <td className="p-1 border-r border-[#e8dcc7] text-center">
                               <button 
                                 onClick={(e) => { e.stopPropagation(); setCart(cart.filter((_, idx) => idx !== i)); }} 
                                 className="text-red-600 hover:text-red-800 font-bold px-1"
                               >✕</button>
                             </td>
-                            <td className="p-1 border-r border-white/60 font-medium truncate max-w-[120px]">
+                            <td className="p-1 border-r border-[#e8dcc7] font-medium truncate max-w-[120px]">
                               {c.name}
-                              {c.note && <div className="text-[10px] text-slate-500 italic block truncate">{c.note}</div>}
+                              {c.note && <div className="text-[10px] text-[#8c7b6c] italic block truncate">{c.note}</div>}
                             </td>
-                            <td className="p-1 border-r border-white/60 text-center font-bold text-blue-700">{c.qty}</td>
-                            <td className="p-1 border-r border-white/60 text-right font-mono">{c.price.toLocaleString()}</td>
-                            <td className="p-1 text-right font-mono font-bold text-slate-900">{(c.price * c.qty).toLocaleString()}</td>
+                            <td className="p-1 border-r border-[#e8dcc7] text-center font-bold text-[#8b5e34]">{c.qty}</td>
+                            <td className="p-1 border-r border-[#e8dcc7] text-right font-mono">{c.price.toLocaleString()}</td>
+                            <td className="p-1 text-right font-mono font-bold text-[#3e342b]">{(c.price * c.qty).toLocaleString()}</td>
                           </tr>
                         ))
                       )}
@@ -995,11 +995,11 @@ function App() {
 
                 {/* Held Orders Quick View */}
                 {holdOrders.length > 0 && (
-                  <div className="bg-yellow-50 border-b border-white/70 p-1 flex gap-1 overflow-x-auto shrink-0 hide-scrollbar">
+                  <div className="bg-yellow-50 border-b border-[#e8dcc7] p-1 flex gap-1 overflow-x-auto shrink-0 hide-scrollbar">
                     {holdOrders.map((held, idx) => (
-                      <div key={idx} className="flex shrink-0 items-center bg-white/40 backdrop-blur-md border border-yellow-400 px-2 py-1 text-xs">
-                        <span className="font-bold text-slate-800 mr-2">{held.table}</span>
-                        <button onClick={() => switchTable(held.table)} className="text-blue-700 hover:underline mr-2">Mở</button>
+                      <div key={idx} className="flex shrink-0 items-center bg-[#fdfbf7] border border-yellow-400 px-2 py-1 text-xs">
+                        <span className="font-bold text-[#4a3f35] mr-2">{held.table}</span>
+                        <button onClick={() => switchTable(held.table)} className="text-[#8b5e34] hover:underline mr-2">Mở</button>
                         <button onClick={() => setHoldOrders(prev => prev.filter((_, i) => i !== idx))} className="text-red-600 hover:underline">Hủy</button>
                       </div>
                     ))}
@@ -1007,12 +1007,12 @@ function App() {
                 )}
 
                 {/* Bottom Tools & Totals */}
-                <div className="bg-slate-100 p-2 shrink-0">
+                <div className="bg-[#f0e8df] p-2 shrink-0">
                   <div className="flex justify-between items-end mb-2">
-                    <div className="flex-1 border border-white/70 bg-white/40 backdrop-blur-md p-2">
-                      <div className="flex justify-between text-sm mb-1 text-slate-600"><span>Tiền hàng:</span> <span className="font-mono">{cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toLocaleString()}</span></div>
-                      <div className="flex justify-between text-sm mb-1 text-slate-600"><span>Chiết khấu:</span> <span className="font-mono">0</span></div>
-                      <div className="flex justify-between font-bold text-lg text-slate-900 border-t border-white/60 pt-1 mt-1">
+                    <div className="flex-1 border border-[#e8dcc7] bg-[#fdfbf7] p-2">
+                      <div className="flex justify-between text-sm mb-1 text-[#756658]"><span>Tiền hàng:</span> <span className="font-mono">{cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toLocaleString()}</span></div>
+                      <div className="flex justify-between text-sm mb-1 text-[#756658]"><span>Chiết khấu:</span> <span className="font-mono">0</span></div>
+                      <div className="flex justify-between font-bold text-lg text-[#3e342b] border-t border-[#e8dcc7] pt-1 mt-1">
                         <span>Khách Cần Trả:</span> <span className="font-mono text-red-600">{cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toLocaleString()}</span>
                       </div>
                     </div>
@@ -1021,16 +1021,16 @@ function App() {
                   <div className="grid grid-cols-5 gap-1">
                     <div className="col-span-3 grid grid-cols-4 gap-1">
                       {['7','8','9','*','4','5','6','000','1','2','3','DEL','C','0',',','+'].map((btn) => (
-                        <button key={btn} onClick={() => handleKeypad(btn)} className="bg-white border border-white/70 hover:bg-slate-200 active:bg-slate-300 py-2 font-mono font-bold text-sm text-slate-800 rounded-sm">
+                        <button key={btn} onClick={() => handleKeypad(btn)} className="bg-[#fdfbf7] border border-[#e8dcc7] hover:bg-[#e6dacb] active:bg-slate-300 py-2 font-mono font-bold text-sm text-[#4a3f35] rounded-sm">
                           {btn}
                         </button>
                       ))}
                     </div>
                     <div className="col-span-2 flex flex-col gap-1">
-                      <div className="bg-white/40 backdrop-blur-md border border-white/70 p-1 text-right font-mono font-bold text-emerald-700 h-8 flex items-center justify-end rounded-sm text-sm">
+                      <div className="bg-[#fdfbf7] border border-[#e8dcc7] p-1 text-right font-mono font-bold text-emerald-700 h-8 flex items-center justify-end rounded-sm text-sm">
                         {keypadBuffer || '0'}
                       </div>
-                      <button onClick={() => posConfig.layout !== 'retail' && switchTable(null)} className="flex-1 bg-white border border-white/70 hover:bg-slate-200 font-bold text-sm text-slate-800 rounded-sm">
+                      <button onClick={() => posConfig.layout !== 'retail' && switchTable(null)} className="flex-1 bg-[#fdfbf7] border border-[#e8dcc7] hover:bg-[#e6dacb] font-bold text-sm text-[#4a3f35] rounded-sm">
                         Quay lại
                       </button>
                       <button onClick={() => setShowPaymentModal(true)} className="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold text-sm uppercase rounded-sm border border-green-800 shadow-sm">
@@ -1042,9 +1042,9 @@ function App() {
               </div>
 
               {/* Right Side: Products Grid (High Density) */}
-              <div className="flex-1 flex flex-col h-full min-h-0 border border-white/70 bg-white/30 backdrop-blur-sm rounded-sm overflow-hidden">
+              <div className="flex-1 flex flex-col h-full min-h-0 border border-[#e8dcc7] bg-[#fdfbf7] rounded-sm overflow-hidden">
                 {/* Category Pills - Square styling */}
-                <div className="flex bg-slate-200 border-b border-white/70 overflow-x-auto shrink-0 hide-scrollbar p-1 gap-1">
+                <div className="flex bg-[#e6dacb] border-b border-[#e8dcc7] overflow-x-auto shrink-0 hide-scrollbar p-1 gap-1">
                   {[
                     {id: 'all', label: 'TẤT CẢ'},
                     {id: 'coffee', label: 'CÀ PHÊ'},
@@ -1055,7 +1055,7 @@ function App() {
                     <button 
                       key={cat.id}
                       onClick={() => setSelectedCategory(cat.id)}
-                      className={`px-3 py-1.5 text-xs font-bold whitespace-nowrap border rounded-sm ${selectedCategory === cat.id ? 'bg-blue-600 text-white border-blue-800' : 'bg-white text-slate-700 border-white/70 hover:bg-slate-100'}`}>
+                      className={`px-3 py-1.5 text-xs font-bold whitespace-nowrap border rounded-sm ${selectedCategory === cat.id ? 'bg-[#8b5e34] text-white border-[#5c3e23]' : 'bg-[#fdfbf7] text-[#5c4f42] border-[#e8dcc7] hover:bg-[#f0e8df]'}`}>
                       {cat.label}
                     </button>
                   ))}
@@ -1067,20 +1067,20 @@ function App() {
                       <div 
                         key={item.id} 
                         onClick={() => { setSelectedItemForTopping(item); setNoteText(''); setSelectedSize(predefinedSizes[0]?.name || ''); setSelectedToppings([]); }} 
-                        className={`bg-white border hover:border-blue-600 cursor-pointer group flex flex-col relative h-24 overflow-hidden rounded-sm ${item.status === 'low_stock' ? 'border-yellow-400 border-2 shadow-[0_0_8px_rgba(250,204,21,0.5)]' : 'border-white/70'}`}
+                        className={`bg-[#fdfbf7] border hover:border-[#8b5e34] cursor-pointer group flex flex-col relative h-24 overflow-hidden rounded-sm ${item.status === 'low_stock' ? 'border-yellow-400 border-2 shadow-[0_0_8px_rgba(250,204,21,0.5)]' : 'border-[#e8dcc7]'}`}
                       >
                         {item.status === 'low_stock' && <div className="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-1 py-0.5 rounded-bl-md shadow-md z-20 animate-pulse">Sắp Hết</div>}
                         {item.image ? (
-                          <div className="absolute inset-0 bg-slate-100">
+                          <div className="absolute inset-0 bg-[#f0e8df]">
                             <img src={item.image} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200" alt={item.name} />
                             <div className="absolute inset-0 bg-slate-900/40"></div>
                           </div>
                         ) : (
-                          <div className="absolute inset-0 flex items-center justify-center text-4xl bg-slate-100 opacity-50">{item.icon || '📦'}</div>
+                          <div className="absolute inset-0 flex items-center justify-center text-4xl bg-[#f0e8df] opacity-50">{item.icon || '📦'}</div>
                         )}
                         <div className="relative z-10 flex flex-col h-full justify-between p-1">
-                          <h3 className={`font-bold text-xs leading-tight line-clamp-2 ${item.image ? 'text-white drop-shadow-md' : 'text-slate-800'}`}>{item.name}</h3>
-                          <div className={`text-right text-xs font-mono font-bold mt-1 ${item.image ? 'text-yellow-400 drop-shadow-md' : 'text-blue-700'}`}>
+                          <h3 className={`font-bold text-xs leading-tight line-clamp-2 ${item.image ? 'text-white drop-shadow-md' : 'text-[#4a3f35]'}`}>{item.name}</h3>
+                          <div className={`text-right text-xs font-mono font-bold mt-1 ${item.image ? 'text-yellow-400 drop-shadow-md' : 'text-[#8b5e34]'}`}>
                             {item.price.toLocaleString()}
                           </div>
                         </div>
@@ -1107,30 +1107,30 @@ function App() {
               </button>
             )}
             {/* Mobile View for Staff */}
-            <div className="w-full bg-white/30 backdrop-blur-sm md:rounded-3xl p-4 md:p-6 pb-24 shadow-md md:border border-white/50 relative overflow-y-auto max-w-lg mx-auto h-full md:h-auto">
+            <div className="w-full bg-[#fdfbf7] md:rounded-3xl p-4 md:p-6 pb-24 shadow-md md:border border-[#e8dcc7] relative overflow-y-auto max-w-lg mx-auto h-full md:h-auto">
               
               <div className="mt-6 mb-8 text-center">
                 <div className="w-20 h-20 bg-gradient-to-tr from-orange-400 to-amber-300 rounded-full mx-auto mb-3 flex items-center justify-center text-3xl shadow-sm shadow-orange-500/30">
                   🧑‍🍳
                 </div>
                 <h2 className="text-xl font-bold">Xin chào, Nguyễn Văn A</h2>
-                <p className="text-slate-500 text-sm">Nhân viên phục vụ (Part-time)</p>
+                <p className="text-[#8c7b6c] text-sm">Nhân viên phục vụ (Part-time)</p>
               </div>
 
-              <div className="bg-gradient-to-br from-gray-800 to-gray-800/50 rounded-lg p-5 border border-white/50 shadow-sm mb-6">
-                <p className="text-slate-500 text-sm mb-1">Lương tích lũy tháng này</p>
+              <div className="bg-gradient-to-br from-gray-800 to-gray-800/50 rounded-lg p-5 border border-[#e8dcc7] shadow-sm mb-6">
+                <p className="text-[#8c7b6c] text-sm mb-1">Lương tích lũy tháng này</p>
                 <h3 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-300">
                   3,450,000 đ
                 </h3>
-                <div className="mt-4 flex items-center gap-4 border-t border-white/50 pt-4">
+                <div className="mt-4 flex items-center gap-4 border-t border-[#e8dcc7] pt-4">
                   <div className="flex-1">
                     <p className="text-xs text-slate-400 uppercase tracking-wider">Tổng giờ làm</p>
                     <p className="font-bold text-lg">138h</p>
                   </div>
-                  <div className="w-px h-8 bg-slate-100"></div>
+                  <div className="w-px h-8 bg-[#f0e8df]"></div>
                   <div className="flex-1">
                     <p className="text-xs text-slate-400 uppercase tracking-wider">Mức lương</p>
-                    <p className="font-bold text-lg text-blue-600">25k/h</p>
+                    <p className="font-bold text-lg text-[#8b5e34]">25k/h</p>
                   </div>
                 </div>
               </div>
@@ -1139,14 +1139,14 @@ function App() {
                 <h4 className="font-bold">Lịch sử Check-in gần nhất</h4>
                 <button 
                   onClick={() => setIsScanning(!isScanning)} 
-                  className={`px-4 py-2 rounded-lg font-bold text-sm transition-colors shadow-sm ${isScanning ? 'bg-red-100 text-red-600 hover:bg-red-200' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
+                  className={`px-4 py-2 rounded-lg font-bold text-sm transition-colors shadow-sm ${isScanning ? 'bg-red-100 text-red-600 hover:bg-red-200' : 'bg-[#8b5e34] text-white hover:bg-[#704b29]'}`}
                 >
                   {isScanning ? 'Hủy quét' : '📷 Quét QR'}
                 </button>
               </div>
 
               {isScanning && (
-                <div className="mb-6 bg-slate-100 p-2 rounded-lg border border-white/60 shadow-inner overflow-hidden animate-in fade-in slide-in-from-top-4">
+                <div className="mb-6 bg-[#f0e8df] p-2 rounded-lg border border-[#e8dcc7] shadow-inner overflow-hidden animate-in fade-in slide-in-from-top-4">
                   <div id="reader" className="w-full rounded-md overflow-hidden bg-black min-h-[250px]"></div>
                 </div>
               )}
@@ -1156,13 +1156,13 @@ function App() {
                   { date: 'Hôm qua, 18/06', in: '14:00', out: '22:05', hours: '8h 5m', status: 'done' },
                   { date: 'Thứ 2, 17/06', in: '06:02', out: '14:00', hours: '7h 58m', status: 'done' },
                 ].map((log, i) => (
-                  <div key={i} className={`p-4 rounded-md border ${log.status === 'active' ? 'bg-orange-500/10 border-orange-500/30' : 'bg-white/40 backdrop-blur-md border-white/50'}`}>
+                  <div key={i} className={`p-4 rounded-md border ${log.status === 'active' ? 'bg-orange-500/10 border-orange-500/30' : 'bg-[#fdfbf7] border-[#e8dcc7]'}`}>
                     <div className="flex justify-between items-center mb-2">
                       <span className="font-bold text-sm">{log.date}</span>
                       {log.status === 'active' && <span className="text-xs bg-orange-500 text-white font-bold px-2 py-0.5 rounded-full animate-pulse">ĐANG CA</span>}
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-slate-500">In: {log.in} - Out: {log.out}</span>
+                      <span className="text-[#8c7b6c]">In: {log.in} - Out: {log.out}</span>
                       <span className="text-orange-600 font-bold">{log.hours}</span>
                     </div>
                   </div>
@@ -1186,17 +1186,17 @@ function App() {
               </button>
             )}
             <h2 className="text-3xl font-bold mb-2">Anti-Fraud Check-in</h2>
-            <p className="text-slate-500 mb-8">Hiển thị mã QR này cho nhân viên quét bằng App SmartStore để Check-in.</p>
+            <p className="text-[#8c7b6c] mb-8">Hiển thị mã QR này cho nhân viên quét bằng App SmartStore để Check-in.</p>
             
             <div className="relative p-1 bg-gradient-to-r from-purple-500 to-green-400 rounded-md shadow-[0_0_50px_rgba(74,222,128,0.2)]">
-              <div className="bg-white/40 backdrop-blur-md p-6 rounded-[22px]">
-                <div className="w-64 h-64 border border-white/50 flex items-center justify-center bg-white/40 backdrop-blur-md rounded-md p-2">
+              <div className="bg-[#fdfbf7] p-6 rounded-[22px]">
+                <div className="w-64 h-64 border border-[#e8dcc7] flex items-center justify-center bg-[#fdfbf7] rounded-md p-2">
                   <QRCode value={qrCodeData} size={240} />
                 </div>
               </div>
             </div>
             
-            <div className="mt-8 flex items-center gap-2 text-blue-600">
+            <div className="mt-8 flex items-center gap-2 text-[#8b5e34]">
               <div className="w-2 h-2 rounded-full bg-green-400 animate-ping"></div>
               <span>Mã QR tự động làm mới mỗi 10 giây</span>
             </div>
@@ -1204,7 +1204,7 @@ function App() {
         ) : (
           <div className="flex flex-col items-center justify-center h-full text-slate-400">
             <span className="text-6xl mb-4">🚧</span>
-            <h2 className="text-2xl font-bold text-slate-500">Chưa được kích hoạt</h2>
+            <h2 className="text-2xl font-bold text-[#8c7b6c]">Chưa được kích hoạt</h2>
             <p>Trang {tabNames[activeTab]} đang được phát triển.</p>
           </div>
         )}
@@ -1215,22 +1215,22 @@ function App() {
       {/* Custom Confirm Modal */}
       {confirmDialog.isOpen && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[200] backdrop-blur-sm animate-in fade-in">
-          <div className="bg-white/40 backdrop-blur-md rounded-xl shadow-2xl w-[400px] overflow-hidden animate-in zoom-in-95">
+          <div className="bg-[#fdfbf7] rounded-xl shadow-2xl w-[400px] overflow-hidden animate-in zoom-in-95">
             <div className="p-6">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-500 text-2xl shrink-0">
                   ⚠️
                 </div>
-                <h3 className="text-xl font-bold text-slate-800">Xác nhận</h3>
+                <h3 className="text-xl font-bold text-[#4a3f35]">Xác nhận</h3>
               </div>
-              <p className="text-slate-600 mb-6">{confirmDialog.message}</p>
+              <p className="text-[#756658] mb-6">{confirmDialog.message}</p>
               <div className="flex justify-end gap-3">
                 <button 
                   onClick={() => {
                     if (confirmDialog.onCancel) confirmDialog.onCancel();
                     setConfirmDialog({ isOpen: false, message: '', onConfirm: null, onCancel: null });
                   }}
-                  className="px-4 py-2 rounded-lg font-bold text-slate-600 hover:bg-slate-100 transition-colors"
+                  className="px-4 py-2 rounded-lg font-bold text-[#756658] hover:bg-[#f0e8df] transition-colors"
                 >
                   Hủy
                 </button>
@@ -1252,22 +1252,22 @@ function App() {
       {/* Product Modal */}
       {showProductModal && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[100] backdrop-blur-sm">
-          <div className="bg-white/40 backdrop-blur-md rounded-xl shadow-2xl w-[800px] max-h-[90vh] flex flex-col overflow-hidden animate-in zoom-in-95">
-            <div className="p-6 border-b border-white/50 flex justify-between items-center bg-white/30 backdrop-blur-sm">
-              <h2 className="text-2xl font-bold text-slate-800">{editingProduct ? 'Sửa Sản Phẩm' : 'Thêm Sản Phẩm Mới'}</h2>
-              <button onClick={() => setShowProductModal(false)} className="text-slate-500 hover:text-red-500 text-xl font-bold">✕</button>
+          <div className="bg-[#fdfbf7] rounded-xl shadow-2xl w-[800px] max-h-[90vh] flex flex-col overflow-hidden animate-in zoom-in-95">
+            <div className="p-6 border-b border-[#e8dcc7] flex justify-between items-center bg-[#fdfbf7]">
+              <h2 className="text-2xl font-bold text-[#4a3f35]">{editingProduct ? 'Sửa Sản Phẩm' : 'Thêm Sản Phẩm Mới'}</h2>
+              <button onClick={() => setShowProductModal(false)} className="text-[#8c7b6c] hover:text-red-500 text-xl font-bold">✕</button>
             </div>
             
-            <div className="flex-1 overflow-y-auto p-6 bg-slate-100/50">
+            <div className="flex-1 overflow-y-auto p-6 bg-[#f0e8df]/50">
               {/* CATEGORY SELECTION */}
-              <div className="bg-white/40 backdrop-blur-md p-6 rounded-lg border border-white/50 shadow-sm mb-6">
-                <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><span className="bg-blue-100 text-blue-600 w-6 h-6 flex items-center justify-center rounded-full text-sm">1</span> Chọn Danh Mục</h3>
+              <div className="bg-[#fdfbf7] p-6 rounded-lg border border-[#e8dcc7] shadow-sm mb-6">
+                <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><span className="bg-[#f5eade] text-[#8b5e34] w-6 h-6 flex items-center justify-center rounded-full text-sm">1</span> Chọn Danh Mục</h3>
                 <div className="flex gap-2 flex-wrap">
                   {categories.map(cat => (
                     <button 
                       key={cat.id} 
                       onClick={() => setProductForm({...productForm, category: cat.id})}
-                      className={`px-4 py-2 rounded-lg font-bold transition-colors border ${productForm.category === cat.id ? 'bg-blue-600 text-white border-blue-600 shadow-md' : 'bg-white text-slate-600 border-white/60 hover:bg-slate-50'}`}
+                      className={`px-4 py-2 rounded-lg font-bold transition-colors border ${productForm.category === cat.id ? 'bg-[#8b5e34] text-white border-[#8b5e34] shadow-md' : 'bg-[#fdfbf7] text-[#756658] border-[#e8dcc7] hover:bg-[#f9f5f0]'}`}
                     >
                       {cat.name}
                     </button>
@@ -1278,11 +1278,11 @@ function App() {
 
               {/* PRODUCT DETAILS */}
               <div className={`transition-opacity duration-300 ${!productForm.category ? 'opacity-40 pointer-events-none grayscale' : ''}`}>
-                <div className="bg-white/40 backdrop-blur-md p-6 rounded-lg border border-white/50 shadow-sm mb-6">
-                  <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><span className="bg-blue-100 text-blue-600 w-6 h-6 flex items-center justify-center rounded-full text-sm">2</span> Thông tin cơ bản</h3>
+                <div className="bg-[#fdfbf7] p-6 rounded-lg border border-[#e8dcc7] shadow-sm mb-6">
+                  <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><span className="bg-[#f5eade] text-[#8b5e34] w-6 h-6 flex items-center justify-center rounded-full text-sm">2</span> Thông tin cơ bản</h3>
                   
                   <div className="grid grid-cols-3 gap-6">
-                    <div className="col-span-1 flex flex-col items-center justify-center border-2 border-dashed border-white/60 rounded-lg p-4 bg-white/30 backdrop-blur-sm relative group cursor-pointer hover:bg-slate-100 transition-colors">
+                    <div className="col-span-1 flex flex-col items-center justify-center border-2 border-dashed border-[#e8dcc7] rounded-lg p-4 bg-[#fdfbf7] relative group cursor-pointer hover:bg-[#f0e8df] transition-colors">
                       <input type="file" accept="image/*" onChange={(e) => {
                         const file = e.target.files[0];
                         if (file) {
@@ -1296,26 +1296,26 @@ function App() {
                       ) : (
                         <div className="text-center">
                           <div className="text-4xl mb-2">📷</div>
-                          <div className="text-xs text-slate-500 font-bold">Thêm ảnh (Tùy chọn)</div>
+                          <div className="text-xs text-[#8c7b6c] font-bold">Thêm ảnh (Tùy chọn)</div>
                         </div>
                       )}
                     </div>
                     
                     <div className="col-span-2 space-y-4">
                       <div>
-                        <label className="block text-sm font-bold text-slate-700 mb-1">Tên Sản Phẩm <span className="text-red-500">*</span></label>
-                        <input type="text" value={productForm.name} onChange={e => setProductForm({...productForm, name: e.target.value})} placeholder="VD: Trà Đào Cam Sả" className="w-full bg-slate-50 border border-white/60 rounded-lg p-3 text-slate-800" />
+                        <label className="block text-sm font-bold text-[#5c4f42] mb-1">Tên Sản Phẩm <span className="text-red-500">*</span></label>
+                        <input type="text" value={productForm.name} onChange={e => setProductForm({...productForm, name: e.target.value})} placeholder="VD: Trà Đào Cam Sả" className="w-full bg-[#f9f5f0] border border-[#e8dcc7] rounded-lg p-3 text-[#4a3f35]" />
                       </div>
                       
                       <div className="flex gap-4">
                         <div className="flex-1">
-                          <label className="block text-sm font-bold text-slate-700 mb-1">Giá bán (VNĐ) {editingProduct && <span className="text-red-500">*</span>}</label>
-                          <input type="number" value={productForm.price} onChange={e => setProductForm({...productForm, price: e.target.value})} disabled={!editingProduct} placeholder={!editingProduct ? 'Chỉnh sửa sau khi tạo' : 'VD: 35000'} className={`w-full border rounded-lg p-3 font-bold ${!editingProduct ? 'bg-slate-200 text-slate-500 cursor-not-allowed border-white/60' : 'bg-slate-50 border-white/60 text-slate-800'}`} />
-                          {editingProduct && <p className="text-xs text-slate-500 mt-1">Giá vốn: <span className="font-bold text-blue-600">{productForm.recipe.reduce((total, req) => { const ing = ingredients.find(i => i.id === req.ingredientId); return total + (ing ? ing.cost * req.qty : 0); }, 0).toLocaleString()} đ</span></p>}
+                          <label className="block text-sm font-bold text-[#5c4f42] mb-1">Giá bán (VNĐ) {editingProduct && <span className="text-red-500">*</span>}</label>
+                          <input type="number" value={productForm.price} onChange={e => setProductForm({...productForm, price: e.target.value})} disabled={!editingProduct} placeholder={!editingProduct ? 'Chỉnh sửa sau khi tạo' : 'VD: 35000'} className={`w-full border rounded-lg p-3 font-bold ${!editingProduct ? 'bg-[#e6dacb] text-[#8c7b6c] cursor-not-allowed border-[#e8dcc7]' : 'bg-[#f9f5f0] border-[#e8dcc7] text-[#4a3f35]'}`} />
+                          {editingProduct && <p className="text-xs text-[#8c7b6c] mt-1">Giá vốn: <span className="font-bold text-[#8b5e34]">{productForm.recipe.reduce((total, req) => { const ing = ingredients.find(i => i.id === req.ingredientId); return total + (ing ? ing.cost * req.qty : 0); }, 0).toLocaleString()} đ</span></p>}
                         </div>
                         <div className="flex-1">
-                          <label className="block text-sm font-bold text-slate-700 mb-1">Trạng thái</label>
-                          <select value={productForm.status} onChange={e => setProductForm({...productForm, status: e.target.value})} disabled={!editingProduct} className={`w-full border rounded-lg p-3 font-bold ${!editingProduct ? 'bg-slate-200 text-slate-500 cursor-not-allowed border-white/60' : 'bg-slate-50 border-white/60 text-slate-800'}`}>
+                          <label className="block text-sm font-bold text-[#5c4f42] mb-1">Trạng thái</label>
+                          <select value={productForm.status} onChange={e => setProductForm({...productForm, status: e.target.value})} disabled={!editingProduct} className={`w-full border rounded-lg p-3 font-bold ${!editingProduct ? 'bg-[#e6dacb] text-[#8c7b6c] cursor-not-allowed border-[#e8dcc7]' : 'bg-[#f9f5f0] border-[#e8dcc7] text-[#4a3f35]'}`}>
                             <option value="ready">🟢 Đang bán</option>
                             <option value="not_ready">⚫ Chưa sẵn sàng</option>
                             <option value="low_stock">🟡 Sắp hết hàng</option>
@@ -1327,21 +1327,21 @@ function App() {
                 </div>
 
                 {/* INGREDIENTS */}
-                <div className="bg-white/40 backdrop-blur-md p-6 rounded-lg border border-white/50 shadow-sm">
+                <div className="bg-[#fdfbf7] p-6 rounded-lg border border-[#e8dcc7] shadow-sm">
                   <div className="flex justify-between items-center mb-4">
-                    <h3 className="font-bold text-lg flex items-center gap-2"><span className="bg-blue-100 text-blue-600 w-6 h-6 flex items-center justify-center rounded-full text-sm">3</span> Công thức Nguyên liệu</h3>
-                    <button onClick={() => setProductForm({...productForm, recipe: [...productForm.recipe, {ingredientId: '', qty: 0}]})} className="text-blue-600 hover:text-blue-800 font-bold text-sm bg-blue-50 px-3 py-1 rounded-md transition-colors">+ Thêm NL</button>
+                    <h3 className="font-bold text-lg flex items-center gap-2"><span className="bg-[#f5eade] text-[#8b5e34] w-6 h-6 flex items-center justify-center rounded-full text-sm">3</span> Công thức Nguyên liệu</h3>
+                    <button onClick={() => setProductForm({...productForm, recipe: [...productForm.recipe, {ingredientId: '', qty: 0}]})} className="text-[#8b5e34] hover:text-blue-800 font-bold text-sm bg-[#fdf8f3] px-3 py-1 rounded-md transition-colors">+ Thêm NL</button>
                   </div>
                   
                   {productForm.recipe.length === 0 ? (
-                    <div className="text-center py-6 bg-white/30 backdrop-blur-sm border border-dashed border-white/60 rounded-lg">
-                      <p className="text-slate-500 text-sm">Món này chưa thiết lập công thức.</p>
-                      <button onClick={() => setProductForm({...productForm, recipe: [{ingredientId: '', qty: 0}]})} className="mt-2 text-blue-600 font-bold text-sm">Thiết lập ngay</button>
+                    <div className="text-center py-6 bg-[#fdfbf7] border border-dashed border-[#e8dcc7] rounded-lg">
+                      <p className="text-[#8c7b6c] text-sm">Món này chưa thiết lập công thức.</p>
+                      <button onClick={() => setProductForm({...productForm, recipe: [{ingredientId: '', qty: 0}]})} className="mt-2 text-[#8b5e34] font-bold text-sm">Thiết lập ngay</button>
                     </div>
                   ) : (
                     <div className="space-y-3">
                       {productForm.recipe.map((req, idx) => (
-                        <div key={idx} className="flex gap-3 items-center bg-white/30 backdrop-blur-sm p-3 rounded-lg border border-white/50">
+                        <div key={idx} className="flex gap-3 items-center bg-[#fdfbf7] p-3 rounded-lg border border-[#e8dcc7]">
                           <select 
                             value={req.ingredientId} 
                             onChange={(e) => {
@@ -1349,7 +1349,7 @@ function App() {
                               newRecipe[idx].ingredientId = e.target.value;
                               setProductForm({...productForm, recipe: newRecipe});
                             }}
-                            className="flex-1 bg-white border border-white/60 rounded-md p-2 text-sm"
+                            className="flex-1 bg-[#fdfbf7] border border-[#e8dcc7] rounded-md p-2 text-sm"
                           >
                             <option value="">-- Chọn Nguyên Liệu --</option>
                             {ingredients.map(ing => (
@@ -1365,7 +1365,7 @@ function App() {
                               newRecipe[idx].qty = parseFloat(e.target.value) || 0;
                               setProductForm({...productForm, recipe: newRecipe});
                             }}
-                            className="w-24 bg-white border border-white/60 rounded-md p-2 text-sm"
+                            className="w-24 bg-[#fdfbf7] border border-[#e8dcc7] rounded-md p-2 text-sm"
                           />
                           <button onClick={() => {
                             const newRecipe = productForm.recipe.filter((_, i) => i !== idx);
@@ -1379,8 +1379,8 @@ function App() {
               </div>
             </div>
             
-            <div className="p-6 border-t border-white/50 bg-white/40 backdrop-blur-md flex justify-end gap-3">
-              <button onClick={() => setShowProductModal(false)} className="px-6 py-2 rounded-lg font-bold text-slate-600 hover:bg-slate-100">Hủy</button>
+            <div className="p-6 border-t border-[#e8dcc7] bg-[#fdfbf7] flex justify-end gap-3">
+              <button onClick={() => setShowProductModal(false)} className="px-6 py-2 rounded-lg font-bold text-[#756658] hover:bg-[#f0e8df]">Hủy</button>
               <button 
                 disabled={!productForm.category}
                 onClick={() => {
@@ -1418,7 +1418,7 @@ function App() {
                   }
                   setShowProductModal(false);
                 }} 
-                className={`px-6 py-2 rounded-lg font-bold shadow-sm ${!productForm.category ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 text-white'}`}
+                className={`px-6 py-2 rounded-lg font-bold shadow-sm ${!productForm.category ? 'bg-slate-300 text-[#8c7b6c] cursor-not-allowed' : 'bg-[#8b5e34] hover:bg-[#704b29] text-white'}`}
               >
                 {editingProduct ? 'Lưu Thay Đổi' : 'Tạo Sản Phẩm'}
               </button>
@@ -1431,19 +1431,19 @@ function App() {
       {/* Topping / Note Modal (Keep existing logic) */}
       {selectedItemForTopping && (
         <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-50 backdrop-blur-sm">
-          <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-lg p-6 w-[500px] shadow-md border border-white/50 animate-in zoom-in-95">
+          <div className="bg-[#fdfbf7] border border-[#e8dcc7] rounded-lg p-6 w-[500px] shadow-md border border-[#e8dcc7] animate-in zoom-in-95">
             <h2 className="text-2xl font-bold mb-2">Tùy chọn: {selectedItemForTopping.name}</h2>
-            <p className="text-blue-600 font-bold mb-6">{selectedItemForTopping.price.toLocaleString()} đ</p>
+            <p className="text-[#8b5e34] font-bold mb-6">{selectedItemForTopping.price.toLocaleString()} đ</p>
             
             <div className="space-y-4 mb-6">
               <div>
-                <label className="block text-slate-500 mb-2">Kích cỡ / Phân loại</label>
+                <label className="block text-[#8c7b6c] mb-2">Kích cỡ / Phân loại</label>
                 <div className="flex flex-wrap gap-2">
                   {predefinedSizes.map((sz, idx) => (
                     <button 
                       key={idx} 
                       onClick={() => setSelectedSize(sz.name)} 
-                      className={`px-4 py-2 border rounded-sm font-bold transition-all text-sm ${selectedSize === sz.name ? 'border-blue-600 bg-blue-600 text-white' : 'border-white/70 bg-white text-slate-700 hover:bg-slate-100'}`}
+                      className={`px-4 py-2 border rounded-sm font-bold transition-all text-sm ${selectedSize === sz.name ? 'border-[#8b5e34] bg-[#8b5e34] text-white' : 'border-[#e8dcc7] bg-[#fdfbf7] text-[#5c4f42] hover:bg-[#f0e8df]'}`}
                     >
                       {sz.name} {sz.priceAdd > 0 && `(+${sz.priceAdd.toLocaleString()}đ)`}
                     </button>
@@ -1452,7 +1452,7 @@ function App() {
               </div>
 
               <div>
-                <label className="block text-slate-500 mb-2">Ghi chú nhanh</label>
+                <label className="block text-[#8c7b6c] mb-2">Ghi chú nhanh</label>
                 <div className="flex flex-wrap gap-2 mb-3">
                   {predefinedNotes.map((note, idx) => {
                     const isSelected = noteText.split(',').map(n => n.trim()).includes(note);
@@ -1460,7 +1460,7 @@ function App() {
                       <button 
                         key={idx} 
                         onClick={() => addQuickNote(note)}
-                        className={`px-3 py-1.5 rounded-full text-sm font-bold transition-colors ${isSelected ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                        className={`px-3 py-1.5 rounded-full text-sm font-bold transition-colors ${isSelected ? 'bg-[#8b5e34] text-white' : 'bg-[#f0e8df] text-[#756658] hover:bg-[#e6dacb]'}`}
                       >
                         {note}
                       </button>
@@ -1471,15 +1471,15 @@ function App() {
                   value={noteText}
                   onChange={(e) => setNoteText(e.target.value)}
                   placeholder="Hoặc nhập ghi chú khác..."
-                  className="w-full bg-slate-50 border border-white/60 rounded-lg p-3 text-slate-800 placeholder-gray-500 focus:outline-none focus:border-blue-600"
+                  className="w-full bg-[#f9f5f0] border border-[#e8dcc7] rounded-lg p-3 text-[#4a3f35] placeholder-gray-500 focus:outline-none focus:border-[#8b5e34]"
                   rows="2"
                 ></textarea>
               </div>
             </div>
 
             <div className="flex gap-4">
-              <button onClick={() => setSelectedItemForTopping(null)} className="flex-1 bg-slate-100 hover:bg-slate-200 py-3 rounded-md font-bold transition-colors">Hủy</button>
-              <button onClick={() => { handleAddItem({...selectedItemForTopping, size: selectedSize, note: noteText.trim(), toppings: selectedToppings}); setSelectedItemForTopping(null); }} className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-bold transition-colors shadow-sm shadow-blue-600/20">Thêm vào giỏ</button>
+              <button onClick={() => setSelectedItemForTopping(null)} className="flex-1 bg-[#f0e8df] hover:bg-[#e6dacb] py-3 rounded-md font-bold transition-colors">Hủy</button>
+              <button onClick={() => { handleAddItem({...selectedItemForTopping, size: selectedSize, note: noteText.trim(), toppings: selectedToppings}); setSelectedItemForTopping(null); }} className="flex-1 bg-[#8b5e34] hover:bg-[#704b29] text-white py-3 rounded-md font-bold transition-colors shadow-sm shadow-[#8b5e34]/20">Thêm vào giỏ</button>
             </div>
           </div>
         </div>
@@ -1488,43 +1488,43 @@ function App() {
       {/* Quick Payment Modal */}
       {showPaymentModal && (
         <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-50 backdrop-blur-sm">
-          <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-lg p-6 w-[500px] shadow-md border border-white/50">
-            <h2 className="text-2xl font-bold mb-6 text-center border-b border-white/50 pb-4">Thanh toán Bill</h2>
+          <div className="bg-[#fdfbf7] border border-[#e8dcc7] rounded-lg p-6 w-[500px] shadow-md border border-[#e8dcc7]">
+            <h2 className="text-2xl font-bold mb-6 text-center border-b border-[#e8dcc7] pb-4">Thanh toán Bill</h2>
             
-            <div className="flex justify-between items-center mb-6 bg-white/30 backdrop-blur-sm p-4 rounded-md border border-white/50">
-              <span className="text-slate-500 text-lg">Tổng tiền thanh toán:</span>
-              <span className="text-3xl font-bold text-blue-600">
+            <div className="flex justify-between items-center mb-6 bg-[#fdfbf7] p-4 rounded-md border border-[#e8dcc7]">
+              <span className="text-[#8c7b6c] text-lg">Tổng tiền thanh toán:</span>
+              <span className="text-3xl font-bold text-[#8b5e34]">
                 {cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toLocaleString()} đ
               </span>
             </div>
 
             <div className="mb-6">
-              <label className="block text-slate-500 mb-2 font-bold">Khách đưa (Nhập tay):</label>
+              <label className="block text-[#8c7b6c] mb-2 font-bold">Khách đưa (Nhập tay):</label>
               <div className="relative">
                 <input 
                   type="number" 
                   value={amountGiven || ''} 
                   onChange={(e) => setAmountGiven(Number(e.target.value))}
                   placeholder="Nhập số tiền..."
-                  className="w-full text-2xl font-bold text-blue-600 p-3 pr-12 border-2 border-white/60 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all"
+                  className="w-full text-2xl font-bold text-[#8b5e34] p-3 pr-12 border-2 border-[#e8dcc7] rounded-xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">VNĐ</span>
               </div>
             </div>
             
-            <label className="block text-slate-500 mb-3">Hoặc chọn nhanh:</label>
+            <label className="block text-[#8c7b6c] mb-3">Hoặc chọn nhanh:</label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
               {[50000, 100000, 200000, 500000].map(amt => (
                 <button 
                   key={amt}
                   onClick={() => setAmountGiven(amt)}
-                  className={`py-2 rounded-lg font-bold transition-all ${amountGiven === amt ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-white/50'}`}>
+                  className={`py-2 rounded-lg font-bold transition-all ${amountGiven === amt ? 'bg-[#8b5e34] text-white shadow-md shadow-[#8b5e34]/30' : 'bg-[#f0e8df] hover:bg-[#e6dacb] text-[#5c4f42] border border-[#e8dcc7]'}`}>
                   {amt.toLocaleString()} đ
                 </button>
               ))}
               <button 
                 onClick={() => setAmountGiven(cart.reduce((sum, item) => sum + (item.price * item.qty), 0))}
-                className={`py-2 rounded-lg font-bold transition-all ${amountGiven === cart.reduce((sum, item) => sum + (item.price * item.qty), 0) ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-white/50'}`}>
+                className={`py-2 rounded-lg font-bold transition-all ${amountGiven === cart.reduce((sum, item) => sum + (item.price * item.qty), 0) ? 'bg-[#8b5e34] text-white shadow-md shadow-[#8b5e34]/30' : 'bg-[#f0e8df] hover:bg-[#e6dacb] text-[#5c4f42] border border-[#e8dcc7]'}`}>
                 Khách đưa đủ
               </button>
               <button 
@@ -1534,9 +1534,9 @@ function App() {
             </div>
 
             {amountGiven > 0 && amountGiven >= cart.reduce((sum, item) => sum + (item.price * item.qty), 0) && (
-              <div className="flex justify-between items-center mb-6 bg-blue-600/10 border border-blue-600/30 p-4 rounded-md">
-                <span className="text-blue-600 text-lg">Tiền thối lại:</span>
-                <span className="text-3xl font-bold text-blue-600">
+              <div className="flex justify-between items-center mb-6 bg-[#8b5e34]/10 border border-[#8b5e34]/30 p-4 rounded-md">
+                <span className="text-[#8b5e34] text-lg">Tiền thối lại:</span>
+                <span className="text-3xl font-bold text-[#8b5e34]">
                   {(amountGiven - cart.reduce((sum, item) => sum + (item.price * item.qty), 0)).toLocaleString()} đ
                 </span>
               </div>
@@ -1551,7 +1551,7 @@ function App() {
             <div className="flex gap-4">
               <button 
                 onClick={() => { setShowPaymentModal(false); setAmountGiven(0); }}
-                className="flex-1 bg-slate-100 hover:bg-slate-200 py-4 rounded-md font-bold transition-colors text-lg">
+                className="flex-1 bg-[#f0e8df] hover:bg-[#e6dacb] py-4 rounded-md font-bold transition-colors text-lg">
                 Hủy
               </button>
               <button 
@@ -1575,7 +1575,7 @@ function App() {
                   }
                 }}
                 disabled={amountGiven < cart.reduce((sum, item) => sum + (item.price * item.qty), 0)}
-                className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-200 disabled:text-slate-500 text-white py-4 rounded-md font-bold transition-colors shadow-sm shadow-blue-600/20 text-lg">
+                className="flex-1 bg-[#8b5e34] hover:bg-[#704b29] disabled:bg-[#e6dacb] disabled:text-[#8c7b6c] text-white py-4 rounded-md font-bold transition-colors shadow-sm shadow-[#8b5e34]/20 text-lg">
                 Hoàn tất & In Bill
               </button>
             </div>
@@ -1585,16 +1585,16 @@ function App() {
       {/* Confirm Dialog */}
       {confirmDialog.isOpen && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 z-[100]">
-          <div className="bg-white/40 backdrop-blur-md rounded-2xl p-6 max-w-sm w-full shadow-2xl animate-[fadeIn_0.2s_ease-out]">
-            <h3 className="text-xl font-bold text-slate-800 mb-2">Xác nhận</h3>
-            <p className="text-slate-600 mb-6">{confirmDialog.message}</p>
+          <div className="bg-[#fdfbf7] rounded-2xl p-6 max-w-sm w-full shadow-2xl animate-[fadeIn_0.2s_ease-out]">
+            <h3 className="text-xl font-bold text-[#4a3f35] mb-2">Xác nhận</h3>
+            <p className="text-[#756658] mb-6">{confirmDialog.message}</p>
             <div className="flex gap-3">
               <button 
                 onClick={() => {
                   if(confirmDialog.onCancel) confirmDialog.onCancel();
                   setConfirmDialog({ isOpen: false, message: '', onConfirm: null, onCancel: null });
                 }} 
-                className="flex-1 px-4 py-2.5 rounded-xl font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors">
+                className="flex-1 px-4 py-2.5 rounded-xl font-bold text-[#756658] bg-[#f0e8df] hover:bg-[#e6dacb] transition-colors">
                 Hủy
               </button>
               <button 
@@ -1602,7 +1602,7 @@ function App() {
                   if(confirmDialog.onConfirm) confirmDialog.onConfirm();
                   setConfirmDialog({ isOpen: false, message: '', onConfirm: null, onCancel: null });
                 }} 
-                className="flex-1 px-4 py-2.5 rounded-xl font-bold text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-sm shadow-blue-600/20">
+                className="flex-1 px-4 py-2.5 rounded-xl font-bold text-white bg-[#8b5e34] hover:bg-[#704b29] transition-colors shadow-sm shadow-[#8b5e34]/20">
                 Đồng ý
               </button>
             </div>
@@ -1611,7 +1611,7 @@ function App() {
       )}
 
       {/* Bottom Navigation for Mobile */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white/40 backdrop-blur-md border-t border-white/50 flex justify-around items-center pb-safe pt-2 px-2 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] z-[90]">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[#fdfbf7] border-t border-[#e8dcc7] flex justify-around items-center pb-safe pt-2 px-2 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] z-[90]">
         {Object.entries(tabNames).filter(([key]) => visibleTabs.includes(key)).slice(0, 5).map(([key, name]) => {
           const isActive = activeTab === key;
           const icon = name.split(' ')[0];
@@ -1620,7 +1620,7 @@ function App() {
             <button
               key={key}
               onClick={() => handleTabClick(key)}
-              className={`flex flex-col items-center justify-center w-full py-2 rounded-xl transition-all ${isActive ? 'text-blue-600' : 'text-slate-400 hover:text-slate-600'}`}
+              className={`flex flex-col items-center justify-center w-full py-2 rounded-xl transition-all ${isActive ? 'text-[#8b5e34]' : 'text-slate-400 hover:text-[#756658]'}`}
             >
               <span className={`text-xl mb-1 ${isActive ? 'scale-110' : ''} transition-transform`}>{icon}</span>
               <span className={`text-[10px] font-bold text-center leading-tight truncate w-full px-1 ${isActive ? 'opacity-100' : 'opacity-70'}`}>{label}</span>
