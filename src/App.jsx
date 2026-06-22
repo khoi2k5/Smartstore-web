@@ -403,9 +403,9 @@ function App() {
       <div className="min-h-screen text-white flex items-center justify-center p-4" style={{ backgroundImage: "url('/bg-abstract.jpg')", backgroundSize: 'cover', backgroundAttachment: 'fixed', backgroundPosition: 'center' }}>
         <div className="bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl border border-white/10 shadow-xl rounded-2xl p-10 max-w-md w-full">
           <div className="text-center mb-10">
-            <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500 mb-2">
-              SmartStore
-            </h1>
+            <div className="flex justify-center mb-6">
+              <img src="/logo.png" alt="SmartStore Logo" className="h-32 object-contain drop-shadow-lg" />
+            </div>
             <p className="text-slate-400">Đăng nhập để vào hệ thống</p>
           </div>
 
