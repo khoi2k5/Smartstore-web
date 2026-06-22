@@ -501,7 +501,7 @@ function App() {
             <h2 className="text-3xl font-bold mb-6">{tabNames.dashboard}</h2>
             
             {/* KPI Cards */}
-            <div className="grid grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="bg-white rounded-lg p-6 border border-blue-600/30 relative overflow-hidden group">
                 <div className="absolute -right-6 -top-6 w-24 h-24 bg-blue-600/20 rounded-full blur-xl group-hover:bg-blue-600/30 transition-all"></div>
                 <h3 className="text-slate-500 font-bold mb-2 flex items-center gap-2"><span>📈</span> Tổng Doanh Thu</h3>
@@ -527,7 +527,7 @@ function App() {
             </div>
 
             {/* Charts & Breakdown */}
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="col-span-2 bg-white rounded-lg p-6 border border-slate-200">
                 <h3 className="text-xl font-bold mb-6">Tăng trưởng Lợi nhuận trong ngày</h3>
                 <div className="h-64 flex items-end gap-4 mt-8">
@@ -582,7 +582,7 @@ function App() {
             )}
             <h2 className="text-3xl font-bold mb-6">{tabNames.recipes}</h2>
             
-            <div className="grid grid-cols-4 gap-6 flex-1 min-h-0">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 flex-1 min-h-0">
               {/* Product Management */}
               <div className="col-span-2 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col h-full min-h-0">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">🏷️ Quản lý Danh mục Sản phẩm</h3>
@@ -612,7 +612,7 @@ function App() {
                   {products.length === 0 ? (
                     <p className="text-slate-400 text-center mt-10">Chưa có sản phẩm nào. Hãy thêm ở trên.</p>
                   ) : (
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {products.map(p => (
                         <div key={p.id} className="flex justify-between items-center p-3 bg-white border border-slate-200 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:border-blue-300 hover:-translate-y-0.5 transition-all duration-300">
                           <div className="flex items-center gap-4">
@@ -873,7 +873,7 @@ function App() {
               </div>
               <p className="text-slate-500 mb-6">Vui lòng chọn {posConfig.entityName.toLowerCase()} hoặc chọn "{posConfig.takeawayName}".</p>
               
-              <div className="grid grid-cols-4 lg:grid-cols-5 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
                 <div 
                   onClick={() => setSelectedTable(posConfig.takeawayName)}
                   className="border border-blue-600 rounded-md cursor-pointer transition-all overflow-hidden relative h-28 group"
@@ -898,7 +898,7 @@ function App() {
               </div>
             </div>
           ) : (
-            <div className="flex gap-2 h-full animate-in slide-in-from-right-8 duration-300 min-h-0 bg-slate-100 p-2 rounded-sm border border-slate-300 relative">
+            <div className="flex flex-col-reverse md:flex-row gap-2 h-full animate-in slide-in-from-right-8 duration-300 min-h-0 bg-slate-100 p-2 rounded-sm border border-slate-300 relative overflow-y-auto md:overflow-hidden">
               {role === 'owner' && (
                 <button 
                   onClick={() => setActiveTab('settings')} 
@@ -908,9 +908,14 @@ function App() {
                 </button>
               )}
               {/* Left Side: Cart & Keypad (High Density) */}
-              <div className="w-[450px] flex flex-col bg-white border border-slate-400 shrink-0 shadow-sm rounded-sm">
+              <div className="w-full md:w-[450px] flex flex-col bg-white border border-slate-400 shrink-0 shadow-sm rounded-sm h-[60vh] md:h-auto min-h-[400px]">
                 {/* Header */}
-                <div className="bg-blue-700 text-white p-2 flex justify-between items-center shrink-0">
+                <div className="bg-blue-700 text-white p-2 flex justify-between items-center shrink-0 gap-2">
+                  {posConfig.layout !== 'retail' && (
+                    <button onClick={() => setSelectedTable(null)} className="md:hidden text-white border border-white/30 px-2 py-1 rounded text-xs font-bold whitespace-nowrap bg-blue-800">
+                      &lt; Quay lại
+                    </button>
+                  )}
                   <h3 className="font-bold text-sm uppercase">Hóa đơn: {selectedTable !== posConfig.takeawayName ? selectedTable : 'Mua mang đi'}</h3>
                   {cart.length > 0 && (
                     <button 
@@ -1031,7 +1036,7 @@ function App() {
                 </div>
 
                 <div className="flex-1 overflow-y-auto p-1">
-                  <div className="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-1">
+                  <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-1">
                     {products.filter(item => (selectedCategory === 'all' || item.category === selectedCategory) && item.status !== 'not_ready').map((item) => (
                       <div 
                         key={item.id} 
@@ -1075,10 +1080,8 @@ function App() {
                 ⚙️ Sửa giao diện
               </button>
             )}
-            {/* Mobile View Mockup for Staff */}
-            <div className="w-[400px] bg-slate-50 border-[8px] border-gray-800 rounded-[3rem] p-6 shadow-md border border-slate-200 relative overflow-y-auto">
-              {/* Fake Notch */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-white rounded-b-3xl"></div>
+            {/* Mobile View for Staff */}
+            <div className="w-full bg-slate-50 md:rounded-3xl p-4 md:p-6 pb-24 shadow-md md:border border-slate-200 relative overflow-y-auto max-w-lg mx-auto h-full md:h-auto">
               
               <div className="mt-6 mb-8 text-center">
                 <div className="w-20 h-20 bg-gradient-to-tr from-orange-400 to-amber-300 rounded-full mx-auto mb-3 flex items-center justify-center text-3xl shadow-sm shadow-orange-500/30">
@@ -1470,7 +1473,7 @@ function App() {
             </div>
 
             <label className="block text-slate-500 mb-3">Khách đưa nhanh:</label>
-            <div className="grid grid-cols-3 gap-3 mb-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
               {[50000, 100000, 200000, 500000].map(amt => (
                 <button 
                   key={amt}
@@ -1539,6 +1542,52 @@ function App() {
           </div>
         </div>
       )}
+      {/* Confirm Dialog */}
+      {confirmDialog.isOpen && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 z-[100]">
+          <div className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl animate-[fadeIn_0.2s_ease-out]">
+            <h3 className="text-xl font-bold text-slate-800 mb-2">Xác nhận</h3>
+            <p className="text-slate-600 mb-6">{confirmDialog.message}</p>
+            <div className="flex gap-3">
+              <button 
+                onClick={() => {
+                  if(confirmDialog.onCancel) confirmDialog.onCancel();
+                  setConfirmDialog({ isOpen: false, message: '', onConfirm: null, onCancel: null });
+                }} 
+                className="flex-1 px-4 py-2.5 rounded-xl font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors">
+                Hủy
+              </button>
+              <button 
+                onClick={() => {
+                  if(confirmDialog.onConfirm) confirmDialog.onConfirm();
+                  setConfirmDialog({ isOpen: false, message: '', onConfirm: null, onCancel: null });
+                }} 
+                className="flex-1 px-4 py-2.5 rounded-xl font-bold text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-sm shadow-blue-600/20">
+                Đồng ý
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Bottom Navigation for Mobile */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 flex justify-around items-center pb-safe pt-2 px-2 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] z-[90]">
+        {Object.entries(tabNames).filter(([key]) => visibleTabs.includes(key)).slice(0, 5).map(([key, name]) => {
+          const isActive = activeTab === key;
+          const icon = name.split(' ')[0];
+          const label = name.replace(icon, '').trim();
+          return (
+            <button
+              key={key}
+              onClick={() => handleTabClick(key)}
+              className={`flex flex-col items-center justify-center w-full py-2 rounded-xl transition-all ${isActive ? 'text-blue-600' : 'text-slate-400 hover:text-slate-600'}`}
+            >
+              <span className={`text-xl mb-1 ${isActive ? 'scale-110' : ''} transition-transform`}>{icon}</span>
+              <span className={`text-[10px] font-bold text-center leading-tight truncate w-full px-1 ${isActive ? 'opacity-100' : 'opacity-70'}`}>{label}</span>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
