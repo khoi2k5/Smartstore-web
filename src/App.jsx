@@ -400,8 +400,8 @@ function App() {
   // -------------------------------------------------------------
   if (!role) {
     return (
-      <div className="min-h-screen text-[#4a3f35] font-sans flex flex-col md:flex-row p-0 md:p-4 md:gap-4 bg-[#f4ebe1]">
-        <div className="bg-white/40 backdrop-blur-xl border border-white shadow-sm rounded-md p-10 max-w-md w-full">
+      <div className="min-h-screen text-[#4a3f35] flex items-center justify-center p-4 bg-[#f4ebe1]">
+        <div className="bg-[#fdfbf7] border border-[#e8dcc7] shadow-xl rounded-2xl p-10 max-w-md w-full">
           <div className="text-center mb-10">
             <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#8b5e34] to-[#a67c52] mb-2">
               SmartStore
@@ -471,7 +471,7 @@ function App() {
     <div className="min-h-screen text-[#4a3f35] font-sans flex flex-col md:flex-row p-0 md:p-4 md:gap-4 bg-[#e0f2fe]" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1440 320\' opacity=\'0.4\'%3E%3Cpath fill=\'%237dd3fc\' fill-opacity=\'1\' d=\'M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z\'%3E%3C/path%3E%3C/svg%3E')", backgroundSize: 'cover', backgroundAttachment: 'fixed', backgroundPosition: 'center bottom' }}>
       
       {/* Sidebar */}
-      <div className="w-64 bg-white/40 backdrop-blur-xl border border-white shadow-sm rounded-lg p-6 flex flex-col justify-between">
+      <div className="w-64 bg-[#fdfbf7] border border-[#e8dcc7] shadow-sm rounded-lg p-6 flex flex-col justify-between">
         <div>
           <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#8b5e34] to-[#a67c52] mb-8">
             SmartStore
@@ -509,7 +509,7 @@ function App() {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 bg-white/40 backdrop-blur-xl border border-white shadow-sm rounded-lg p-8 overflow-y-auto relative">
+      <div className="flex-1 bg-[#fdfbf7] border border-[#e8dcc7] shadow-sm rounded-lg p-8 overflow-y-auto relative">
         
         {/* ========================================================= */}
         {/* TAB: DASHBOARD (OWNER)                                    */}
@@ -546,7 +546,7 @@ function App() {
                 <div className="absolute -right-4 -bottom-4 w-32 h-32 bg-purple-500/30 rounded-full blur-2xl"></div>
                 <h3 className="text-purple-200 font-bold mb-2 flex items-center gap-2"><span>💎</span> Lợi Nhuận Ròng</h3>
                 <div className="text-4xl font-extrabold text-[#4a3f35]">4,250,000 đ</div>
-                <div className="mt-3 bg-white/10 rounded-full px-3 py-1 inline-block text-sm text-purple-200 border border-white/20">
+                <div className="mt-3 bg-white/10 rounded-full px-3 py-1 inline-block text-sm text-purple-200 border border-[#e8dcc7]/20">
                   Biên lợi nhuận: 78%
                 </div>
               </div>
@@ -938,7 +938,7 @@ function App() {
                 {/* Header */}
                 <div className="bg-[#704b29] text-white p-2 flex justify-between items-center shrink-0 gap-2">
                   {posConfig.layout !== 'retail' && (
-                    <button onClick={() => switchTable(null)} className="text-white border border-white/30 hover:bg-[#5c3e23] px-3 py-1.5 rounded-md text-sm font-bold whitespace-nowrap transition-colors flex items-center gap-1 shadow-sm">
+                    <button onClick={() => switchTable(null)} className="text-white border border-[#e8dcc7]/30 hover:bg-[#5c3e23] px-3 py-1.5 rounded-md text-sm font-bold whitespace-nowrap transition-colors flex items-center gap-1 shadow-sm">
                       <span className="text-lg leading-none">&lsaquo;</span> Sơ đồ bàn
                     </button>
                   )}
