@@ -400,8 +400,8 @@ function App() {
   // -------------------------------------------------------------
   if (!role) {
     return (
-      <div className="min-h-screen text-[#4a3f35] flex items-center justify-center p-4 bg-[#f4ebe1]">
-        <div className="bg-[#fdfbf7] border border-[#e8dcc7] shadow-xl rounded-2xl p-10 max-w-md w-full">
+      <div className="min-h-screen text-[#4a3f35] flex items-center justify-center p-4" style={{ backgroundImage: "url('/bg-abstract.jpg')", backgroundSize: 'cover', backgroundAttachment: 'fixed', backgroundPosition: 'center' }}>
+        <div className="bg-[#fdfbf7]/95 backdrop-blur-md border border-[#e8dcc7] shadow-xl rounded-2xl p-10 max-w-md w-full">
           <div className="text-center mb-10">
             <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#8b5e34] to-[#a67c52] mb-2">
               SmartStore
@@ -418,7 +418,7 @@ function App() {
                 value={loginEmail}
                 onChange={e => setLoginEmail(e.target.value)}
                 placeholder="VD: chuquan@gmail.com"
-                className="w-full bg-[#fdfbf7] border border-[#e8dcc7] rounded-md p-4 text-[#4a3f35] focus:outline-none focus:border-[#8b5e34] transition-colors"
+                className="w-full bg-[#fdfbf7]/95 backdrop-blur-md border border-[#e8dcc7] rounded-md p-4 text-[#4a3f35] focus:outline-none focus:border-[#8b5e34] transition-colors"
               />
             </div>
             <div>
@@ -429,7 +429,7 @@ function App() {
                 value={loginPassword}
                 onChange={e => setLoginPassword(e.target.value)}
                 placeholder="••••••"
-                className="w-full bg-[#fdfbf7] border border-[#e8dcc7] rounded-md p-4 text-[#4a3f35] focus:outline-none focus:border-[#8b5e34] transition-colors"
+                className="w-full bg-[#fdfbf7]/95 backdrop-blur-md border border-[#e8dcc7] rounded-md p-4 text-[#4a3f35] focus:outline-none focus:border-[#8b5e34] transition-colors"
               />
             </div>
 
@@ -468,10 +468,10 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen text-[#4a3f35] font-sans flex flex-col md:flex-row p-0 md:p-4 md:gap-4 bg-[#f4ebe1]">
+    <div className="min-h-screen text-[#4a3f35] font-sans flex flex-col md:flex-row p-0 md:p-4 md:gap-4" style={{ backgroundImage: "url('/bg-abstract.jpg')", backgroundSize: 'cover', backgroundAttachment: 'fixed', backgroundPosition: 'center' }}>
       
       {/* Sidebar */}
-      <div className="w-64 bg-[#fdfbf7] border border-[#e8dcc7] shadow-sm rounded-lg p-6 flex flex-col justify-between">
+      <div className="w-64 bg-[#fdfbf7]/95 backdrop-blur-md border border-[#e8dcc7] shadow-sm rounded-lg p-6 flex flex-col justify-between">
         <div>
           <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#8b5e34] to-[#a67c52] mb-8">
             SmartStore
@@ -488,7 +488,7 @@ function App() {
                   activeTab === tabKey 
                     ? tabKey === 'dashboard' ? 'bg-gradient-to-r from-[#8b5e34] to-[#a67c52] text-white font-bold shadow-sm shadow-[#8b5e34]/30' 
                       : 'bg-gradient-to-r from-blue-100 to-blue-50 text-[#8b5e34] font-bold' 
-                    : 'hover:bg-[#fdfbf7] text-[#8c7b6c]'
+                    : 'hover:bg-[#fdfbf7]/95 backdrop-blur-md text-[#8c7b6c]'
                 }`}>
                 {tabNames[tabKey]}
               </button>
@@ -499,7 +499,7 @@ function App() {
         <div>
           <button 
             onClick={handleLogoutClick}
-            className="w-full mt-8 bg-[#fdfbf7] hover:bg-red-500/20 hover:text-red-400 text-[#8c7b6c] py-3 rounded-md font-bold transition-colors border border-[#e8dcc7] hover:border-red-500/50">
+            className="w-full mt-8 bg-[#fdfbf7]/95 backdrop-blur-md hover:bg-red-500/20 hover:text-red-400 text-[#8c7b6c] py-3 rounded-md font-bold transition-colors border border-[#e8dcc7] hover:border-red-500/50">
             🚪 Đăng xuất
           </button>
           <div className="text-sm text-slate-400 mt-4 text-center">
@@ -509,7 +509,7 @@ function App() {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 bg-[#fdfbf7] border border-[#e8dcc7] shadow-sm rounded-lg p-8 overflow-y-auto relative">
+      <div className="flex-1 bg-[#fdfbf7]/95 backdrop-blur-md border border-[#e8dcc7] shadow-sm rounded-lg p-8 overflow-y-auto relative">
         
         {/* ========================================================= */}
         {/* TAB: DASHBOARD (OWNER)                                    */}
@@ -528,14 +528,14 @@ function App() {
             
             {/* KPI Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-[#fdfbf7] rounded-lg p-6 border border-[#8b5e34]/30 relative overflow-hidden group">
+              <div className="bg-[#fdfbf7]/95 backdrop-blur-md rounded-lg p-6 border border-[#8b5e34]/30 relative overflow-hidden group">
                 <div className="absolute -right-6 -top-6 w-24 h-24 bg-[#8b5e34]/20 rounded-full blur-xl group-hover:bg-[#8b5e34]/30 transition-all"></div>
                 <h3 className="text-[#8c7b6c] font-bold mb-2 flex items-center gap-2"><span>📈</span> Tổng Doanh Thu</h3>
                 <div className="text-3xl font-bold text-[#8b5e34]">5,450,000 đ</div>
                 <p className="text-sm text-[#8b5e34] mt-2">↑ 12% so với hôm qua</p>
               </div>
               
-              <div className="bg-[#fdfbf7] rounded-lg p-6 border border-orange-500/30 relative overflow-hidden group">
+              <div className="bg-[#fdfbf7]/95 backdrop-blur-md rounded-lg p-6 border border-orange-500/30 relative overflow-hidden group">
                 <div className="absolute -right-6 -top-6 w-24 h-24 bg-orange-500/20 rounded-full blur-xl group-hover:bg-orange-500/30 transition-all"></div>
                 <h3 className="text-[#8c7b6c] font-bold mb-2 flex items-center gap-2"><span>👥</span> Chi phí Nhân sự</h3>
                 <div className="text-3xl font-bold text-orange-400">1,200,000 đ</div>
@@ -554,7 +554,7 @@ function App() {
 
             {/* Charts & Breakdown */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="col-span-2 bg-[#fdfbf7] rounded-lg p-6 border border-[#e8dcc7]">
+              <div className="col-span-2 bg-[#fdfbf7]/95 backdrop-blur-md rounded-lg p-6 border border-[#e8dcc7]">
                 <h3 className="text-xl font-bold mb-6">Tăng trưởng Lợi nhuận trong ngày</h3>
                 <div className="h-64 flex items-end gap-4 mt-8">
                   {[
@@ -574,7 +574,7 @@ function App() {
                 </div>
               </div>
 
-              <div className="bg-[#fdfbf7] rounded-lg p-6 border border-[#e8dcc7]">
+              <div className="bg-[#fdfbf7]/95 backdrop-blur-md rounded-lg p-6 border border-[#e8dcc7]">
                 <h3 className="text-xl font-bold mb-6">Chi tiết Nhân sự hôm nay</h3>
                 <div className="space-y-4">
                   <div className="bg-slate-50/80 rounded-md p-4 border border-[#e8dcc7]">
@@ -610,7 +610,7 @@ function App() {
             
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 flex-1 min-h-0">
               {/* Product Management */}
-              <div className="col-span-2 bg-[#fdfbf7] rounded-2xl p-6 border border-[#e8dcc7] shadow-sm flex flex-col h-full min-h-0">
+              <div className="col-span-2 bg-[#fdfbf7]/95 backdrop-blur-md rounded-2xl p-6 border border-[#e8dcc7] shadow-sm flex flex-col h-full min-h-0">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">🏷️ Quản lý Danh mục Sản phẩm</h3>
                 <p className="text-sm text-[#8c7b6c] mb-6">Thêm, sửa, xóa các mặt hàng sẽ xuất hiện trên màn hình thu ngân.</p>
                 
@@ -634,13 +634,13 @@ function App() {
                       </button>
                     </div>
 
-                <div className="flex-1 overflow-y-auto bg-[#fdfbf7] rounded-2xl p-6 border-2 border-[#e8dcc7] shadow-inner">
+                <div className="flex-1 overflow-y-auto bg-[#fdfbf7]/95 backdrop-blur-md rounded-2xl p-6 border-2 border-[#e8dcc7] shadow-inner">
                   {products.length === 0 ? (
                     <p className="text-slate-400 text-center mt-10">Chưa có sản phẩm nào. Hãy thêm ở trên.</p>
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {products.map(p => (
-                        <div key={p.id} className="flex justify-between items-center p-3 bg-[#fdfbf7] border border-[#e8dcc7] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:border-blue-300 hover:-translate-y-0.5 transition-all duration-300">
+                        <div key={p.id} className="flex justify-between items-center p-3 bg-[#fdfbf7]/95 backdrop-blur-md border border-[#e8dcc7] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:border-blue-300 hover:-translate-y-0.5 transition-all duration-300">
                           <div className="flex items-center gap-4">
                             <div className="w-14 h-14 rounded-lg bg-[#f0e8df] flex items-center justify-center overflow-hidden shrink-0">
                               {p.image ? (
@@ -681,9 +681,9 @@ function App() {
                         }
                       }} className="bg-[#8b5e34] hover:bg-[#704b29] text-white px-4 rounded-lg font-bold">Thêm</button>
                     </div>
-                    <div className="flex-1 overflow-y-auto bg-[#fdfbf7] rounded-2xl p-6 border-2 border-[#e8dcc7] shadow-inner space-y-2">
+                    <div className="flex-1 overflow-y-auto bg-[#fdfbf7]/95 backdrop-blur-md rounded-2xl p-6 border-2 border-[#e8dcc7] shadow-inner space-y-2">
                       {categories.map(cat => (
-                        <div key={cat.id} className="flex justify-between items-center bg-[#fdfbf7] p-4 rounded-xl border border-[#e8dcc7] shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
+                        <div key={cat.id} className="flex justify-between items-center bg-[#fdfbf7]/95 backdrop-blur-md p-4 rounded-xl border border-[#e8dcc7] shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                           <span className="font-bold">{cat.name}</span>
                           <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa danh mục này?', onConfirm: () => setCategories(categories.filter(c => c.id !== cat.id)) }); }} className="text-red-400 hover:text-red-600 font-bold">✕</button>
                         </div>
@@ -694,7 +694,7 @@ function App() {
 
                 {recipeTab === 'ingredients' && (
                   <div className="flex-1 flex flex-col min-h-0 animate-in fade-in duration-300">
-                    <div className="flex gap-2 mb-4 bg-[#fdfbf7] p-3 rounded-lg border border-[#e8dcc7] flex-wrap items-end">
+                    <div className="flex gap-2 mb-4 bg-[#fdfbf7]/95 backdrop-blur-md p-3 rounded-lg border border-[#e8dcc7] flex-wrap items-end">
                       <div className="flex-1 min-w-[150px]">
                         <label className="text-xs font-bold text-[#8c7b6c] mb-1 block">Tên NL</label>
                         <input type="text" value={newIngredient.name} onChange={e => setNewIngredient({...newIngredient, name: e.target.value})} className="w-full border border-[#e8dcc7] rounded-lg p-2 text-sm" />
@@ -718,9 +718,9 @@ function App() {
                         }
                       }} className="bg-[#8b5e34] hover:bg-[#704b29] text-white px-4 h-[38px] rounded-lg font-bold">Thêm</button>
                     </div>
-                    <div className="flex-1 overflow-y-auto bg-[#fdfbf7] rounded-2xl p-6 border-2 border-[#e8dcc7] shadow-inner space-y-2">
+                    <div className="flex-1 overflow-y-auto bg-[#fdfbf7]/95 backdrop-blur-md rounded-2xl p-6 border-2 border-[#e8dcc7] shadow-inner space-y-2">
                       {ingredients.map(ing => (
-                        <div key={ing.id} className="flex justify-between items-center bg-[#fdfbf7] p-4 rounded-xl border border-[#e8dcc7] shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
+                        <div key={ing.id} className="flex justify-between items-center bg-[#fdfbf7]/95 backdrop-blur-md p-4 rounded-xl border border-[#e8dcc7] shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                           <div>
                             <div className="font-bold">{ing.name}</div>
                             <div className="text-xs text-[#8c7b6c]">{ing.cost} đ / {ing.unit}</div>
@@ -734,7 +734,7 @@ function App() {
               </div>
 
               {/* Notes Management */}
-              <div className="col-span-1 bg-[#fdfbf7] rounded-2xl p-6 border border-[#e8dcc7] shadow-sm flex flex-col h-full min-h-0">
+              <div className="col-span-1 bg-[#fdfbf7]/95 backdrop-blur-md rounded-2xl p-6 border border-[#e8dcc7] shadow-sm flex flex-col h-full min-h-0">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">📝 Quản lý Ghi chú nhanh</h3>
                 <p className="text-sm text-[#8c7b6c] mb-6">Thiết lập các ghi chú thường dùng để thu ngân chọn nhanh khi order.</p>
 
@@ -743,9 +743,9 @@ function App() {
                   <button onClick={handleAddNewNote} className="w-full bg-[#8b5e34] hover:bg-[#704b29] text-white p-3 rounded-lg font-bold transition-colors">Thêm</button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto bg-[#fdfbf7] rounded-2xl p-6 border-2 border-[#e8dcc7] shadow-inner flex flex-col gap-2">
+                <div className="flex-1 overflow-y-auto bg-[#fdfbf7]/95 backdrop-blur-md rounded-2xl p-6 border-2 border-[#e8dcc7] shadow-inner flex flex-col gap-2">
                   {predefinedNotes.map((note, idx) => (
-                    <div key={idx} className="flex justify-between items-center bg-[#fdfbf7] p-4 rounded-xl border border-[#e8dcc7] shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
+                    <div key={idx} className="flex justify-between items-center bg-[#fdfbf7]/95 backdrop-blur-md p-4 rounded-xl border border-[#e8dcc7] shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                       <span className="font-bold text-sm">{note}</span>
                       <button onClick={() => { setConfirmDialog({ isOpen: true, message: 'Bạn có chắc chắn muốn xóa ghi chú này?', onConfirm: () => deletePredefinedNote(note) }); }} className="text-[#8c7b6c] hover:text-red-400 transition-colors">✕</button>
                     </div>
@@ -758,7 +758,7 @@ function App() {
 
 
               {/* Size Management */}
-              <div className="col-span-1 bg-[#fdfbf7] rounded-2xl p-6 border border-[#e8dcc7] shadow-sm flex flex-col h-full min-h-0">
+              <div className="col-span-1 bg-[#fdfbf7]/95 backdrop-blur-md rounded-2xl p-6 border border-[#e8dcc7] shadow-sm flex flex-col h-full min-h-0">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">📏 Quản lý Kích cỡ / Phân loại</h3>
                 <p className="text-sm text-[#8c7b6c] mb-6">Thiết lập các biến thể kích thước (S, M, L, XL...) và giá cộng thêm.</p>
 
@@ -768,9 +768,9 @@ function App() {
                   <button onClick={handleAddNewSize} className="w-full bg-[#8b5e34] hover:bg-[#704b29] text-white p-3 rounded-lg font-bold transition-colors">Thêm</button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto bg-[#fdfbf7] rounded-2xl p-6 border-2 border-[#e8dcc7] shadow-inner flex flex-col gap-2">
+                <div className="flex-1 overflow-y-auto bg-[#fdfbf7]/95 backdrop-blur-md rounded-2xl p-6 border-2 border-[#e8dcc7] shadow-inner flex flex-col gap-2">
                   {predefinedSizes.map((sz, idx) => (
-                    <div key={idx} className="flex justify-between items-center bg-[#fdfbf7] p-4 rounded-xl border border-[#e8dcc7] shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
+                    <div key={idx} className="flex justify-between items-center bg-[#fdfbf7]/95 backdrop-blur-md p-4 rounded-xl border border-[#e8dcc7] shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all duration-300">
                       <div>
                         <span className="font-bold text-sm block">{sz.name}</span>
                         <span className="text-xs text-[#8b5e34]">+{sz.priceAdd.toLocaleString()} đ</span>
@@ -804,7 +804,7 @@ function App() {
             
             <div className="grid grid-cols-1 gap-6">
               {/* Renaming Tabs */}
-              <div className="bg-[#fdfbf7] rounded-lg p-6 border border-[#e8dcc7] flex flex-col">
+              <div className="bg-[#fdfbf7]/95 backdrop-blur-md rounded-lg p-6 border border-[#e8dcc7] flex flex-col">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">📝 Đổi tên Menu Sidebar</h3>
                 <p className="text-sm text-[#8c7b6c] mb-6">Đổi tên các chức năng theo đúng ngôn ngữ của quán (ví dụ: Quản lý Sản phẩm -&gt; Quần áo).</p>
                 <div className="grid grid-cols-3 gap-4 flex-1">
@@ -823,7 +823,7 @@ function App() {
               </div>
 
               {/* POS Layout Config */}
-              <div className="bg-[#fdfbf7] rounded-lg p-6 border border-[#e8dcc7]">
+              <div className="bg-[#fdfbf7]/95 backdrop-blur-md rounded-lg p-6 border border-[#e8dcc7]">
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">🎨 Tùy chỉnh Giao diện POS</h3>
                 <p className="text-sm text-[#8c7b6c] mb-6">Chọn mô hình bán hàng và tùy biến tên gọi các khu vực (Ví dụ: Đổi "Bàn" thành "Phòng thử đồ" hoặc "Ghế").</p>
                 
@@ -934,7 +934,7 @@ function App() {
                 </button>
               )}
               {/* Left Side: Cart & Keypad (High Density) */}
-              <div className="w-full md:w-[450px] flex flex-col bg-[#fdfbf7] border border-[#e8dcc7] shrink-0 shadow-sm rounded-sm h-[60vh] md:h-auto min-h-[400px]">
+              <div className="w-full md:w-[450px] flex flex-col bg-[#fdfbf7]/95 backdrop-blur-md border border-[#e8dcc7] shrink-0 shadow-sm rounded-sm h-[60vh] md:h-auto min-h-[400px]">
                 {/* Header */}
                 <div className="bg-[#704b29] text-white p-2 flex justify-between items-center shrink-0 gap-2">
                   {posConfig.layout !== 'retail' && (
@@ -956,7 +956,7 @@ function App() {
                 </div>
 
                 {/* Cart Table Data */}
-                <div className="flex-1 overflow-y-auto bg-[#fdfbf7] border-b border-[#e8dcc7]">
+                <div className="flex-1 overflow-y-auto bg-[#fdfbf7]/95 backdrop-blur-md border-b border-[#e8dcc7]">
                   <table className="w-full text-left text-xs border-collapse">
                     <thead className="bg-[#e6dacb] sticky top-0 border-b border-[#e8dcc7] z-10 shadow-sm">
                       <tr>
@@ -997,7 +997,7 @@ function App() {
                 {holdOrders.length > 0 && (
                   <div className="bg-yellow-50 border-b border-[#e8dcc7] p-1 flex gap-1 overflow-x-auto shrink-0 hide-scrollbar">
                     {holdOrders.map((held, idx) => (
-                      <div key={idx} className="flex shrink-0 items-center bg-[#fdfbf7] border border-yellow-400 px-2 py-1 text-xs">
+                      <div key={idx} className="flex shrink-0 items-center bg-[#fdfbf7]/95 backdrop-blur-md border border-yellow-400 px-2 py-1 text-xs">
                         <span className="font-bold text-[#4a3f35] mr-2">{held.table}</span>
                         <button onClick={() => switchTable(held.table)} className="text-[#8b5e34] hover:underline mr-2">Mở</button>
                         <button onClick={() => setHoldOrders(prev => prev.filter((_, i) => i !== idx))} className="text-red-600 hover:underline">Hủy</button>
@@ -1009,7 +1009,7 @@ function App() {
                 {/* Bottom Tools & Totals */}
                 <div className="bg-[#f0e8df] p-2 shrink-0">
                   <div className="flex justify-between items-end mb-2">
-                    <div className="flex-1 border border-[#e8dcc7] bg-[#fdfbf7] p-2">
+                    <div className="flex-1 border border-[#e8dcc7] bg-[#fdfbf7]/95 backdrop-blur-md p-2">
                       <div className="flex justify-between text-sm mb-1 text-[#756658]"><span>Tiền hàng:</span> <span className="font-mono">{cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toLocaleString()}</span></div>
                       <div className="flex justify-between text-sm mb-1 text-[#756658]"><span>Chiết khấu:</span> <span className="font-mono">0</span></div>
                       <div className="flex justify-between font-bold text-lg text-[#3e342b] border-t border-[#e8dcc7] pt-1 mt-1">
@@ -1021,16 +1021,16 @@ function App() {
                   <div className="grid grid-cols-5 gap-1">
                     <div className="col-span-3 grid grid-cols-4 gap-1">
                       {['7','8','9','*','4','5','6','000','1','2','3','DEL','C','0',',','+'].map((btn) => (
-                        <button key={btn} onClick={() => handleKeypad(btn)} className="bg-[#fdfbf7] border border-[#e8dcc7] hover:bg-[#e6dacb] active:bg-slate-300 py-2 font-mono font-bold text-sm text-[#4a3f35] rounded-sm">
+                        <button key={btn} onClick={() => handleKeypad(btn)} className="bg-[#fdfbf7]/95 backdrop-blur-md border border-[#e8dcc7] hover:bg-[#e6dacb] active:bg-slate-300 py-2 font-mono font-bold text-sm text-[#4a3f35] rounded-sm">
                           {btn}
                         </button>
                       ))}
                     </div>
                     <div className="col-span-2 flex flex-col gap-1">
-                      <div className="bg-[#fdfbf7] border border-[#e8dcc7] p-1 text-right font-mono font-bold text-emerald-700 h-8 flex items-center justify-end rounded-sm text-sm">
+                      <div className="bg-[#fdfbf7]/95 backdrop-blur-md border border-[#e8dcc7] p-1 text-right font-mono font-bold text-emerald-700 h-8 flex items-center justify-end rounded-sm text-sm">
                         {keypadBuffer || '0'}
                       </div>
-                      <button onClick={() => posConfig.layout !== 'retail' && switchTable(null)} className="flex-1 bg-[#fdfbf7] border border-[#e8dcc7] hover:bg-[#e6dacb] font-bold text-sm text-[#4a3f35] rounded-sm">
+                      <button onClick={() => posConfig.layout !== 'retail' && switchTable(null)} className="flex-1 bg-[#fdfbf7]/95 backdrop-blur-md border border-[#e8dcc7] hover:bg-[#e6dacb] font-bold text-sm text-[#4a3f35] rounded-sm">
                         Quay lại
                       </button>
                       <button onClick={() => setShowPaymentModal(true)} className="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold text-sm uppercase rounded-sm border border-green-800 shadow-sm">
@@ -1042,7 +1042,7 @@ function App() {
               </div>
 
               {/* Right Side: Products Grid (High Density) */}
-              <div className="flex-1 flex flex-col h-full min-h-0 border border-[#e8dcc7] bg-[#fdfbf7] rounded-sm overflow-hidden">
+              <div className="flex-1 flex flex-col h-full min-h-0 border border-[#e8dcc7] bg-[#fdfbf7]/95 backdrop-blur-md rounded-sm overflow-hidden">
                 {/* Category Pills - Square styling */}
                 <div className="flex bg-[#e6dacb] border-b border-[#e8dcc7] overflow-x-auto shrink-0 hide-scrollbar p-1 gap-1">
                   {[
@@ -1055,7 +1055,7 @@ function App() {
                     <button 
                       key={cat.id}
                       onClick={() => setSelectedCategory(cat.id)}
-                      className={`px-3 py-1.5 text-xs font-bold whitespace-nowrap border rounded-sm ${selectedCategory === cat.id ? 'bg-[#8b5e34] text-white border-[#5c3e23]' : 'bg-[#fdfbf7] text-[#5c4f42] border-[#e8dcc7] hover:bg-[#f0e8df]'}`}>
+                      className={`px-3 py-1.5 text-xs font-bold whitespace-nowrap border rounded-sm ${selectedCategory === cat.id ? 'bg-[#8b5e34] text-white border-[#5c3e23]' : 'bg-[#fdfbf7]/95 backdrop-blur-md text-[#5c4f42] border-[#e8dcc7] hover:bg-[#f0e8df]'}`}>
                       {cat.label}
                     </button>
                   ))}
@@ -1067,7 +1067,7 @@ function App() {
                       <div 
                         key={item.id} 
                         onClick={() => { setSelectedItemForTopping(item); setNoteText(''); setSelectedSize(predefinedSizes[0]?.name || ''); setSelectedToppings([]); }} 
-                        className={`bg-[#fdfbf7] border hover:border-[#8b5e34] cursor-pointer group flex flex-col relative h-24 overflow-hidden rounded-sm ${item.status === 'low_stock' ? 'border-yellow-400 border-2 shadow-[0_0_8px_rgba(250,204,21,0.5)]' : 'border-[#e8dcc7]'}`}
+                        className={`bg-[#fdfbf7]/95 backdrop-blur-md border hover:border-[#8b5e34] cursor-pointer group flex flex-col relative h-24 overflow-hidden rounded-sm ${item.status === 'low_stock' ? 'border-yellow-400 border-2 shadow-[0_0_8px_rgba(250,204,21,0.5)]' : 'border-[#e8dcc7]'}`}
                       >
                         {item.status === 'low_stock' && <div className="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-1 py-0.5 rounded-bl-md shadow-md z-20 animate-pulse">Sắp Hết</div>}
                         {item.image ? (
@@ -1107,7 +1107,7 @@ function App() {
               </button>
             )}
             {/* Mobile View for Staff */}
-            <div className="w-full bg-[#fdfbf7] md:rounded-3xl p-4 md:p-6 pb-24 shadow-md md:border border-[#e8dcc7] relative overflow-y-auto max-w-lg mx-auto h-full md:h-auto">
+            <div className="w-full bg-[#fdfbf7]/95 backdrop-blur-md md:rounded-3xl p-4 md:p-6 pb-24 shadow-md md:border border-[#e8dcc7] relative overflow-y-auto max-w-lg mx-auto h-full md:h-auto">
               
               <div className="mt-6 mb-8 text-center">
                 <div className="w-20 h-20 bg-gradient-to-tr from-orange-400 to-amber-300 rounded-full mx-auto mb-3 flex items-center justify-center text-3xl shadow-sm shadow-orange-500/30">
@@ -1156,7 +1156,7 @@ function App() {
                   { date: 'Hôm qua, 18/06', in: '14:00', out: '22:05', hours: '8h 5m', status: 'done' },
                   { date: 'Thứ 2, 17/06', in: '06:02', out: '14:00', hours: '7h 58m', status: 'done' },
                 ].map((log, i) => (
-                  <div key={i} className={`p-4 rounded-md border ${log.status === 'active' ? 'bg-orange-500/10 border-orange-500/30' : 'bg-[#fdfbf7] border-[#e8dcc7]'}`}>
+                  <div key={i} className={`p-4 rounded-md border ${log.status === 'active' ? 'bg-orange-500/10 border-orange-500/30' : 'bg-[#fdfbf7]/95 backdrop-blur-md border-[#e8dcc7]'}`}>
                     <div className="flex justify-between items-center mb-2">
                       <span className="font-bold text-sm">{log.date}</span>
                       {log.status === 'active' && <span className="text-xs bg-orange-500 text-white font-bold px-2 py-0.5 rounded-full animate-pulse">ĐANG CA</span>}
@@ -1189,8 +1189,8 @@ function App() {
             <p className="text-[#8c7b6c] mb-8">Hiển thị mã QR này cho nhân viên quét bằng App SmartStore để Check-in.</p>
             
             <div className="relative p-1 bg-gradient-to-r from-purple-500 to-green-400 rounded-md shadow-[0_0_50px_rgba(74,222,128,0.2)]">
-              <div className="bg-[#fdfbf7] p-6 rounded-[22px]">
-                <div className="w-64 h-64 border border-[#e8dcc7] flex items-center justify-center bg-[#fdfbf7] rounded-md p-2">
+              <div className="bg-[#fdfbf7]/95 backdrop-blur-md p-6 rounded-[22px]">
+                <div className="w-64 h-64 border border-[#e8dcc7] flex items-center justify-center bg-[#fdfbf7]/95 backdrop-blur-md rounded-md p-2">
                   <QRCode value={qrCodeData} size={240} />
                 </div>
               </div>
@@ -1215,7 +1215,7 @@ function App() {
       {/* Custom Confirm Modal */}
       {confirmDialog.isOpen && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[200] backdrop-blur-sm animate-in fade-in">
-          <div className="bg-[#fdfbf7] rounded-xl shadow-2xl w-[400px] overflow-hidden animate-in zoom-in-95">
+          <div className="bg-[#fdfbf7]/95 backdrop-blur-md rounded-xl shadow-2xl w-[400px] overflow-hidden animate-in zoom-in-95">
             <div className="p-6">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-500 text-2xl shrink-0">
@@ -1252,22 +1252,22 @@ function App() {
       {/* Product Modal */}
       {showProductModal && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[100] backdrop-blur-sm">
-          <div className="bg-[#fdfbf7] rounded-xl shadow-2xl w-[800px] max-h-[90vh] flex flex-col overflow-hidden animate-in zoom-in-95">
-            <div className="p-6 border-b border-[#e8dcc7] flex justify-between items-center bg-[#fdfbf7]">
+          <div className="bg-[#fdfbf7]/95 backdrop-blur-md rounded-xl shadow-2xl w-[800px] max-h-[90vh] flex flex-col overflow-hidden animate-in zoom-in-95">
+            <div className="p-6 border-b border-[#e8dcc7] flex justify-between items-center bg-[#fdfbf7]/95 backdrop-blur-md">
               <h2 className="text-2xl font-bold text-[#4a3f35]">{editingProduct ? 'Sửa Sản Phẩm' : 'Thêm Sản Phẩm Mới'}</h2>
               <button onClick={() => setShowProductModal(false)} className="text-[#8c7b6c] hover:text-red-500 text-xl font-bold">✕</button>
             </div>
             
             <div className="flex-1 overflow-y-auto p-6 bg-[#f0e8df]/50">
               {/* CATEGORY SELECTION */}
-              <div className="bg-[#fdfbf7] p-6 rounded-lg border border-[#e8dcc7] shadow-sm mb-6">
+              <div className="bg-[#fdfbf7]/95 backdrop-blur-md p-6 rounded-lg border border-[#e8dcc7] shadow-sm mb-6">
                 <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><span className="bg-[#f5eade] text-[#8b5e34] w-6 h-6 flex items-center justify-center rounded-full text-sm">1</span> Chọn Danh Mục</h3>
                 <div className="flex gap-2 flex-wrap">
                   {categories.map(cat => (
                     <button 
                       key={cat.id} 
                       onClick={() => setProductForm({...productForm, category: cat.id})}
-                      className={`px-4 py-2 rounded-lg font-bold transition-colors border ${productForm.category === cat.id ? 'bg-[#8b5e34] text-white border-[#8b5e34] shadow-md' : 'bg-[#fdfbf7] text-[#756658] border-[#e8dcc7] hover:bg-[#f9f5f0]'}`}
+                      className={`px-4 py-2 rounded-lg font-bold transition-colors border ${productForm.category === cat.id ? 'bg-[#8b5e34] text-white border-[#8b5e34] shadow-md' : 'bg-[#fdfbf7]/95 backdrop-blur-md text-[#756658] border-[#e8dcc7] hover:bg-[#f9f5f0]'}`}
                     >
                       {cat.name}
                     </button>
@@ -1278,11 +1278,11 @@ function App() {
 
               {/* PRODUCT DETAILS */}
               <div className={`transition-opacity duration-300 ${!productForm.category ? 'opacity-40 pointer-events-none grayscale' : ''}`}>
-                <div className="bg-[#fdfbf7] p-6 rounded-lg border border-[#e8dcc7] shadow-sm mb-6">
+                <div className="bg-[#fdfbf7]/95 backdrop-blur-md p-6 rounded-lg border border-[#e8dcc7] shadow-sm mb-6">
                   <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><span className="bg-[#f5eade] text-[#8b5e34] w-6 h-6 flex items-center justify-center rounded-full text-sm">2</span> Thông tin cơ bản</h3>
                   
                   <div className="grid grid-cols-3 gap-6">
-                    <div className="col-span-1 flex flex-col items-center justify-center border-2 border-dashed border-[#e8dcc7] rounded-lg p-4 bg-[#fdfbf7] relative group cursor-pointer hover:bg-[#f0e8df] transition-colors">
+                    <div className="col-span-1 flex flex-col items-center justify-center border-2 border-dashed border-[#e8dcc7] rounded-lg p-4 bg-[#fdfbf7]/95 backdrop-blur-md relative group cursor-pointer hover:bg-[#f0e8df] transition-colors">
                       <input type="file" accept="image/*" onChange={(e) => {
                         const file = e.target.files[0];
                         if (file) {
@@ -1327,21 +1327,21 @@ function App() {
                 </div>
 
                 {/* INGREDIENTS */}
-                <div className="bg-[#fdfbf7] p-6 rounded-lg border border-[#e8dcc7] shadow-sm">
+                <div className="bg-[#fdfbf7]/95 backdrop-blur-md p-6 rounded-lg border border-[#e8dcc7] shadow-sm">
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="font-bold text-lg flex items-center gap-2"><span className="bg-[#f5eade] text-[#8b5e34] w-6 h-6 flex items-center justify-center rounded-full text-sm">3</span> Công thức Nguyên liệu</h3>
                     <button onClick={() => setProductForm({...productForm, recipe: [...productForm.recipe, {ingredientId: '', qty: 0}]})} className="text-[#8b5e34] hover:text-blue-800 font-bold text-sm bg-[#fdf8f3] px-3 py-1 rounded-md transition-colors">+ Thêm NL</button>
                   </div>
                   
                   {productForm.recipe.length === 0 ? (
-                    <div className="text-center py-6 bg-[#fdfbf7] border border-dashed border-[#e8dcc7] rounded-lg">
+                    <div className="text-center py-6 bg-[#fdfbf7]/95 backdrop-blur-md border border-dashed border-[#e8dcc7] rounded-lg">
                       <p className="text-[#8c7b6c] text-sm">Món này chưa thiết lập công thức.</p>
                       <button onClick={() => setProductForm({...productForm, recipe: [{ingredientId: '', qty: 0}]})} className="mt-2 text-[#8b5e34] font-bold text-sm">Thiết lập ngay</button>
                     </div>
                   ) : (
                     <div className="space-y-3">
                       {productForm.recipe.map((req, idx) => (
-                        <div key={idx} className="flex gap-3 items-center bg-[#fdfbf7] p-3 rounded-lg border border-[#e8dcc7]">
+                        <div key={idx} className="flex gap-3 items-center bg-[#fdfbf7]/95 backdrop-blur-md p-3 rounded-lg border border-[#e8dcc7]">
                           <select 
                             value={req.ingredientId} 
                             onChange={(e) => {
@@ -1349,7 +1349,7 @@ function App() {
                               newRecipe[idx].ingredientId = e.target.value;
                               setProductForm({...productForm, recipe: newRecipe});
                             }}
-                            className="flex-1 bg-[#fdfbf7] border border-[#e8dcc7] rounded-md p-2 text-sm"
+                            className="flex-1 bg-[#fdfbf7]/95 backdrop-blur-md border border-[#e8dcc7] rounded-md p-2 text-sm"
                           >
                             <option value="">-- Chọn Nguyên Liệu --</option>
                             {ingredients.map(ing => (
@@ -1365,7 +1365,7 @@ function App() {
                               newRecipe[idx].qty = parseFloat(e.target.value) || 0;
                               setProductForm({...productForm, recipe: newRecipe});
                             }}
-                            className="w-24 bg-[#fdfbf7] border border-[#e8dcc7] rounded-md p-2 text-sm"
+                            className="w-24 bg-[#fdfbf7]/95 backdrop-blur-md border border-[#e8dcc7] rounded-md p-2 text-sm"
                           />
                           <button onClick={() => {
                             const newRecipe = productForm.recipe.filter((_, i) => i !== idx);
@@ -1379,7 +1379,7 @@ function App() {
               </div>
             </div>
             
-            <div className="p-6 border-t border-[#e8dcc7] bg-[#fdfbf7] flex justify-end gap-3">
+            <div className="p-6 border-t border-[#e8dcc7] bg-[#fdfbf7]/95 backdrop-blur-md flex justify-end gap-3">
               <button onClick={() => setShowProductModal(false)} className="px-6 py-2 rounded-lg font-bold text-[#756658] hover:bg-[#f0e8df]">Hủy</button>
               <button 
                 disabled={!productForm.category}
@@ -1431,7 +1431,7 @@ function App() {
       {/* Topping / Note Modal (Keep existing logic) */}
       {selectedItemForTopping && (
         <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-50 backdrop-blur-sm">
-          <div className="bg-[#fdfbf7] border border-[#e8dcc7] rounded-lg p-6 w-[500px] shadow-md border border-[#e8dcc7] animate-in zoom-in-95">
+          <div className="bg-[#fdfbf7]/95 backdrop-blur-md border border-[#e8dcc7] rounded-lg p-6 w-[500px] shadow-md border border-[#e8dcc7] animate-in zoom-in-95">
             <h2 className="text-2xl font-bold mb-2">Tùy chọn: {selectedItemForTopping.name}</h2>
             <p className="text-[#8b5e34] font-bold mb-6">{selectedItemForTopping.price.toLocaleString()} đ</p>
             
@@ -1443,7 +1443,7 @@ function App() {
                     <button 
                       key={idx} 
                       onClick={() => setSelectedSize(sz.name)} 
-                      className={`px-4 py-2 border rounded-sm font-bold transition-all text-sm ${selectedSize === sz.name ? 'border-[#8b5e34] bg-[#8b5e34] text-white' : 'border-[#e8dcc7] bg-[#fdfbf7] text-[#5c4f42] hover:bg-[#f0e8df]'}`}
+                      className={`px-4 py-2 border rounded-sm font-bold transition-all text-sm ${selectedSize === sz.name ? 'border-[#8b5e34] bg-[#8b5e34] text-white' : 'border-[#e8dcc7] bg-[#fdfbf7]/95 backdrop-blur-md text-[#5c4f42] hover:bg-[#f0e8df]'}`}
                     >
                       {sz.name} {sz.priceAdd > 0 && `(+${sz.priceAdd.toLocaleString()}đ)`}
                     </button>
@@ -1488,10 +1488,10 @@ function App() {
       {/* Quick Payment Modal */}
       {showPaymentModal && (
         <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-50 backdrop-blur-sm">
-          <div className="bg-[#fdfbf7] border border-[#e8dcc7] rounded-lg p-6 w-[500px] shadow-md border border-[#e8dcc7]">
+          <div className="bg-[#fdfbf7]/95 backdrop-blur-md border border-[#e8dcc7] rounded-lg p-6 w-[500px] shadow-md border border-[#e8dcc7]">
             <h2 className="text-2xl font-bold mb-6 text-center border-b border-[#e8dcc7] pb-4">Thanh toán Bill</h2>
             
-            <div className="flex justify-between items-center mb-6 bg-[#fdfbf7] p-4 rounded-md border border-[#e8dcc7]">
+            <div className="flex justify-between items-center mb-6 bg-[#fdfbf7]/95 backdrop-blur-md p-4 rounded-md border border-[#e8dcc7]">
               <span className="text-[#8c7b6c] text-lg">Tổng tiền thanh toán:</span>
               <span className="text-3xl font-bold text-[#8b5e34]">
                 {cart.reduce((sum, item) => sum + (item.price * item.qty), 0).toLocaleString()} đ
@@ -1585,7 +1585,7 @@ function App() {
       {/* Confirm Dialog */}
       {confirmDialog.isOpen && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 z-[100]">
-          <div className="bg-[#fdfbf7] rounded-2xl p-6 max-w-sm w-full shadow-2xl animate-[fadeIn_0.2s_ease-out]">
+          <div className="bg-[#fdfbf7]/95 backdrop-blur-md rounded-2xl p-6 max-w-sm w-full shadow-2xl animate-[fadeIn_0.2s_ease-out]">
             <h3 className="text-xl font-bold text-[#4a3f35] mb-2">Xác nhận</h3>
             <p className="text-[#756658] mb-6">{confirmDialog.message}</p>
             <div className="flex gap-3">
@@ -1611,7 +1611,7 @@ function App() {
       )}
 
       {/* Bottom Navigation for Mobile */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[#fdfbf7] border-t border-[#e8dcc7] flex justify-around items-center pb-safe pt-2 px-2 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] z-[90]">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[#fdfbf7]/95 backdrop-blur-md border-t border-[#e8dcc7] flex justify-around items-center pb-safe pt-2 px-2 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] z-[90]">
         {Object.entries(tabNames).filter(([key]) => visibleTabs.includes(key)).slice(0, 5).map(([key, name]) => {
           const isActive = activeTab === key;
           const icon = name.split(' ')[0];
