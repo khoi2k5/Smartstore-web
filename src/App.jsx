@@ -161,23 +161,7 @@ function App() {
   };
 
   const handleLogoutClick = async () => {
-    if (activeTab === 'settings' && isSettingsDirty) {
-      setConfirmDialog({
-        isOpen: true,
-        message: "Bạn đang có thay đổi chưa lưu. Bấm Đồng ý để ở lại trang và lưu, bấm Hủy để tiếp tục đăng xuất.",
-        onConfirm: () => { /* Stay */ },
-        onCancel: () => { signOut(auth); }
-      });
-      if (false) {
-        return;
-      }
-    }
-    setConfirmDialog({
-        isOpen: true,
-        message: "Bạn có chắc chắn muốn đăng xuất không?",
-        onConfirm: () => { signOut(auth); }
-      });
-      if (false) {
+    const performLogout = async () => {
       try {
         await signOut(auth);
       } catch (error) {
@@ -189,7 +173,22 @@ function App() {
       setEditTabNames({...tabNames});
       setEditPosConfig({...posConfig});
       setIsSettingsDirty(false);
+    };
+
+    if (activeTab === 'settings' && isSettingsDirty) {
+      setConfirmDialog({
+        isOpen: true,
+        message: "Bạn đang có thay đổi chưa lưu. Bấm Đồng ý để ở lại trang và lưu, bấm Hủy để tiếp tục đăng xuất.",
+        onConfirm: () => { /* Stay */ },
+        onCancel: performLogout
+      });
+      return;
     }
+    setConfirmDialog({
+        isOpen: true,
+        message: "Bạn có chắc chắn muốn đăng xuất không?",
+        onConfirm: performLogout
+    });
   };
 
   const toggleTopping = (topping) => {
@@ -912,8 +911,8 @@ function App() {
                 {/* Header */}
                 <div className="bg-blue-700 text-white p-2 flex justify-between items-center shrink-0 gap-2">
                   {posConfig.layout !== 'retail' && (
-                    <button onClick={() => setSelectedTable(null)} className="md:hidden text-white border border-white/30 px-2 py-1 rounded text-xs font-bold whitespace-nowrap bg-blue-800">
-                      &lt; Quay lại
+                    <button onClick={() => setSelectedTable(null)} className="text-white border border-white/30 hover:bg-blue-800 px-3 py-1.5 rounded-md text-sm font-bold whitespace-nowrap transition-colors flex items-center gap-1 shadow-sm">
+                      <span className="text-lg leading-none">&lsaquo;</span> Sơ đồ bàn
                     </button>
                   )}
                   <h3 className="font-bold text-sm uppercase">Hóa đơn: {selectedTable !== posConfig.takeawayName ? selectedTable : 'Mua mang đi'}</h3>
