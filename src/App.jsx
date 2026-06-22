@@ -79,6 +79,33 @@ function App() {
 
   // POS State
   const [selectedTable, setSelectedTable] = useState(null);
+
+  const switchTable = (tableName) => {
+    // Save current cart if any
+    if (selectedTable && cart.length > 0) {
+      setHoldOrders(prev => {
+        const filtered = prev.filter(o => o.table !== selectedTable);
+        return [...filtered, { table: selectedTable, cart: [...cart], time: new Date().toLocaleTimeString('vi-VN', {hour:'2-digit', minute:'2-digit'}) }];
+      });
+    }
+    
+    // Clear current cart for the transition
+    setCart([]);
+
+    // If opening a new table, load its held order if it exists
+    if (tableName) {
+      setHoldOrders(prev => {
+        const found = prev.find(o => o.table === tableName);
+        if (found) {
+          setTimeout(() => setCart(found.cart), 0);
+          return prev.filter(o => o.table !== tableName);
+        }
+        return prev;
+      });
+    }
+
+    setSelectedTable(tableName);
+  };
   const [cart, setCart] = useState([]);
   const [keypadBuffer, setKeypadBuffer] = useState('');
   const [selectedItemForTopping, setSelectedItemForTopping] = useState(null);
@@ -874,7 +901,7 @@ function App() {
               
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
                 <div 
-                  onClick={() => setSelectedTable(posConfig.takeawayName)}
+                  onClick={() => switchTable(posConfig.takeawayName)}
                   className="border border-blue-600 rounded-md cursor-pointer transition-all overflow-hidden relative h-28 group"
                   style={{ backgroundImage: "url('/takeaway_bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
                   <div className="absolute inset-0 bg-blue-900/60 group-hover:bg-blue-900/40 transition-colors"></div>
@@ -885,7 +912,7 @@ function App() {
                 {[1,2,3,4,5,6,7,8].map((idx) => (
                   <div 
                     key={idx}
-                    onClick={() => setSelectedTable(`${posConfig.entityName} ${idx}`)}
+                    onClick={() => switchTable(`${posConfig.entityName} ${idx}`)}
                     className="border border-slate-200 hover:border-blue-400 rounded-md cursor-pointer transition-all overflow-hidden relative h-28 group"
                     style={{ backgroundImage: "url('/cafe_table_bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
                     <div className="absolute inset-0 bg-slate-900/50 group-hover:bg-slate-900/30 transition-colors"></div>
@@ -911,7 +938,7 @@ function App() {
                 {/* Header */}
                 <div className="bg-blue-700 text-white p-2 flex justify-between items-center shrink-0 gap-2">
                   {posConfig.layout !== 'retail' && (
-                    <button onClick={() => setSelectedTable(null)} className="text-white border border-white/30 hover:bg-blue-800 px-3 py-1.5 rounded-md text-sm font-bold whitespace-nowrap transition-colors flex items-center gap-1 shadow-sm">
+                    <button onClick={() => switchTable(null)} className="text-white border border-white/30 hover:bg-blue-800 px-3 py-1.5 rounded-md text-sm font-bold whitespace-nowrap transition-colors flex items-center gap-1 shadow-sm">
                       <span className="text-lg leading-none">&lsaquo;</span> Sơ đồ bàn
                     </button>
                   )}
@@ -972,7 +999,7 @@ function App() {
                     {holdOrders.map((held, idx) => (
                       <div key={idx} className="flex shrink-0 items-center bg-white border border-yellow-400 px-2 py-1 text-xs">
                         <span className="font-bold text-slate-800 mr-2">{held.table}</span>
-                        <button onClick={() => { setCart(held.cart); setSelectedTable(held.table); setHoldOrders(prev => prev.filter((_, i) => i !== idx)); }} className="text-blue-700 hover:underline mr-2">Mở</button>
+                        <button onClick={() => switchTable(held.table)} className="text-blue-700 hover:underline mr-2">Mở</button>
                         <button onClick={() => setHoldOrders(prev => prev.filter((_, i) => i !== idx))} className="text-red-600 hover:underline">Hủy</button>
                       </div>
                     ))}
@@ -1003,7 +1030,7 @@ function App() {
                       <div className="bg-white border border-slate-400 p-1 text-right font-mono font-bold text-emerald-700 h-8 flex items-center justify-end rounded-sm text-sm">
                         {keypadBuffer || '0'}
                       </div>
-                      <button onClick={() => posConfig.layout !== 'retail' && setSelectedTable(null)} className="flex-1 bg-white border border-slate-400 hover:bg-slate-200 font-bold text-sm text-slate-800 rounded-sm">
+                      <button onClick={() => posConfig.layout !== 'retail' && switchTable(null)} className="flex-1 bg-white border border-slate-400 hover:bg-slate-200 font-bold text-sm text-slate-800 rounded-sm">
                         Quay lại
                       </button>
                       <button onClick={() => setShowPaymentModal(true)} className="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold text-sm uppercase rounded-sm border border-green-800 shadow-sm">
