@@ -1040,9 +1040,9 @@ function App() {
               </div>
 
               {/* Right Side: Products Grid (High Density) */}
-              <div className="flex-1 flex flex-col h-full min-h-0 border border-white/10 bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-sm overflow-hidden">
+              <div className="flex-1 flex flex-col h-full min-h-0 bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl overflow-hidden">
                 {/* Category Pills - Square styling */}
-                <div className="flex bg-white/20 border-b border-white/10 overflow-x-auto shrink-0 hide-scrollbar p-1 gap-1">
+                <div className="flex bg-black/40 backdrop-blur-md border-b border-white/10 overflow-x-auto shrink-0 hide-scrollbar p-4 gap-4">
                   {[
                     {id: 'all', label: 'TẤT CẢ'},
                     {id: 'coffee', label: 'CÀ PHÊ'},
@@ -1053,21 +1053,21 @@ function App() {
                     <button 
                       key={cat.id}
                       onClick={() => setSelectedCategory(cat.id)}
-                      className={`px-3 py-1.5 text-xs font-bold whitespace-nowrap border rounded-sm ${selectedCategory === cat.id ? 'bg-blue-600/70 backdrop-blur-md border border-blue-400/30 shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] text-white border-blue-700' : 'bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl text-white font-medium border-white/10 hover:bg-white/10 hover:bg-white/20'}`}>
+                      className={`px-6 py-3 text-sm font-bold whitespace-nowrap border rounded-xl ${selectedCategory === cat.id ? 'bg-blue-600/70 backdrop-blur-md border border-blue-400/30 shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)] text-white border-blue-700' : 'bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl text-white font-medium border-white/10 hover:bg-white/10 hover:bg-white/20'}`}>
                       {cat.label}
                     </button>
                   ))}
                 </div>
 
-                <div className="flex-1 overflow-y-auto p-1">
-                  <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-1">
+                <div className="flex-1 overflow-y-auto p-4">
+                  <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
                     {products.filter(item => (selectedCategory === 'all' || item.category === selectedCategory) && item.status !== 'not_ready').map((item) => (
                       <div 
                         key={item.id} 
                         onClick={() => { setSelectedItemForTopping(item); setNoteText(''); setSelectedSize(predefinedSizes[0]?.name || ''); setSelectedToppings([]); }} 
-                        className={`bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl border hover:border-blue-500 cursor-pointer group flex flex-col relative h-24 overflow-hidden rounded-sm ${item.status === 'low_stock' ? 'border-yellow-400 border-2 shadow-[0_0_8px_rgba(250,204,21,0.5)]' : 'border-white/10'}`}
+                        className={`bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl border hover:border-blue-500 cursor-pointer group flex flex-col relative h-36 overflow-hidden rounded-xl ${item.status === 'low_stock' ? 'border-yellow-400 border-2 shadow-[0_0_8px_rgba(250,204,21,0.5)]' : 'border-white/10'}`}
                       >
-                        {item.status === 'low_stock' && <div className="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-1 py-0.5 rounded-bl-md shadow-md z-20 animate-pulse">Sắp Hết</div>}
+                        {item.status === 'low_stock' && <div className="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-1 py-0.5 rounded-bl-xl shadow-md z-20 animate-pulse">Sắp Hết</div>}
                         {item.image ? (
                           <div className="absolute inset-0 bg-white/10 hover:bg-white/20">
                             <img src={item.image} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200" alt={item.name} />
